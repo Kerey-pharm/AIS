@@ -26,6 +26,7 @@ local/
 *.iml
 .DS_Store
 
+.metadata/
 .gradle/
 /build/
 /*/build/
