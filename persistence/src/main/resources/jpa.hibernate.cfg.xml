@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+          "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+          "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+	<session-factory>
+		<!--<class-cache usage="transactional" class="kz.bee.wx.i18n.ResourceBundle" />
+		<collection-cache usage="transactional" collection="kz.bee.wx.i18n.ResourceBundle.messages" /> -->
+	</session-factory>
+</hibernate-configuration>
