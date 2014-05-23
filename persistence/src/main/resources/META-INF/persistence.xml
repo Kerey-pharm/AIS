@@ -9,7 +9,7 @@
 		<jta-data-source>java:jboss/datasources/drugstoreDatasource</jta-data-source>
 		<shared-cache-mode>ENABLE_SELECTIVE</shared-cache-mode>
 		<properties>
-			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL82Dialect" />
+			<property name="hibernate.dialect" value="org.hibernate.dialect.Oracle10gDialect" />
 			<!--property name="hibernate.hbm2ddl.auto" value="@hibernate.hbm2ddl.auto@" /-->
 			<property name="hibernate.hbm2ddl.auto" value="update" />
 			<property name="hibernate.show_sql" value="true" />
@@ -20,5 +20,5 @@
 			<property name="hibernate.ejb.cfgfile" value="jpa.hibernate.cfg.xml" />
 		</properties>
 	</persistence-unit>
-
+	
 </persistence>
