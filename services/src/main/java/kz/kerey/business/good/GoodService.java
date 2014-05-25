@@ -1,11 +1,8 @@
-package kz.kerey.business.good.service;
+package kz.kerey.business.good;
 
 import javax.inject.Inject;
 import javax.jws.WebService;
 
-import kz.kerey.business.good.ejb.GoodEJB;
-import kz.kerey.business.good.validator.GoodValidator;
-import kz.kerey.business.good.wrapper.Good;
 import kz.kerey.exceptions.ServiceException;
 
 @WebService

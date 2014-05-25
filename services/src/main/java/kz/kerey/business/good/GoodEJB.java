@@ -1,4 +1,4 @@
-package kz.kerey.business.good.ejb;
+package kz.kerey.business.good;
 
 import java.util.List;
 
@@ -15,7 +15,7 @@ public class GoodEJB {
 	@Resource(mappedName = "java:jboss/drugstoreEntityManagerFactory")
 	public EntityManagerFactory emf;
 	
-	public void createGood(kz.kerey.business.good.wrapper.Good request) {
+	public void createGood(kz.kerey.business.good.Good request) {
 		
 	}
 	

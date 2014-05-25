@@ -1,8 +1,8 @@
-package kz.kerey.business.good.wrapper;
+package kz.kerey.business.good;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
-import kz.kerey.business.goodtype.wrapper.GoodType;
+import kz.kerey.business.goodtype.GoodType;
 
 @XmlRootElement
 public class Good {

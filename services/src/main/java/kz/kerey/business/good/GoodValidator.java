@@ -1,8 +1,7 @@
-package kz.kerey.business.good.validator;
+package kz.kerey.business.good;
 
 import javax.inject.Singleton;
 
-import kz.kerey.business.good.wrapper.Good;
 import kz.kerey.constants.Constants;
 import kz.kerey.exceptions.ValidatorException;
 import kz.kerey.validators.Validator;
