@@ -2,13 +2,20 @@ package kz.kerey.constants;
 
 public class Constants {
 
-	public static Integer exceptionIsOccured = -1;
+	public static Long exceptionIsOccured = -1L;
 	
-	public static Integer isOk = 0;
-	public static Integer objectIsNull = 1;
-	public static Integer objectIsEmpty = 2;
-	public static Integer objectExists = 3;
+	//Global
+	public static Long isOk = 0L;
+	public static Long objectIsNull = 1L;
+	public static Long objectIsEmpty = 2L;
+	public static Long objectExists = 3L;
 	
 	
+	//Good
+	public static Long goodNameEmpty = 4L;
+	public static Long barcodeEmpty = 5L;
+	
+	//GoodType
+	public static Long goodTypeNameEmpty = 6L;
 	
 }
