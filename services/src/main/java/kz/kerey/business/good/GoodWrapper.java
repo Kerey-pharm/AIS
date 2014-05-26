@@ -1,45 +1,19 @@
-package kz.kerey.business.types;
+package kz.kerey.business.good;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.xml.bind.annotation.XmlRootElement;
 
-@Entity
-public class Good {
+import kz.kerey.business.goodtype.GoodTypeWrapper;
 
-	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+@XmlRootElement
+public class GoodWrapper {
+	
 	private Long id;
-	
-	@Column(unique=true, nullable=false)
 	private String name;
-
-	@Column(unique=true, nullable=false)
 	private String primaryBarcode;
-	
-	@Column
 	private Boolean partialSelling;
-	
-	@Column
 	private Long countPerBox;
-	
-	@Column
 	private Long countSellable;
-	
-	@ManyToOne(fetch=FetchType.LAZY)
-	private GoodType type;
-	
-	public GoodType getType() {
-		return type;
-	}
-
-	public void setType(GoodType type) {
-		this.type = type;
-	}
+	private GoodTypeWrapper type;
 
 	public Long getId() {
 		return id;
@@ -47,6 +21,14 @@ public class Good {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public String getPrimaryBarcode() {
@@ -57,12 +39,12 @@ public class Good {
 		this.primaryBarcode = primaryBarcode;
 	}
 
-	public String getName() {
-		return name;
+	public GoodTypeWrapper getType() {
+		return type;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setType(GoodTypeWrapper type) {
+		this.type = type;
 	}
 
 	public Boolean getPartialSelling() {

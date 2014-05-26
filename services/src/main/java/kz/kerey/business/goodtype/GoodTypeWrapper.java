@@ -3,14 +3,14 @@ package kz.kerey.business.goodtype;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
-public class GoodType {
+public class GoodTypeWrapper {
 
 	private Long id;
 	private String name;
 
-	public static GoodType fromEntity(kz.kerey.business.types.GoodType obj) {
+	public static GoodTypeWrapper fromEntity(kz.kerey.business.types.GoodType obj) {
 		if (obj!=null){
-			GoodType res = new GoodType();
+			GoodTypeWrapper res = new GoodTypeWrapper();
 			res.setId(obj.getId());
 			res.setName(obj.getName());
 			return res;

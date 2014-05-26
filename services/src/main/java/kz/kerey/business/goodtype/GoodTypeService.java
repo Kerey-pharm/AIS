@@ -21,43 +21,27 @@ public class GoodTypeService {
 	GoodTypeValidator validator;
 	
 	@WebMethod
-	public List<GoodType> getGoodTypeList(
+	public List<GoodTypeWrapper> getGoodTypeList(
 			@WebParam(name="paged")
 			Boolean paged, 
 			@WebParam(name="pageNum")
 			Integer pageNum, 
 			@WebParam(name="perPage")
 			Integer perPage) throws ServiceException, ValidatorException {
-		try {
-			return bean.getGoodTypeList(paged, pageNum, perPage);
-		}
-		catch (EJBException ex) {
-			ex.printStackTrace();
-			return null;
-		}
+		return bean.getGoodTypeList(paged, pageNum, perPage);
 	}
 	
 	@WebMethod
 	public void deleteGoodType(
 			@WebParam(name="id")
 			Long id) throws ServiceException, ValidatorException {
-		try {
-			bean.deleteGoodType(id);
-		}
-		catch (EJBException ex) {
-			ex.printStackTrace();
-		}
+		bean.deleteGoodType(id);
 	}
 	
 	@WebMethod
-	public void createGoodType(GoodType goodType) throws ServiceException, ValidatorException {
+	public void createGoodType(GoodTypeWrapper goodType) throws ServiceException, ValidatorException {
 		validator.validate(goodType);
-		try {
-			bean.createGoodType(goodType);
-		}
-		catch (EJBException ex) {
-			ex.printStackTrace();
-		}
+		bean.createGoodType(goodType);
 	}
 	
 } 

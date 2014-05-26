@@ -7,10 +7,10 @@ import kz.kerey.exceptions.ValidatorException;
 import kz.kerey.validators.Validator;
 
 @Singleton
-public class GoodValidator extends Validator<Good> {
+public class GoodValidator extends Validator<GoodWrapper> {
 	
 	@Override
-	public void validate(Good t) throws ValidatorException {
+	public void validate(GoodWrapper t) throws ValidatorException {
 
 		if (t==null)
 			throw new ValidatorException(Constants.objectIsNull, "objectIsNull");

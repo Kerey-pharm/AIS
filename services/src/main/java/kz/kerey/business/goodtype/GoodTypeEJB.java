@@ -9,6 +9,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
 
+import kz.kerey.business.types.GoodType;
 import kz.kerey.constants.Constants;
 import kz.kerey.exceptions.ValidatorException;
 
@@ -18,9 +19,9 @@ public class GoodTypeEJB {
 	@Resource(mappedName = "java:jboss/drugstoreEntityManagerFactory")
 	public EntityManagerFactory emf;
 	
-	public List<GoodType> getGoodTypeList(boolean paged, Integer pageNum, Integer perPage) throws ValidatorException {
+	public List<GoodTypeWrapper> getGoodTypeList(boolean paged, Integer pageNum, Integer perPage) throws ValidatorException {
 		EntityManager em = null;
-		List<GoodType> result = new ArrayList<GoodType>();
+		List<GoodTypeWrapper> result = new ArrayList<GoodTypeWrapper>();
 		try {
 			em = emf.createEntityManager();
 			Query query = em.createQuery("from GoodType order by name");
@@ -28,9 +29,9 @@ public class GoodTypeEJB {
 				query = query.setFirstResult(perPage * (pageNum - 1))
 						.setMaxResults(perPage);
 			}
-			List<kz.kerey.business.types.GoodType> list = query.getResultList();
-			for(kz.kerey.business.types.GoodType type : list) {
-				result.add(GoodType.fromEntity(type));
+			List<GoodType> list = query.getResultList();
+			for(GoodType type : list) {
+				result.add(GoodTypeWrapper.fromEntity(type));
 			}
 			return result;
 		}
@@ -45,7 +46,7 @@ public class GoodTypeEJB {
 		EntityManager em = null;
 		try {
 			em = emf.createEntityManager();
-			kz.kerey.business.types.GoodType obj = em.find(kz.kerey.business.types.GoodType.class, id);
+			GoodType obj = em.find(GoodType.class, id);
 			em.remove(obj);
 		}
 		finally {
@@ -55,7 +56,7 @@ public class GoodTypeEJB {
 		}
 	}
 	
-	public void createGoodType(GoodType type) throws ValidatorException {
+	public void createGoodType(GoodTypeWrapper type) throws ValidatorException {
 		EntityManager em = null;
 		try {
 			em = emf.createEntityManager();
@@ -63,7 +64,7 @@ public class GoodTypeEJB {
 					.setParameter("text1", type.getName())
 					.getResultList();
 			if (list.size()==0) {
-				kz.kerey.business.types.GoodType obj = new kz.kerey.business.types.GoodType();
+				GoodType obj = new GoodType();
 				obj.setName(type.getName());
 				em.persist(obj);
 			}

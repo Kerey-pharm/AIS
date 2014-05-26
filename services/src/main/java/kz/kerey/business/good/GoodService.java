@@ -14,8 +14,9 @@ public class GoodService {
 	@Inject
 	GoodValidator validator;
 	
-	public void createGood(Good request) throws ServiceException {
+	public void createGood(GoodWrapper request) throws ServiceException {
 		validator.validate(request);
+		goodBean.createGood(request);
 	}
 	
 }
