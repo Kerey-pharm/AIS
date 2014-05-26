@@ -3,6 +3,7 @@ package kz.kerey.business.good;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import kz.kerey.business.goodtype.GoodTypeWrapper;
+import kz.kerey.business.types.Good;
 
 @XmlRootElement
 public class GoodWrapper {
@@ -15,6 +16,28 @@ public class GoodWrapper {
 	private Long countSellable;
 	private GoodTypeWrapper type;
 
+	public static GoodWrapper fromEntity(Good obj) {
+		GoodWrapper res = new GoodWrapper();
+		res.setCountPerBox(obj.getCountPerBox());
+		res.setCountSellable(obj.getCountSellable());
+		res.setName(obj.getName());
+		res.setPartialSelling(obj.getPartialSelling());
+		res.setPrimaryBarcode(obj.getPrimaryBarcode());
+		res.setId(obj.getId());
+		res.setType(GoodTypeWrapper.fromEntity(obj.getType()));
+		return res;
+	}
+	
+	public static Good toEntity(GoodWrapper obj) {
+		Good res = new Good();
+		res.setCountPerBox(obj.getCountPerBox());
+		res.setCountSellable(obj.getCountSellable());
+		res.setName(obj.getName());
+		res.setPartialSelling(obj.getPartialSelling());
+		res.setPrimaryBarcode(obj.getPrimaryBarcode());
+		return res;
+	}
+	
 	public Long getId() {
 		return id;
 	}

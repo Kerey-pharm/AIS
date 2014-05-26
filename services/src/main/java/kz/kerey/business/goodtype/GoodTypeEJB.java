@@ -47,6 +47,8 @@ public class GoodTypeEJB {
 		try {
 			em = emf.createEntityManager();
 			GoodType obj = em.find(GoodType.class, id);
+			if (obj==null)
+				throw new ValidatorException(Constants.objectIsNull, "Object with ID:"+id+" is NULL");
 			em.remove(obj);
 		}
 		finally {

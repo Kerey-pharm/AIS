@@ -2,13 +2,12 @@ package kz.kerey.business.goodtype;
 
 import java.util.List;
 
-import javax.ejb.EJBException;
 import javax.inject.Inject;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import javax.jws.WebService;
 
-import kz.kerey.exceptions.ServiceException;
+import kz.kerey.constants.Constants;
 import kz.kerey.exceptions.ValidatorException;
 
 @WebService
@@ -27,19 +26,21 @@ public class GoodTypeService {
 			@WebParam(name="pageNum")
 			Integer pageNum, 
 			@WebParam(name="perPage")
-			Integer perPage) throws ServiceException, ValidatorException {
+			Integer perPage) throws ValidatorException {
 		return bean.getGoodTypeList(paged, pageNum, perPage);
 	}
 	
 	@WebMethod
 	public void deleteGoodType(
 			@WebParam(name="id")
-			Long id) throws ServiceException, ValidatorException {
+			Long id) throws ValidatorException {
+		if (id==null || id==0L)
+			throw new ValidatorException(Constants.objectIsNull, "ID is null");
 		bean.deleteGoodType(id);
 	}
 	
 	@WebMethod
-	public void createGoodType(GoodTypeWrapper goodType) throws ServiceException, ValidatorException {
+	public void createGoodType(GoodTypeWrapper goodType) throws ValidatorException {
 		validator.validate(goodType);
 		bean.createGoodType(goodType);
 	}

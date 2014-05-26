@@ -14,8 +14,9 @@ public class Constants {
 	//Good
 	public static Long goodNameEmpty = 4L;
 	public static Long barcodeEmpty = 5L;
+	public static Long fieldNotFilledProperly = 6L;
 	
 	//GoodType
-	public static Long goodTypeNameEmpty = 6L;
+	public static Long goodTypeNameEmpty = 7L;
 	
 }

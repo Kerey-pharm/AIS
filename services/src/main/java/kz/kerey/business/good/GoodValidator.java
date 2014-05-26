@@ -21,6 +21,18 @@ public class GoodValidator extends Validator<GoodWrapper> {
 		if (t.getPrimaryBarcode()==null || t.getPrimaryBarcode().trim().length()==0)
 			throw new ValidatorException(Constants.barcodeEmpty, "barcodeEmpty");
 		
+		if (t.getPartialSelling()==null)
+			throw new ValidatorException(Constants.fieldNotFilledProperly, "Field : PartialSelling");
+		
+		if (t.getCountPerBox()==null || t.getCountPerBox()==0L)
+			throw new ValidatorException(Constants.fieldNotFilledProperly, "Field : CountPerBox");
+		
+		if (t.getCountSellable()==null || t.getCountSellable()==0L)
+			throw new ValidatorException(Constants.fieldNotFilledProperly, "Field : CountSellable");
+		
+		if (t.getType()==null)
+			throw new ValidatorException(Constants.fieldNotFilledProperly, "Field : Type");
+		
 	}
 	
 }
