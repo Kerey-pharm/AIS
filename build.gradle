@@ -7,7 +7,7 @@ subprojects {
     }
 
     dependencies {
-        testCompile 'junit:junit:4.+'
+        testCompile 'junit:junit:4.11'
 		compile 'org.hibernate.javax.persistence:hibernate-jpa-2.1-api:1.0.0.Final',
 				'org.hibernate:hibernate-core:4.2.12.Final'
 		
