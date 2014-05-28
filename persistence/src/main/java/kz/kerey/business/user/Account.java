@@ -1,13 +1,11 @@
 package kz.kerey.business.user;
 
-import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
-
-import kz.kerey.business.types.enums.Role;
+import javax.persistence.OneToMany;
 
 @Entity
 @DiscriminatorValue("Account")
@@ -19,9 +17,8 @@ public class Account extends User {
 	@Column
 	private String passwordHash;
 
-	@ElementCollection(targetClass=Role.class)
-	@Column
-	private List<Role> roles;
+	@OneToMany
+	private Set<Role> roles;
 	
 	public String getLogin() {
 		return login;
@@ -39,11 +36,11 @@ public class Account extends User {
 		this.passwordHash = passwordHash;
 	}
 
-	public List<Role> getRoles() {
+	public Set<Role> getRoles() {
 		return roles;
 	}
 
-	public void setRoles(List<Role> roles) {
+	public void setRoles(Set<Role> roles) {
 		this.roles = roles;
 	}
 

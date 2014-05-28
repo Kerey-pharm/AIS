@@ -17,7 +17,8 @@ import javax.persistence.InheritanceType;
 import javax.persistence.ManyToOne;
 
 import kz.kerey.business.types.enums.TaskStatus;
-import kz.kerey.business.user.Account;
+import kz.kerey.flow.Ladder;
+import kz.kerey.flow.Step;
 
 @Entity
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
@@ -28,11 +29,6 @@ public abstract class Task {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
-	
-	@ManyToOne
-	private Account creator;
-	
-	private Account executor;
 	
 	@Column(nullable=false)
 	private Date initialDate;
@@ -46,6 +42,12 @@ public abstract class Task {
 	@Column(nullable=false)
 	@Enumerated(EnumType.STRING)
 	private TaskStatus status;
+	
+	@ManyToOne
+	private Ladder ladder;
+	
+	@ManyToOne
+	private Step step;
 	
 	public Long getId() {
 		return id;
