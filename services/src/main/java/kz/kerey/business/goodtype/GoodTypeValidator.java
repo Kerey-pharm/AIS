@@ -15,7 +15,7 @@ public class GoodTypeValidator extends Validator<GoodTypeWrapper> {
 		if (t==null) 
 			throw new ValidatorException(Constants.objectIsNull, "objectIsNull");
 		if (t.getName()==null || t.getName().trim().length()==0) 
-			throw new ValidatorException(Constants.goodTypeNameEmpty, "goodTypeNameEmpty");
+			throw new ValidatorException(Constants.fieldNotFilledProperly, "goodTypeNameEmpty");
 		
 	}
 	

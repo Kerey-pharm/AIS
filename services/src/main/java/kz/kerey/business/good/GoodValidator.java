@@ -16,7 +16,7 @@ public class GoodValidator extends Validator<GoodWrapper> {
 			throw new ValidatorException(Constants.objectIsNull, "objectIsNull");
 		
 		if (t.getName()==null || t.getName().trim().length()==0)
-			throw new ValidatorException(Constants.goodNameEmpty, "goodNameEmpty");
+			throw new ValidatorException(Constants.fieldNotFilledProperly, "goodNameEmpty");
 		
 		if (t.getPrimaryBarcode()==null || t.getPrimaryBarcode().trim().length()==0)
 			throw new ValidatorException(Constants.barcodeEmpty, "barcodeEmpty");

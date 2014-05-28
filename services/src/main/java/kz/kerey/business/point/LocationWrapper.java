@@ -1,7 +1,6 @@
 package kz.kerey.business.point;
 
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 import kz.kerey.business.types.points.Location;
 

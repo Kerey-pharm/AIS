@@ -8,7 +8,7 @@ import javax.persistence.Entity;
 @DiscriminatorValue("Distributor")
 public class Distributor extends Point {
 
-	@Column(unique=true, nullable=false)
+	@Column
 	private String bin;
 	
 	@Column

@@ -14,7 +14,7 @@ public class LocationValidator extends Validator<LocationWrapper> {
 		if (t==null)
 			throw new ValidatorException(Constants.objectIsNull, "objectIsNull");
 		if (t.getName()==null || t.getName().trim().length()==0)
-			throw new ValidatorException(Constants.locationNameIsEmpty, "locationNameIsEmpty");
+			throw new ValidatorException(Constants.fieldNotFilledProperly, "locationNameIsEmpty");
 	}
 
 }

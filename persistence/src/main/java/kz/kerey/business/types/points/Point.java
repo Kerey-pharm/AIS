@@ -54,5 +54,13 @@ public abstract class Point {
 	public void setDescription(String description) {
 		this.description = description;
 	}
+
+	public Location getLocation() {
+		return location;
+	}
+
+	public void setLocation(Location location) {
+		this.location = location;
+	}
 	
 }
