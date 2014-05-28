@@ -11,12 +11,10 @@ public class GoodTypeValidator extends Validator<GoodTypeWrapper> {
 
 	@Override
 	public void validate(GoodTypeWrapper t) throws ValidatorException {
-		
 		if (t==null) 
 			throw new ValidatorException(Constants.objectIsNull, "objectIsNull");
 		if (t.getName()==null || t.getName().trim().length()==0) 
 			throw new ValidatorException(Constants.fieldNotFilledProperly, "goodTypeNameEmpty");
-		
 	}
 	
 }

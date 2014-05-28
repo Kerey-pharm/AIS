@@ -12,6 +12,13 @@ public class PointWrapper {
 	private String description;
 	private LocationWrapper location;
 	
+	public static void fromEntity(PointWrapper res, Point obj) {
+		res.setDescription(obj.getDescription());
+		res.setId(obj.getId());
+		res.setName(obj.getName());
+		res.setLocation(LocationWrapper.fromEntity(obj.getLocation()));
+	}
+	
 	public static void toEntity(Point res, PointWrapper obj) {
 		res.setDescription(obj.getDescription());
 		res.setId(obj.getId());

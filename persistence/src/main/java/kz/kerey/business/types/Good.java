@@ -21,13 +21,13 @@ public class Good {
 	@Column(unique=true, nullable=false)
 	private String primaryBarcode;
 	
-	@Column
+	@Column(nullable=false)
 	private Boolean partialSelling;
 	
-	@Column
+	@Column(nullable=false)
 	private Long countPerBox;
 	
-	@Column
+	@Column(nullable=false)
 	private Long countSellable;
 	
 	@ManyToOne(fetch=FetchType.LAZY)

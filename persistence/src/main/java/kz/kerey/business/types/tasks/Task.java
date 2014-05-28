@@ -7,11 +7,17 @@ import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorType;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.ManyToOne;
+
+import kz.kerey.business.types.enums.TaskStatus;
+import kz.kerey.business.user.Account;
 
 @Entity
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
@@ -23,15 +29,24 @@ public abstract class Task {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
 	
-	@Column
+	@ManyToOne
+	private Account creator;
+	
+	private Account executor;
+	
+	@Column(nullable=false)
 	private Date initialDate;
 	
-	@Column
+	@Column(nullable=false)
 	private Date finishDate;
 	
-	@Column
+	@Column(nullable=false)
 	private Date deadlineDate;
 
+	@Column(nullable=false)
+	@Enumerated(EnumType.STRING)
+	private TaskStatus status;
+	
 	public Long getId() {
 		return id;
 	}
@@ -62,6 +77,14 @@ public abstract class Task {
 
 	public void setDeadlineDate(Date deadlineDate) {
 		this.deadlineDate = deadlineDate;
+	}
+
+	public TaskStatus getStatus() {
+		return status;
+	}
+
+	public void setStatus(TaskStatus status) {
+		this.status = status;
 	}
 	
 }

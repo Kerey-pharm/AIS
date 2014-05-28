@@ -62,17 +62,14 @@ public class GoodTypeEJB {
 		EntityManager em = null;
 		try {
 			em = emf.createEntityManager();
-			List<GoodType> list = em.createQuery("from GoodType where name=:text1")
-					.setParameter("text1", type.getName())
+			List<GoodType> list = em.createQuery("from GoodType where lower(name)=:text1")
+					.setParameter("text1", type.getName().toLowerCase())
 					.getResultList();
-			if (list.size()==0) {
-				GoodType obj = new GoodType();
-				obj.setName(type.getName());
-				em.persist(obj);
-			}
-			else {
+			if (list.size()>0)
 				throw new ValidatorException(Constants.objectExists, "objectExists");
-			}
+			GoodType obj = new GoodType();
+			obj.setName(type.getName());
+			em.persist(obj);
 		}
 		finally {
 			if (em!=null)

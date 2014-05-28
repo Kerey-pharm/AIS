@@ -9,6 +9,4 @@ public class GoodItemService {
 	@Inject
 	GoodItemEJB bean;
 	
-	
-	
 }

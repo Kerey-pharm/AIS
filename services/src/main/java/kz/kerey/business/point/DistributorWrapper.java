@@ -11,6 +11,15 @@ public class DistributorWrapper extends PointWrapper {
 	private String bankAccount;
 	private String bankAccountDescription;
 	
+	public static DistributorWrapper fromEntity(Distributor obj) {
+		DistributorWrapper res = new DistributorWrapper();
+		PointWrapper.fromEntity(res, obj);
+		res.setBankAccount(obj.getBankAccount());
+		res.setBankAccountDescription(obj.getBankAccountDescription());
+		res.setBin(obj.getBin());
+		return res;
+	}
+	
 	public static Distributor toEntity(DistributorWrapper obj) {
 		Distributor res = new Distributor();
 		PointWrapper.toEntity(res, obj);

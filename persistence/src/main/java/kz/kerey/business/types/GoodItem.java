@@ -17,6 +17,12 @@ public class GoodItem {
 	private Long id;
 	
 	@ManyToOne
+	private GoodItem parent;
+	
+	@ManyToOne
+	private GoodOwner owner;
+	
+	@ManyToOne
 	private Good good;
 	
 	@Column(unique=true, nullable=false)
@@ -25,10 +31,10 @@ public class GoodItem {
 	@Column(nullable=false)
 	private String serial;
 	
-	@Column
+	@Column(nullable=false)
 	private Date initialDate;
 	
-	@Column
+	@Column(nullable=false)
 	private Date expireDate;
 	
 	@Column(nullable=false)
@@ -46,6 +52,14 @@ public class GoodItem {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public GoodOwner getOwner() {
+		return owner;
+	}
+
+	public void setOwner(GoodOwner owner) {
+		this.owner = owner;
 	}
 
 	public Good getGood() {
@@ -88,6 +102,14 @@ public class GoodItem {
 		this.expireDate = expireDate;
 	}
 
+	public Long getInitialBoxCount() {
+		return initialBoxCount;
+	}
+
+	public void setInitialBoxCount(Long initialBoxCount) {
+		this.initialBoxCount = initialBoxCount;
+	}
+
 	public Long getInitialCount() {
 		return initialCount;
 	}
@@ -104,12 +126,12 @@ public class GoodItem {
 		this.currentCount = currentCount;
 	}
 
-	public Long getInitialBoxCount() {
-		return initialBoxCount;
+	public GoodItem getParent() {
+		return parent;
 	}
 
-	public void setInitialBoxCount(Long initialBoxCount) {
-		this.initialBoxCount = initialBoxCount;
+	public void setParent(GoodItem parent) {
+		this.parent = parent;
 	}
-	
+
 }

@@ -48,14 +48,18 @@ public class GoodEJB {
 		}
 	}
 	
-	public void createGood(kz.kerey.business.good.GoodWrapper request) throws ValidatorException {
+	public void createGood(GoodWrapper request) throws ValidatorException {
 		EntityManager em = null;
 		try {
 			em = emf.createEntityManager();
 			GoodType type = em.find(GoodType.class, request.getType().getId());
-			if (type==null) {
+			if (type==null)
 				throw new ValidatorException(Constants.fieldNotFilledProperly, "GoodType not recognized");
-			}
+			List<Good> list = em.createQuery("from Good g where lower(name)=:text1")
+					.setParameter("text1", request.getName().toLowerCase())
+					.getResultList();
+			if (list.size()>0)
+				throw new ValidatorException(Constants.objectExists, "Good exists");
 			Good good = GoodWrapper.toEntity(request);
 			good.setType(type);
 			em.persist(good);

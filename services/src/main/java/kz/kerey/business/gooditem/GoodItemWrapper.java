@@ -2,11 +2,16 @@ package kz.kerey.business.gooditem;
 
 import java.util.Date;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
 import kz.kerey.business.good.GoodWrapper;
 
+@XmlRootElement
 public class GoodItemWrapper {
 
 	private Long id;
+	private GoodItemWrapper parent;
+	private GoodOwnerWrapper owner;
 	private GoodWrapper good;
 	private String barcode;
 	private String serial;
@@ -21,6 +26,18 @@ public class GoodItemWrapper {
 	}
 	public void setId(Long id) {
 		this.id = id;
+	}
+	public GoodItemWrapper getParent() {
+		return parent;
+	}
+	public void setParent(GoodItemWrapper parent) {
+		this.parent = parent;
+	}
+	public GoodOwnerWrapper getOwner() {
+		return owner;
+	}
+	public void setOwner(GoodOwnerWrapper owner) {
+		this.owner = owner;
 	}
 	public GoodWrapper getGood() {
 		return good;
@@ -52,6 +69,12 @@ public class GoodItemWrapper {
 	public void setExpireDate(Date expireDate) {
 		this.expireDate = expireDate;
 	}
+	public Long getInitialBoxCount() {
+		return initialBoxCount;
+	}
+	public void setInitialBoxCount(Long initialBoxCount) {
+		this.initialBoxCount = initialBoxCount;
+	}
 	public Long getInitialCount() {
 		return initialCount;
 	}
@@ -64,10 +87,5 @@ public class GoodItemWrapper {
 	public void setCurrentCount(Long currentCount) {
 		this.currentCount = currentCount;
 	}
-	public Long getInitialBoxCount() {
-		return initialBoxCount;
-	}
-	public void setInitialBoxCount(Long initialBoxCount) {
-		this.initialBoxCount = initialBoxCount;
-	}
+	
 }
