@@ -17,6 +17,7 @@ import javax.persistence.InheritanceType;
 import javax.persistence.ManyToOne;
 
 import kz.kerey.business.types.enums.TaskStatus;
+import kz.kerey.business.user.Account;
 import kz.kerey.flow.Ladder;
 import kz.kerey.flow.Step;
 
@@ -48,6 +49,9 @@ public abstract class Task {
 	
 	@ManyToOne
 	private Step step;
+	
+	@ManyToOne
+	private Account executor;
 	
 	public Long getId() {
 		return id;

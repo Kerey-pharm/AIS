@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import kz.kerey.business.types.points.Point;
+
 @Entity
 public class GoodItem {
 
@@ -20,7 +22,7 @@ public class GoodItem {
 	private GoodItem parent;
 	
 	@ManyToOne
-	private GoodOwner owner;
+	private Point point;
 	
 	@ManyToOne
 	private Good good;
@@ -52,14 +54,6 @@ public class GoodItem {
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public GoodOwner getOwner() {
-		return owner;
-	}
-
-	public void setOwner(GoodOwner owner) {
-		this.owner = owner;
 	}
 
 	public Good getGood() {

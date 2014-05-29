@@ -23,8 +23,8 @@ public class Step {
 	@Column
 	private String name;
 	
-	@ManyToOne
-	private Account defaultAccount;
+	@Column
+	private Ladder ladder;
 	
 	@OneToMany
 	private Set<Role> roles; 
