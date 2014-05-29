@@ -6,6 +6,7 @@ import javax.annotation.Resource;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManagerFactory;
 
+import kz.kerey.business.wrappers.GoodItemWrapper;
 import kz.kerey.exceptions.ValidatorException;
 
 @Stateless

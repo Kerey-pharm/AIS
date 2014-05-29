@@ -3,6 +3,8 @@ package kz.kerey.flow;
 import javax.inject.Inject;
 import javax.jws.WebService;
 
+import kz.kerey.business.wrappers.LadderWrapper;
+import kz.kerey.business.wrappers.StepWrapper;
 import kz.kerey.exceptions.ValidatorException;
 
 @WebService

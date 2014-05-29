@@ -10,6 +10,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
 
 import kz.kerey.business.types.points.Location;
+import kz.kerey.business.wrappers.LocationWrapper;
 import kz.kerey.constants.Constants;
 import kz.kerey.exceptions.ValidatorException;
 

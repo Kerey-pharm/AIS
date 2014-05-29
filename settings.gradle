@@ -1,1 +1,1 @@
-include "persistence", "services", "ui"
+include "persistence", "services", "ui", "interfaces"

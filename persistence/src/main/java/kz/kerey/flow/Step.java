@@ -23,7 +23,7 @@ public class Step {
 	@Column
 	private String name;
 	
-	@Column
+	@ManyToOne
 	private Ladder ladder;
 	
 	@OneToMany
@@ -51,6 +51,14 @@ public class Step {
 
 	public void setRoles(Set<Role> roles) {
 		this.roles = roles;
+	}
+
+	public Ladder getLadder() {
+		return ladder;
+	}
+
+	public void setLadder(Ladder ladder) {
+		this.ladder = ladder;
 	}
 
 }

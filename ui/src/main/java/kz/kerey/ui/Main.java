@@ -1,41 +1,39 @@
 package kz.kerey.ui;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.util.Hashtable;
+import java.util.Properties;
 
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+
+import kz.kerey.api.GoodTypeInterface;
+import kz.kerey.business.wrappers.GoodTypeWrapper;
 
 public class Main {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws NamingException {
 
-		JFrame mainFrame = new JFrame();
 		
-		JLabel label = new JLabel();
-		label.setText("dakosha");
+		String jndiName = "java:jboss/exported/services/GoodTypeEJB!kz.kerey.api.GoodTypeInterface";
 		
-		mainFrame.add(label);
+		GoodTypeInterface service = Main.lookupRemoteStatelessCalculator(jndiName);
 		
-		JButton button = new JButton();
-		button.setText("daka");
-		
-		mainFrame.add(button);
-		
-		button.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				System.exit(0);
-			}
-		});
-		
-		
-		
-		mainFrame.setVisible(true);
-		
+		GoodTypeWrapper wrapper = new GoodTypeWrapper();
+		wrapper.setName("FFFF!");
+		service.createGoodType(wrapper);
 		
 		
 	}
 
+	private static GoodTypeInterface lookupRemoteStatelessCalculator(String url) throws NamingException {
+        final Properties jndiProperties = new Properties();
+        
+        jndiProperties.put(Context.URL_PKG_PREFIXES, "org.jboss.ejb.client.naming");
+                
+        final Context context = new InitialContext(jndiProperties);
+        
+        return (GoodTypeInterface) context.lookup(url);
+    }
+	
 }

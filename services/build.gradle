@@ -2,5 +2,6 @@ apply plugin: 'war'
 
 dependencies {
     providedCompile project(':persistence')
+	providedCompile project(':interfaces')
 	providedCompile 'org.jboss.spec:jboss-javaee-7.0:1.0.0.Final'
 }

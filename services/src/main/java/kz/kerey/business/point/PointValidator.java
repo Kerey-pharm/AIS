@@ -2,6 +2,7 @@ package kz.kerey.business.point;
 
 import javax.inject.Singleton;
 
+import kz.kerey.business.wrappers.PointWrapper;
 import kz.kerey.constants.Constants;
 import kz.kerey.exceptions.ValidatorException;
 import kz.kerey.validators.Validator;

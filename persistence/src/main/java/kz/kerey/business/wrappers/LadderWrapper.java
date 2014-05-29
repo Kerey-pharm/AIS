@@ -1,12 +1,15 @@
-package kz.kerey.flow;
+package kz.kerey.business.wrappers;
+
+import java.util.List;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
-public class StepWrapper {
+public class LadderWrapper {
 
 	private Long id;
 	private String name;
+	private List<StepWrapper> steps;
 	
 	public Long getId() {
 		return id;
@@ -20,6 +23,11 @@ public class StepWrapper {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
+	public List<StepWrapper> getSteps() {
+		return steps;
+	}
+	public void setSteps(List<StepWrapper> steps) {
+		this.steps = steps;
+	}
 	
 }

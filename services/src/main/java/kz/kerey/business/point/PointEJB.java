@@ -13,6 +13,8 @@ import kz.kerey.business.types.points.Distributor;
 import kz.kerey.business.types.points.Location;
 import kz.kerey.business.types.points.Point;
 import kz.kerey.business.types.points.Warehouse;
+import kz.kerey.business.wrappers.DistributorWrapper;
+import kz.kerey.business.wrappers.WarehouseWrapper;
 import kz.kerey.constants.Constants;
 import kz.kerey.exceptions.ValidatorException;
 

@@ -4,6 +4,7 @@ import java.util.Date;
 
 import javax.inject.Singleton;
 
+import kz.kerey.business.wrappers.GoodItemWrapper;
 import kz.kerey.constants.Constants;
 import kz.kerey.exceptions.ValidatorException;
 import kz.kerey.validators.Validator;
@@ -31,8 +32,7 @@ public class GoodItemValidator extends Validator<GoodItemWrapper> {
 			throw new ValidatorException(Constants.fieldNotFilledProperly, "Field : InitialDate");
 		if (t.getGood()==null || t.getGood().getId()==null || t.getGood().getId()==0)
 			throw new ValidatorException(Constants.fieldNotFilledProperly, "Field : Good");
-		if (t.getOwner()==null || t.getOwner().getId()==null || t.getOwner().getId()==0)
-			throw new ValidatorException(Constants.fieldNotFilledProperly, "Field : Owner");
+		
 	}
 
 }

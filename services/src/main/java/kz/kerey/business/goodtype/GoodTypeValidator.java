@@ -2,6 +2,7 @@ package kz.kerey.business.goodtype;
 
 import javax.inject.Singleton;
 
+import kz.kerey.business.wrappers.GoodTypeWrapper;
 import kz.kerey.constants.Constants;
 import kz.kerey.exceptions.ValidatorException;
 import kz.kerey.validators.Validator;

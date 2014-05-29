@@ -11,6 +11,7 @@ import javax.persistence.Query;
 
 import kz.kerey.business.types.Good;
 import kz.kerey.business.types.GoodType;
+import kz.kerey.business.wrappers.GoodWrapper;
 import kz.kerey.constants.Constants;
 import kz.kerey.exceptions.ValidatorException;
 

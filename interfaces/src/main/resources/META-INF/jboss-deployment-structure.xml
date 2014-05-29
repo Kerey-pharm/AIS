@@ -2,7 +2,6 @@
 	<deployment>
 		<dependencies>
 		    <module name="deployment.persistence.jar"></module>
-		    <module name="deployment.interfaces.jar"></module>
 		</dependencies>
 	</deployment>
 </jboss-deployment-structure>

@@ -1,4 +1,4 @@
-package kz.kerey.business.task;
+package kz.kerey.business.wrappers;
 
 import java.util.Date;
 
