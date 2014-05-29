@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.ejb.Local;
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
 import javax.enterprise.inject.Default;
@@ -18,7 +19,6 @@ import kz.kerey.constants.Constants;
 import kz.kerey.exceptions.ValidatorException;
 
 @Stateless
-@Default
 @Remote(GoodTypeInterface.class)
 public class GoodTypeEJB implements GoodTypeInterface {
 
