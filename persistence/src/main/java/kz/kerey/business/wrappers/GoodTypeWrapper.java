@@ -1,9 +1,11 @@
 package kz.kerey.business.wrappers;
 
+import java.io.Serializable;
+
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
-public class GoodTypeWrapper {
+public class GoodTypeWrapper implements Serializable {
 
 	private Long id;
 	private String name;
