@@ -6,7 +6,7 @@ dependencies {
 	compile project(':persistence')
 	compile project(':interfaces')
 	
-	compile 'org.jboss.as:jboss-as-ejb-client-bom:7.2.0.Final'
-	
+	compile 'org.jboss.as:jboss-as-ejb-client-bom:7.2.0.Final',
+			'com.miglayout:miglayout-swing:4.2'
 			
 }
