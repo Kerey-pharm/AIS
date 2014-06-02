@@ -130,30 +130,30 @@
 				%>
 				<li><a href="javascript:changeLocale('kk')">ҚАЗ</a> <span>|</span></li>
 				<li>РУС <span>|</span></li>
-				<li><a href="javascript:changeLocale('en')">ENGLISH</a></li>
+				<li><a href="javascript:changeLocale('en')">ENG</a></li>
 				<%}
 				else {%>
 				<li>ҚАЗ<span>|</span></li>
 				<li><a href="javascript:changeLocale('ru')">РУС</a> <span>|</span></li>
-				<li><a href="javascript:changeLocale('en')">ENGLISH</a></li>
+				<li><a href="javascript:changeLocale('en')">ENG</a></li>
 				<%} %>
 			</ul>
 		</div>
 
 		<div class="profile-bar">
 			<div class="logo">
-				<a href="/"><img src="img/glts/logo.png" width="204" height="65"/></a>
+				<a href="/"><img src="img/default_avatar_teacher.jpg" width="204" height="65"/></a>
 			</div>
 			<div class="name">
 			<%if(locale.equals("en")) {%>
-				E-learning
+				Kerey-pharm AIS
 			<%}
 			else if(locale.equals("ru")) {
 			%>
-				Система электронного обучения
+				Kerey-pharm AIS
 			<%}
 			else {%>
-				Электронды оқу жүйесі
+				Kerey-pharm AIS
 			<%} %>
 			</div>
 			<div class="buttons">
@@ -261,7 +261,7 @@
 		<div class="footer">
 			<div class="footer_line"></div>
 			<ul class="pull-right">
-				<li><a href="http://www.nitec.kz">АО "НИТ"</a>, <a href="http://kerey-pharm.kz">ТОО "Kerey-pharm"</a>, 2014 г.</li>
+				<li><a href="http://kerey-pharm.kz">ТОО "Керей-фарм"</a>, 2014 г.</li>
 			</ul>
 		</div>
 

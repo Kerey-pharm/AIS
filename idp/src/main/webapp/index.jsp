@@ -187,8 +187,7 @@
 					<div id="circularG_7" class="circularG"></div>
 					<div id="circularG_8" class="circularG"></div>
 					<div
-						style="color: #1182AB; margin: auto; text-align: center; bottom: -70px; left: -150%; position: absolute; font-size: 30; font-family: arial; width: 1000px;">Күте
-						тұрыңыз / Пожалуйста, подождите / Please wait</div>
+						style="color: #1182AB; margin: auto; text-align: center; bottom: -70px; left: -150%; position: absolute; font-size: 30; font-family: arial; width: 1000px;">Күте тұрыңыз / Пожалуйста, подождите / Please wait</div>
 				</div>
 			</td>
 		</tr>

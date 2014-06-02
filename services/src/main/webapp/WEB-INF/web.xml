@@ -8,7 +8,7 @@
         <servlet-name>javax.ws.rs.core.Application</servlet-name>
         <url-pattern>/rest/*</url-pattern>
     </servlet-mapping>
-	
+    
 	<security-constraint>
 		<web-resource-collection>
 			<web-resource-name>SMS API Application</web-resource-name>

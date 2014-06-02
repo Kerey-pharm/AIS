@@ -1,4 +1,4 @@
-package kz.bee.kudos.idp;
+package kz.kerey.idp;
 
 import java.security.Principal;
 import java.security.acl.Group;
@@ -8,6 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Logger;
 
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
@@ -17,7 +18,6 @@ import javax.security.auth.login.FailedLoginException;
 import javax.security.auth.login.LoginException;
 import javax.sql.DataSource;
 
-import org.apache.log4j.Logger;
 import org.jboss.security.SimpleGroup;
 
 public class UsernamePasswordLoginModule extends org.jboss.security.auth.spi.UsernamePasswordLoginModule {
@@ -31,7 +31,7 @@ public class UsernamePasswordLoginModule extends org.jboss.security.auth.spi.Use
 	/** Default DataSet JNDI Name */
 	protected final String defaultDataSetJndiName = "java:jboss/datasources/drugstoreDatasource";
 
-	private Logger log = Logger.getLogger(getClass());
+	private Logger log = Logger.getLogger(getClass().getName());
 	private String usernameCase = "lower";
 	
 	Principal userIdPrincipal;
@@ -60,10 +60,10 @@ public class UsernamePasswordLoginModule extends org.jboss.security.auth.spi.Use
 		if (tmp != null)
 			rolesQuery = tmp.toString();
 		
-		log.debug("dsJndiName=" + dsJndiName);
-		log.debug("principalsQuery=" + principalsQuery);
-		log.debug("rolesQuery=" + rolesQuery);
-		log.debug("usernameCase=" + usernameCase);
+		log.info("dsJndiName=" + dsJndiName);
+		log.info("principalsQuery=" + principalsQuery);
+		log.info("rolesQuery=" + rolesQuery);
+		log.info("usernameCase=" + usernameCase);
     }
 
 	/**
@@ -84,7 +84,7 @@ public class UsernamePasswordLoginModule extends org.jboss.security.auth.spi.Use
 	 * @param expectedPassword ignored
 	 */
 	protected boolean validatePassword(String inputPassword, String expectedPassword) {
-		log.debug(String.format("validatePassword %s %s", inputPassword, getUsername()));
+		log.info(String.format("validatePassword %s %s", inputPassword, getUsername()));
 
 		boolean isValid = false;
 
@@ -114,13 +114,13 @@ public class UsernamePasswordLoginModule extends org.jboss.security.auth.spi.Use
 			DataSource ds = (DataSource) ctx.lookup(dsJndiName);
 			conn = ds.getConnection();
 			// Get the password
-			log.debug("Excuting query: " + principalsQuery + ", with username: " + username);
+			log.info("Excuting query: " + principalsQuery + ", with username: " + username);
 
 			ps = conn.prepareStatement(principalsQuery);
 			ps.setString(1, username);
 			rs = ps.executeQuery();
 			if (rs.next() == false) {
-				log.debug( "Query returned no matches from db" );
+				log.info( "Query returned no matches from db" );
 				throw new FailedLoginException( "No matching username found in Principals" );
 			}
 
@@ -130,7 +130,7 @@ public class UsernamePasswordLoginModule extends org.jboss.security.auth.spi.Use
 			userIdPrincipal = createIdentity(user_id);
 			// userPassPrincipal = createIdentity(password);
 
-			log.debug("Obtained user password and type= " + usertype);
+			log.info("Obtained user password and type= " + usertype);
 		} catch (NamingException ex) {
 			IllegalStateException le = new IllegalStateException( "Error looking up DataSource from: " + dsJndiName );
 			le.initCause(ex);
@@ -191,7 +191,7 @@ public class UsernamePasswordLoginModule extends org.jboss.security.auth.spi.Use
 			DataSource ds = (DataSource) ctx.lookup(dsJndiName);
 			conn = ds.getConnection();
 			// Get the user role names
-			log.debug("Excuting query: " + rolesQuery + ", with username: " + getUsername());
+			log.info("Excuting query: " + rolesQuery + ", with username: " + getUsername());
 			
 			ps = conn.prepareStatement(rolesQuery);
 			try {
@@ -202,7 +202,7 @@ public class UsernamePasswordLoginModule extends org.jboss.security.auth.spi.Use
 			rs = ps.executeQuery();
 			
 			if (rs.next() == false) {
-				log.debug("No roles found");
+				log.info("No roles found");
 				if (getUnauthenticatedIdentity() == null)
 					throw new FailedLoginException(
 							"No matching username found in Roles");
@@ -227,10 +227,10 @@ public class UsernamePasswordLoginModule extends org.jboss.security.auth.spi.Use
 
 				try {
 					Principal p = createIdentity(name);
-					log.debug("Assign user to role " + name);
+					log.info("Assign user to role " + name);
 					group.addMember(p);
 				} catch (Exception e) {
-					log.debug("Failed to create principal: " + name, e);
+					log.info("Failed to create principal: " + name);
 				}
 			} while (rs.next());
 		} catch (NamingException ex) {

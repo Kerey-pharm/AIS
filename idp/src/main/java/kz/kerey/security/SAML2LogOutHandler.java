@@ -1,4 +1,4 @@
-package kz.bee.seam.security;
+package kz.kerey.security;
 /*
  * JBoss, Home of Professional Open Source.
  * Copyright 2008, Red Hat Middleware LLC, and individual contributors

@@ -4,10 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
-import javax.ejb.Local;
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
-import javax.enterprise.inject.Default;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
@@ -15,8 +13,6 @@ import javax.persistence.Query;
 import kz.kerey.api.GoodTypeInterface;
 import kz.kerey.business.types.GoodType;
 import kz.kerey.business.wrappers.GoodTypeWrapper;
-import kz.kerey.constants.Constants;
-import kz.kerey.exceptions.ValidatorException;
 
 @Stateless
 @Remote(GoodTypeInterface.class)

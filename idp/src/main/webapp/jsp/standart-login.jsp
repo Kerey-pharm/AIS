@@ -43,12 +43,12 @@
 				%>
 				<li><a href="javascript:changeLocale('kk')">ҚАЗ</a> <span>|</span></li>
 				<li>РУС <span>|</span></li>
-				<li><a href="javascript:changeLocale('en')">ENGLISH</a></li>
+				<li><a href="javascript:changeLocale('en')">ENG</a></li>
 				<%}
 				else {%>
 				<li>ҚАЗ<span>|</span></li>
 				<li><a href="javascript:changeLocale('ru')">РУС</a> <span>|</span></li>
-				<li><a href="javascript:changeLocale('en')">ENGLISH</a></li>
+				<li><a href="javascript:changeLocale('en')">ENG</a></li>
 				<%} %>
 			</ul>
 		</div>
@@ -59,14 +59,14 @@
 			</div>
 			<div class="name">
 			<%if(locale.equals("en")) {%>
-				E-learning
+				Kerey-pharm AIS
 			<%}
 			else if(locale.equals("ru")) {
 			%>
-				Система электронного обучения
+				Kerey-pharm AIS
 			<%}
 			else {%>
-				Электронды оқу жүйесі
+				Kerey-pharm AIS
 			<%} %>
 			</div>
 			<div class="buttons">
@@ -189,7 +189,7 @@
 				<%} %>
 			</ul>
 			<ul class="pull-right">
-				<li><a href="http://www.nitec.kz">АО "НИТ"</a>, <a href="http://www.bee.kz">ТОО "Bee Software"</a>, 2012 г.</li>
+				<li><a href="http://kerey-pharm.kz">ТОО "Керей-фарм"</a>, 2014 г.</li>
 			</ul>
 		</div>
 

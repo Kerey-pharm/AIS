@@ -1,4 +1,4 @@
-package kz.bee.kudos.idp;
+package kz.kerey.idp;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
