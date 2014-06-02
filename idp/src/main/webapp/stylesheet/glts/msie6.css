@@ -1,0 +1,2 @@
+﻿.smith {background:expression('none'); filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='./images/bg_promo_text.png', sizingMethod='crop');}
+.mw {width:expression((document.compatMode && document.compatMode == 'CSS1Compat') ? (document.documentElement.clientWidth < 1000 ? "1000px" : (document.documentElement.clientWidth > 1400 ? "1380px" : "auto")) : (document.body.clientWidth < 1000 ? "1000px" : (document.body.clientWidth > 1400 ? "1380px" : "auto")));}

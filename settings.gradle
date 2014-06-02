@@ -1,1 +1,1 @@
-include "persistence", "services", "ui", "interfaces"
+include 'persistence', 'services', 'ui', 'interfaces', 'idp'

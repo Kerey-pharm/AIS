@@ -1,0 +1,29 @@
+<PicketLink xmlns="urn:picketlink:identity-federation:config:2.1">
+	<PicketLinkIDP xmlns="urn:picketlink:identity-federation:config:2.1" SupportsSignatures="true" Encrypt="false">
+		<IdentityURL>${idp.url::http://localhost:8080/idp/}</IdentityURL>
+		<Trust>
+			<Domains>localhost,127.0.0.1,kerey-pharm.kz,servercert</Domains>
+		</Trust>
+        <KeyProvider ClassName="org.picketlink.identity.federation.core.impl.KeyStoreKeyManager">
+            <Auth Key="KeyStoreURL" Value="/keystore.jks" />
+            <Auth Key="KeyStorePass" Value="toPSecret2010" />
+            <Auth Key="SigningKeyPass" Value="annihilation" />
+            <Auth Key="SigningKeyAlias" Value="servercert" />
+            <Auth Key="salt" Value="18273645" />
+            <Auth Key="iterationCount" Value="11" />
+            <ValidatingAlias Key="localhost" Value="servercert" />
+            <ValidatingAlias Key="127.0.0.1" Value="servercert" />
+            <ValidatingAlias Key="kerey-pharm.kz" Value="servercert" />
+        </KeyProvider>
+        <MetaDataProvider ClassName="org.picketlink.identity.federation.core.saml.md.providers.FileBasedEntitiesMetadataProvider">
+           <Option Key="FileName" Value="/WEB-INF/sp-metadata.xml"/>
+        </MetaDataProvider>
+	</PicketLinkIDP>
+	<Handlers xmlns="urn:picketlink:identity-federation:handler:config:2.1">
+        <Handler class="org.picketlink.identity.federation.web.handlers.saml2.SAML2IssuerTrustHandler" />
+        <Handler class="org.picketlink.identity.federation.web.handlers.saml2.SAML2LogOutHandler"/>
+		<Handler class="org.picketlink.identity.federation.web.handlers.saml2.SAML2AuthenticationHandler" />
+        <Handler class="org.picketlink.identity.federation.web.handlers.saml2.SAML2EncryptionHandler" />
+        <Handler class="org.picketlink.identity.federation.web.handlers.saml2.SAML2SignatureValidationHandler" />
+	</Handlers>
+</PicketLink>

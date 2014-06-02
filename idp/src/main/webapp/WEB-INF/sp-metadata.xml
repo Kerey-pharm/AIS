@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<md:EntitiesDescriptor xmlns="urn:oasis:names:tc:SAML:2.0:metadata" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:md="urn:oasis:names:tc:SAML:2.0:metadata">
+    <md:EntityDescriptor entityID="${sp.liferay.url::http://localhost:8080/}c/portal/saml/sso_liferay" xmlns:md="urn:oasis:names:tc:SAML:2.0:metadata">
+        <md:SPSSODescriptor AuthnRequestsSigned="true" ID="${sp.liferay.url::http://localhost:8080/}c/portal/saml/sso_liferay" WantAssertionsSigned="false" protocolSupportEnumeration="urn:oasis:names:tc:SAML:2.0:protocol">
+            <md:KeyDescriptor use="signing">
+                <ds:KeyInfo xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+                    <ds:X509Data>
+                        <ds:X509Certificate>
+                            MIIDZDCCAkygAwIBAgIEUQAYpTANBgkqhkiG9w0BAQUFADB0MQswCQYDVQQGEwJLWjEPMA0GA1UE
+                            CBMGQXN0YW5hMQ8wDQYDVQQHEwZBc3RhbmExFTATBgNVBAoTDEJlZSBTb2Z0d2FyZTEVMBMGA1UE
+                            CxMMQmVlIFNvZnR3YXJlMRUwEwYDVQQDEwxCZWUgU29mdHdhcmUwHhcNMTMwMTIzMTcwNjQ1WhcN
+                            MTMwNDIzMTcwNjQ1WjB0MQswCQYDVQQGEwJLWjEPMA0GA1UECBMGQXN0YW5hMQ8wDQYDVQQHEwZB
+                            c3RhbmExFTATBgNVBAoTDEJlZSBTb2Z0d2FyZTEVMBMGA1UECxMMQmVlIFNvZnR3YXJlMRUwEwYD
+                            VQQDEwxCZWUgU29mdHdhcmUwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQCEOnpFb0x6
+                            jokApS0gMB+yKHhUKHsB3P8RmMdOdVSEQ2YrtAaweRGOl496IcNjysLT9dPjIk9JEJOdED7K3BLL
+                            LuCcQlGt1ukFx/Eh1Xho7DferMPtHL5KQ+t2DKrNiuiK04P3VlYBBjkC8XQZl7eKjVzpuW0BFD1G
+                            Knbbca4Fi9g+vxOQ7YiWcZthBWyUJEWaqbU78Qt13H6LZdZoLw4pkmY3Rmhq5O7A9B+4uNDjSfUj
+                            7FSl0WWxmB8F8DwPnvGJV8OL91hvuq7ip6fyUE5AlGce+5eq2wRecRmn9ONS3TnH156NDOEvrMsJ
+                            WHUcAWHuJGTsNyt7kC8sUYVY7F4xAgMBAAEwDQYJKoZIhvcNAQEFBQADggEBAETw+nkO262VyKU/
+                            DkeZLNhVGajmX9rXngmdviZ3kqNQ4sUBmNFu1uXuzr3aq9pznzoHdyiBPrQTH+M1Aor9mqqTTV3+
+                            4cRTGem2tJo3gfCOl4rcvUKoJNd8zGQhvEmnhwaQK3SV2XOdBrCY7FbAuXaq/eEotrMf6M6pQwad
+                            08dcO7Nz6cP7/Nb1uaSFAEoyOQCn+xfE/rcMAUsoKF/d+08ocgdDbJLMmrKFncI2PLj1iAxmJAIS
+                            DtXUOXMR32BdONL4GKOQJQnGCRNecx50cRRlUUslzvx/y0s5/j5PgVgj9k7aesvOhosX/earl2w2
+                            +GVku4jGzN32Yap5H/QKH80=
+                        </ds:X509Certificate>
+                    </ds:X509Data>
+                </ds:KeyInfo>
+            </md:KeyDescriptor>
+            <md:SingleLogoutService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="${sp.liferay.url::http://localhost:8080/}c/portal/saml/slo_post" index="0" isDefault="true"/>
+            <md:AssertionConsumerService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="${sp.liferay.url::http://localhost:8080/}c/portal/saml/acs" index="1" isDefault="true"/>
+        </md:SPSSODescriptor>
+    </md:EntityDescriptor>
+</md:EntitiesDescriptor>

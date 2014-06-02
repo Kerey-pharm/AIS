@@ -1,0 +1,7 @@
+apply plugin: 'war'
+
+dependencies {
+    providedCompile 'org.jboss.spec:jboss-javaee-7.0:1.0.0.Final'
+	providedCompile	'org.picketlink:picketlink-core:2.1.10.Final'
+    providedCompile 'org.picketbox:picketbox:4.0.20.Final'
+}

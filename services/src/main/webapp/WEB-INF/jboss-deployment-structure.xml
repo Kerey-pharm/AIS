@@ -3,6 +3,7 @@
 		<dependencies>
 		    <module name="deployment.persistence.jar"></module>
 		    <module name="deployment.interfaces.jar"></module>
+		    <module name="org.picketlink" />
 		</dependencies>
 	</deployment>
 </jboss-deployment-structure>

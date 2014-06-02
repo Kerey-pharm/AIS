@@ -1,0 +1,107 @@
+/*******************************************************************************
+ * Sample for a Dynatree custom stylesheet.
+ * This is expected to be included after the standard ui.dynatree.css, thus
+ * overridung the defaults. 
+ */
+.dynatree-has-children span.dynatree-icon
+{
+	background-position: -384px -120px;
+	margin-top: 1px;
+	margin-left: 2px;
+}
+
+.dynatree-ico-cf span.dynatree-icon  /* Collapsed Folder */
+{
+	background-position: -384px -120px;
+	margin-top: 1px;
+	margin-left: 2px;
+}
+
+.dynatree-ico-ef span.dynatree-icon  /* Expanded Folder */
+{
+	background-position: -384px -120px;
+	margin-top: 1px;
+	margin-left: 2px;
+}
+span.dynatree-empty, span.dynatree-vline, span.dynatree-connector, span.dynatree-expander, span.dynatree-icon, span.dynatree-checkbox, span.dynatree-radio, span.dynatree-drag-helper-img, #dynatree-drop-marker {
+	width: 14px;
+	height: 14px;
+	display: inline-block;
+	vertical-align: top;
+	background-repeat: no-repeat;
+	background-position: left;
+	background-image: url("../../img/glts/glyphicons/glyphicons-halflings-grey.png");
+	background-position: -456px -72px;
+}
+
+span.dynatree-connector {
+	background-position: 10000px 100000px;
+}
+
+ul.dynatree-container li {
+	background-image: none;
+}
+/*******************************************************************************
+ * Node titles
+ */
+
+span.dynatree-has-children a
+{
+	font-style: normal;
+}
+
+span.dynatree-selected a
+{
+	color: green;
+	font-style: italic;
+}
+
+span.dynatree-active a,
+span.dynatree-active a:hover
+{
+	background-color: #00839F !important;
+}
+
+span.dynatree-expander {
+	background-position: 0 -96px;
+	margin-top: 1px;
+	margin-left: -1px;
+}
+
+.dynatree-exp-el span.dynatree-expander, .dynatree-exp-edl span.dynatree-expander {
+
+	background-position: -24px -96px;
+	margin-top: 1px;
+}
+
+.dynatree-exp-e span.dynatree-expander, .dynatree-exp-ed span.dynatree-expander {
+	background-position: -24px -96px;
+	margin-top: 1px;
+}
+
+/*******************************************************************************
+ * Custom node classes (sample)
+ */
+
+span.custom1 a
+{
+	background-color: #ffffbb;
+	color: maroon;
+}
+span.custom1 span.dynatree-icon
+{
+    background-position: 0 0;
+	background-image: url("customDoc2.gif");
+}
+
+span.custom2 a
+{
+	font-weight: bold;
+	background-color: silver;
+	color: navy;
+}
+span.custom2 span.dynatree-icon
+{
+    background-position: 0 0;
+	background-image: url("folder_page.gif");
+}

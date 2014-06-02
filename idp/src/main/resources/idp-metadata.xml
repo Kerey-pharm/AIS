@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EntityDescriptor xmlns="urn:oasis:names:tc:SAML:2.0:metadata" entityID="${entityID}">
+    <IDPSSODescriptor protocolSupportEnumeration="urn:oasis:names:tc:SAML:1.1:protocol urn:oasis:names:tc:SAML:2.0:protocol">
+        <KeyDescriptor use="signing">
+            <ds:KeyInfo xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+                <ds:X509Data>
+                    <ds:X509Certificate>${x509certificate}</ds:X509Certificate>
+                </ds:X509Data>
+            </ds:KeyInfo>
+        </KeyDescriptor>
+        <NameIDFormat>urn:oasis:names:tc:SAML:2.0:nameid-format:transient
+        </NameIDFormat>
+        <SingleSignOnService Binding="urn:mace:shibboleth:1.0:profiles:AuthnRequest" Location="${entityID}"/>
+        <SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="${entityID}"/>
+        <SingleSignOnService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect" Location="${entityID}"/>
+        <SingleLogoutService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST" Location="${entityID}"/>
+        <SingleLogoutService Binding="urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect" Location="${entityID}"/>
+    </IDPSSODescriptor>
+    <Organization>
+        <OrganizationName xmlns="urn:oasis:names:tc:SAML:2.0:metadata" xml:lang="en">Kerey-pharm</OrganizationName>
+        <OrganizationDisplayName xmlns="urn:oasis:names:tc:SAML:2.0:metadata" xml:lang="en">IDP by Kerey</OrganizationDisplayName>
+        <OrganizationURL xmlns="urn:oasis:names:tc:SAML:2.0:metadata" xml:lang="en">http://kerey-pharm.kz</OrganizationURL>
+    </Organization>
+    <ContactPerson contactType="technical">
+        <GivenName>Dauren</GivenName>
+        <SurName>Mussa</SurName>
+        <EmailAddress>help@kerey-pharm.kz</EmailAddress>
+    </ContactPerson>
+</EntityDescriptor>
