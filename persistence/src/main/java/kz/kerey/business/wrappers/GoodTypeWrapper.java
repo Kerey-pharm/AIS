@@ -19,6 +19,8 @@ public class GoodTypeWrapper implements Serializable {
 		}
 		return null;
 	}
+
+	public GoodTypeWrapper() {}
 	
 	public Long getId() {
 		return id;

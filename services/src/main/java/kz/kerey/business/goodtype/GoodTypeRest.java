@@ -10,11 +10,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.websocket.server.PathParam;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
-import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 
@@ -40,9 +40,7 @@ public class GoodTypeRest {
 	GoodTypeValidator validator;
 
 	@POST
-	public void createGoodType(
-			@FormParam("goodType") 
-			GoodTypeWrapper goodType) throws IOException  {
+	public void createGoodType(GoodTypeWrapper goodType) throws IOException  {
 		try {
 			validator.validate(goodType);
 			bean.createGoodType(goodType);
@@ -55,13 +53,13 @@ public class GoodTypeRest {
 	
 	@GET
 	public List<GoodTypeWrapper> getGoodTypeList(
-			@PathParam("paged")
+			@QueryParam("paged")
 			Boolean paged, 
-			@PathParam("pageNum")
+			@QueryParam("pageNum")
 			Integer pageNum, 
-			@PathParam("perPage")
+			@QueryParam("perPage")
 			Integer perPage) throws IOException {
-		if (paged && (pageNum==null || pageNum==0 || perPage==null || perPage==0)) {
+		if (paged==null || (paged && (pageNum==null || pageNum==0 || perPage==null || perPage==0))) {
 			response.sendError(HttpServletResponse.SC_BAD_REQUEST,"rangeIsIncorrect");
 			return null;
 		}
