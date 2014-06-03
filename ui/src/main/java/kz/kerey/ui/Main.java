@@ -1,19 +1,13 @@
 package kz.kerey.ui;
 
-import java.awt.Component;
-import java.awt.Container;
-import java.awt.Dimension;
-import java.awt.LayoutManager;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Hashtable;
 import java.util.Properties;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.swing.JButton;
-import javax.swing.JEditorPane;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -21,9 +15,8 @@ import javax.swing.JTextField;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
-import net.miginfocom.swing.MigLayout;
 import kz.kerey.api.GoodTypeInterface;
-import kz.kerey.business.wrappers.GoodTypeWrapper;
+import net.miginfocom.swing.MigLayout;
 
 public class Main {
 
@@ -36,7 +29,7 @@ public class Main {
 		frame.setTitle("DAKOSHA");
 		
 		JTextField text1 = new JTextField();
-		text1.setText("Введите текст сюда!");
+		text1.setText("пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ!");
 		
 		JLabel label1 = new JLabel();
 		label1.setText("Type text here!");
