@@ -69,7 +69,7 @@ public class UserEJB implements UserInterface {
 	}
 
 	@Override
-	public List<RoleWrapper> getRoleList(boolean paged, Integer pageNum,
+	public List<RoleWrapper> getRoleList(Boolean paged, Integer pageNum,
 			Integer perPage) {
 		EntityManager em = null;
 		List<RoleWrapper> result = new ArrayList<>();
@@ -145,6 +145,8 @@ public class UserEJB implements UserInterface {
 		try {
 			em = emf.createEntityManager();
 			User user = em.find(User.class, id);
+			if (user==null)
+				throw new ServicesException(Constants.objectIsNull, "User with ID:"+ id+ " is NULL");
 			em.remove(user);
 		}
 		finally {
@@ -175,7 +177,7 @@ public class UserEJB implements UserInterface {
 	}
 	
 	@Override
-	public List<UserWrapper> getUserList(boolean paged, Integer pageNum,
+	public List<UserWrapper> getUserList(Boolean paged, Integer pageNum,
 			Integer perPage) {
 		EntityManager em = null;
 		List<UserWrapper> result = new ArrayList<>();
@@ -209,7 +211,7 @@ public class UserEJB implements UserInterface {
 	}
 
 	@Override
-	public List<UserWrapper> getUserListFiltered(boolean paged,
+	public List<UserWrapper> getUserListFiltered(Boolean paged,
 			Integer pageNum, Integer perPage, String filter) {
 		return this.getUserList(paged, pageNum, perPage);
 	}
@@ -225,12 +227,9 @@ public class UserEJB implements UserInterface {
 			Role role = em.find(Role.class, roleId);
 			if (role==null)
 				throw new ServicesException(Constants.objectIsNull,"Role with ID:"+ roleId+ " is NULL");
-			if (!user.getRoles().contains(role)) {
-				user.getRoles().add(role);
-			}
-			else {
+			if (user.getRoles().contains(role))
 				throw new ServicesException(Constants.objectExists,"User already has this Role");
-			}
+			user.getRoles().add(role);
 		}
 		finally {
 			if (em!=null)
@@ -250,12 +249,9 @@ public class UserEJB implements UserInterface {
 			Role role = em.find(Role.class, roleId);
 			if (role==null)
 				throw new ServicesException(Constants.objectIsNull,"Role with ID:"+ roleId+ " is NULL");
-			if (user.getRoles().contains(role)) {
-				user.getRoles().remove(role);
-			}
-			else {
+			if (!user.getRoles().contains(role))
 				throw new ServicesException(Constants.objectIsEmpty,"User already has not this Role");
-			}
+			user.getRoles().remove(role);
 		}
 		finally {
 			if (em!=null)
@@ -271,6 +267,8 @@ public class UserEJB implements UserInterface {
 		try {
 			em = emf.createEntityManager();
 			User user = em.find(User.class, id);
+			if (user==null) 
+				throw new ServicesException(Constants.objectIsNull,"User with ID:"+ id+ " is NULL");
 			List<Role> roles = new ArrayList<>();
 			roles.addAll(user.getRoles());
 			for (Role r : roles) {

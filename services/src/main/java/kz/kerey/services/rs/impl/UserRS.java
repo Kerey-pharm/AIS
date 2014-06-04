@@ -1,8 +1,11 @@
 package kz.kerey.services.rs.impl;
 
+import java.io.IOException;
 import java.util.List;
+import java.util.logging.Logger;
 
 import javax.ejb.EJB;
+import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.Consumes;
@@ -21,13 +24,20 @@ import kz.kerey.business.types.enums.RoleProperty;
 import kz.kerey.business.types.enums.UserProperty;
 import kz.kerey.business.wrappers.RoleWrapper;
 import kz.kerey.business.wrappers.UserWrapper;
+import kz.kerey.exceptions.ServicesException;
+import kz.kerey.exceptions.ValidatorException;
+import kz.kerey.exceptions.WebServiceException;
 import kz.kerey.services.api.UserInterface;
+import kz.kerey.validators.RoleValidator;
+import kz.kerey.validators.UserValidator;
 
 @Path("")
 @Consumes({MediaType.APPLICATION_JSON})
 @Produces({MediaType.APPLICATION_JSON})
 public class UserRS implements UserInterface {
 
+	public static Logger logger = Logger.getLogger(UserRS.class.getName());
+	
 	@Context
 	HttpServletRequest request;
 
@@ -37,10 +47,33 @@ public class UserRS implements UserInterface {
 	@EJB
 	UserInterface bean;
 	
+	@Inject
+	UserValidator userValidator;
+	
+	@Inject
+	RoleValidator roleValidator;
+	
 	@Path("roles")
 	@POST
 	public void createRole(RoleWrapper obj) {
-		bean.createRole(obj);
+		try {
+			roleValidator.validate(obj);
+			bean.createRole(obj);
+		}
+		catch (ValidatorException ex) {
+			try {
+				response.sendError(HttpServletResponse.SC_BAD_REQUEST, ex.getComment());
+			} catch (IOException e) {
+				logger.severe(e.getMessage());
+			}
+		}
+		catch (ServicesException ex) {
+			try {
+				response.sendError(HttpServletResponse.SC_CONFLICT, ex.getComment());
+			} catch (IOException e) {
+				logger.severe(e.getMessage());
+			}
+		}
 	}
 
 	@Path("roles")
@@ -48,19 +81,54 @@ public class UserRS implements UserInterface {
 	public void deleteRole(
 			@QueryParam("id")
 			Long id) {
-		bean.deleteRole(id);
+		if (id==null || id==0) {
+			try {
+				response.sendError(HttpServletResponse.SC_BAD_REQUEST, "ID is NULL or EMPTY");
+			} catch (IOException e) {
+				logger.severe(e.getMessage());
+			}
+			return;
+		}
+		try {
+			bean.deleteRole(id);
+		}
+		catch (ServicesException ex) {
+			try {
+				response.sendError(HttpServletResponse.SC_CONFLICT, ex.getComment());
+			} catch (IOException e) {
+				logger.severe(e.getMessage());
+			}
+		}
 	}
 
 	@Path("roles")
 	@GET
 	public List<RoleWrapper> getRoleList(
 			@QueryParam("paged")
-			boolean paged, 
+			Boolean paged, 
 			@QueryParam("pageNum")
 			Integer pageNum,
 			@QueryParam("perPage")
 			Integer perPage) {
-		return bean.getRoleList(paged, pageNum, perPage);
+		if (paged==null || (paged && (pageNum==null || pageNum==0 || perPage==null || perPage==0))) {
+			try {
+				response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Range is incorrect");
+			} catch (IOException e) {
+				logger.severe(e.getMessage());
+			}
+			return null;
+		} 
+		try {
+			return bean.getRoleList(paged, pageNum, perPage);
+		}
+		catch (ServicesException ex) {
+			try {
+				response.sendError(HttpServletResponse.SC_CONFLICT, ex.getComment());
+			} catch (IOException e) {
+				logger.severe(e.getMessage());
+			}
+			return null;
+		}
 	}
 
 	@Path("roles")
@@ -72,13 +140,55 @@ public class UserRS implements UserInterface {
 			RoleProperty propertyName, 
 			@QueryParam("newValue")
 			String newValue) {
-		bean.changeRoleProperty(id, propertyName, newValue);
+		if (id==null || id==0) {
+			try {
+				response.sendError(HttpServletResponse.SC_BAD_REQUEST, "ID is NULL or EMPTY");
+			} catch (IOException e) {
+				logger.severe(e.getMessage());
+			}
+			return;
+		}
+		if (propertyName==null || newValue==null || newValue.trim().length()==0) {
+			try {
+				response.sendError(HttpServletResponse.SC_BAD_REQUEST, "PropertyName or newValue is NULL");
+			} catch (IOException e) {
+				logger.severe(e.getMessage());
+			}
+			return;
+		}
+		try {
+			bean.changeRoleProperty(id, propertyName, newValue);
+		}
+		catch (ServicesException ex) {
+			try {
+				response.sendError(HttpServletResponse.SC_CONFLICT, ex.getComment());
+			} catch (IOException e) {
+				logger.severe(e.getMessage());
+			}
+		}
 	}
 
 	@Path("users")
 	@POST
 	public void createUser(UserWrapper obj) {
-		bean.createUser(obj);
+		try {
+			userValidator.validate(obj);
+			bean.createUser(obj);
+		}
+		catch (ValidatorException ex) {
+			try {
+				response.sendError(HttpServletResponse.SC_BAD_REQUEST, ex.getComment());
+			} catch (IOException e) {
+				logger.severe(e.getMessage());
+			}
+		}
+		catch (ServicesException ex) {
+			try {
+				response.sendError(HttpServletResponse.SC_CONFLICT, ex.getComment());
+			} catch (IOException e) {
+				logger.severe(e.getMessage());
+			}
+		}
 	}
 
 	@Path("users")
@@ -86,23 +196,58 @@ public class UserRS implements UserInterface {
 	public void deleteUser(
 			@QueryParam("id")
 			Long id) {
-		bean.deleteUser(id);
+		if (id==null || id==0) {
+			try {
+				response.sendError(HttpServletResponse.SC_BAD_REQUEST, "ID is NULL or EMPTY");
+			} catch (IOException e) {
+				logger.severe(e.getMessage());
+			}
+			return;
+		}
+		try {
+			bean.deleteUser(id);
+		}
+		catch (ServicesException ex) {
+			try {
+				response.sendError(HttpServletResponse.SC_CONFLICT, ex.getComment());
+			} catch (IOException e) {
+				logger.severe(e.getMessage());
+			}
+		}
 	}
 
 	@Path("users")
 	@GET
 	public List<UserWrapper> getUserList(
 			@QueryParam("paged")
-			boolean paged,
+			Boolean paged,
 			@QueryParam("pageNum")
 			Integer pageNum,
 			@QueryParam("perPage")
 			Integer perPage) {
-		return bean.getUserList(paged, pageNum, perPage);
+		if (paged==null || (paged && (pageNum==null || pageNum==0 || perPage==null || perPage==0))) {
+			try {
+				response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Range is incorrect");
+			} catch (IOException e) {
+				logger.severe(e.getMessage());
+			}
+			return null;
+		} 
+		try {
+			return bean.getUserList(paged, pageNum, perPage);
+		}
+		catch (ServicesException ex) {
+			try {
+				response.sendError(HttpServletResponse.SC_CONFLICT, ex.getComment());
+			} catch (IOException e) {
+				logger.severe(e.getMessage());
+			}
+			return null;
+		}
 	}
 
 	@Override
-	public List<UserWrapper> getUserListFiltered(boolean paged,
+	public List<UserWrapper> getUserListFiltered(Boolean paged,
 			Integer pageNum, Integer perPage, String filter) {
 		return null;
 	}
@@ -116,7 +261,32 @@ public class UserRS implements UserInterface {
 			UserProperty propertyName,
 			@QueryParam("newValue")
 			String newValue) {
-		bean.changeUserProperty(id, propertyName, newValue);
+		if (id==null || id==0) {
+			try {
+				response.sendError(HttpServletResponse.SC_BAD_REQUEST, "ID is NULL or EMPTY");
+			} catch (IOException e) {
+				logger.severe(e.getMessage());
+			}
+			return;
+		}
+		if (propertyName==null || newValue==null || newValue.trim().length()==0) {
+			try {
+				response.sendError(HttpServletResponse.SC_BAD_REQUEST, "PropertyName or newValue is NULL");
+			} catch (IOException e) {
+				logger.severe(e.getMessage());
+			}
+			return;
+		}
+		try {
+			bean.changeUserProperty(id, propertyName, newValue);
+		}
+		catch (ServicesException ex) {
+			try {
+				response.sendError(HttpServletResponse.SC_CONFLICT, ex.getComment());
+			} catch (IOException e) {
+				logger.severe(e.getMessage());
+			}
+		}
 	}
 
 	@Path("users/{userId}/{roleId}")
@@ -126,7 +296,32 @@ public class UserRS implements UserInterface {
 			Long userId, 
 			@PathParam("roleId")
 			Long roleId) {
-		bean.addRoleToUser(userId, roleId);
+		if (userId==null || userId==0) {
+			try {
+				response.sendError(HttpServletResponse.SC_BAD_REQUEST, "UserID is NULL or EMPTY");
+			} catch (IOException e) {
+				logger.severe(e.getMessage());
+			}
+			return;
+		}
+		if (roleId==null || roleId==0) {
+			try {
+				response.sendError(HttpServletResponse.SC_BAD_REQUEST, "RoleID is NULL or EMPTY");
+			} catch (IOException e) {
+				logger.severe(e.getMessage());
+			}
+			return;
+		}
+		try {
+			bean.addRoleToUser(userId, roleId);
+		}
+		catch (ServicesException ex) {
+			try {
+				response.sendError(HttpServletResponse.SC_CONFLICT, ex.getComment());
+			} catch (IOException e) {
+				logger.severe(e.getMessage());
+			}
+		}
 	}
 
 	@Path("users/{userId}/{roleId}")
@@ -136,15 +331,58 @@ public class UserRS implements UserInterface {
 			Long userId, 
 			@PathParam("roleId")
 			Long roleId) {
-		bean.removeRoleFromUser(userId, roleId);
+		if (userId==null || userId==0) {
+			try {
+				response.sendError(HttpServletResponse.SC_BAD_REQUEST, "UserID is NULL or EMPTY");
+			} catch (IOException e) {
+				logger.severe(e.getMessage());
+			}
+			return;
+		}
+		if (roleId==null || roleId==0) {
+			try {
+				response.sendError(HttpServletResponse.SC_BAD_REQUEST, "RoleID is NULL or EMPTY");
+			} catch (IOException e) {
+				logger.severe(e.getMessage());
+			}
+			return;
+		}
+		try {
+			bean.removeRoleFromUser(userId, roleId);
+		}
+		catch (ServicesException ex) {
+			try {
+				response.sendError(HttpServletResponse.SC_CONFLICT, ex.getComment());
+			} catch (IOException e) {
+				logger.severe(e.getMessage());
+			}
+		}
 	}
 
 	@Path("users/{userId}/roles")
 	@GET
 	public List<RoleWrapper> getUserRolesList(
-			@PathParam("id")
-			Long id) {
-		return bean.getUserRolesList(id);
+			@PathParam("userId")
+			Long userId) {
+		if (userId==null || userId==0) {
+			try {
+				response.sendError(HttpServletResponse.SC_BAD_REQUEST, "UserID is NULL or EMPTY");
+			} catch (IOException e) {
+				logger.severe(e.getMessage());
+			}
+			return null;
+		}
+		try {
+			return bean.getUserRolesList(userId);
+		}
+		catch (ServicesException ex) {
+			try {
+				response.sendError(HttpServletResponse.SC_CONFLICT, ex.getComment());
+			} catch (IOException e) {
+				logger.severe(e.getMessage());
+			}
+			return null;
+		}
 	}
 
 }

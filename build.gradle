@@ -21,4 +21,10 @@ subprojects {
     jar {
         manifest.attributes provider: 'gradle'
     }
+	
+	processResources {
+		from ('src/main/java') {
+			include '**/*.xml'
+		}		
+	}
 }

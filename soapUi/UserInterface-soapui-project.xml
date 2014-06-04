@@ -1,0 +1,627 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project activeEnvironment="Default" name="UserInterface" resourceRoot="" soapui-version="4.6.3" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="UserWSServiceSoapBinding" type="wsdl" bindingName="{http://impl.ws.services.kerey.kz/}UserWSServiceSoapBinding" soapVersion="1_1" anonymous="optional" definition="http://localhost:8080/services/UserWS?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://localhost:8080/services/UserWS?wsdl"><con:part><con:url>http://localhost:8080/services/UserWS?wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="UserWSService" targetNamespace="http://impl.ws.services.kerey.kz/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://impl.ws.services.kerey.kz/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http">
+  <wsdl:types>
+    <xs:schema attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://impl.ws.services.kerey.kz/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="addRoleToUser" type="tns:addRoleToUser"/>
+      <xs:element name="addRoleToUserResponse" type="tns:addRoleToUserResponse"/>
+      <xs:element name="changeRoleProperty" type="tns:changeRoleProperty"/>
+      <xs:element name="changeRolePropertyResponse" type="tns:changeRolePropertyResponse"/>
+      <xs:element name="changeUserProperty" type="tns:changeUserProperty"/>
+      <xs:element name="changeUserPropertyResponse" type="tns:changeUserPropertyResponse"/>
+      <xs:element name="createRole" type="tns:createRole"/>
+      <xs:element name="createRoleResponse" type="tns:createRoleResponse"/>
+      <xs:element name="createUser" type="tns:createUser"/>
+      <xs:element name="createUserResponse" type="tns:createUserResponse"/>
+      <xs:element name="deleteRole" type="tns:deleteRole"/>
+      <xs:element name="deleteRoleResponse" type="tns:deleteRoleResponse"/>
+      <xs:element name="deleteUser" type="tns:deleteUser"/>
+      <xs:element name="deleteUserResponse" type="tns:deleteUserResponse"/>
+      <xs:element name="getRoleList" type="tns:getRoleList"/>
+      <xs:element name="getRoleListResponse" type="tns:getRoleListResponse"/>
+      <xs:element name="getUserList" type="tns:getUserList"/>
+      <xs:element name="getUserListFiltered" type="tns:getUserListFiltered"/>
+      <xs:element name="getUserListFilteredResponse" type="tns:getUserListFilteredResponse"/>
+      <xs:element name="getUserListResponse" type="tns:getUserListResponse"/>
+      <xs:element name="getUserRolesList" type="tns:getUserRolesList"/>
+      <xs:element name="getUserRolesListResponse" type="tns:getUserRolesListResponse"/>
+      <xs:element name="removeRoleFromUser" type="tns:removeRoleFromUser"/>
+      <xs:element name="removeRoleFromUserResponse" type="tns:removeRoleFromUserResponse"/>
+      <xs:element name="roleWrapper" type="tns:roleWrapper"/>
+      <xs:element name="userWrapper" type="tns:userWrapper"/>
+      <xs:complexType name="deleteUser">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="id" type="xs:long"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="deleteUserResponse">
+        <xs:sequence/>
+      </xs:complexType>
+      <xs:complexType name="removeRoleFromUser">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="userId" type="xs:long"/>
+          <xs:element minOccurs="0" name="roleId" type="xs:long"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="removeRoleFromUserResponse">
+        <xs:sequence/>
+      </xs:complexType>
+      <xs:complexType name="getUserList">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="paged" type="xs:boolean"/>
+          <xs:element minOccurs="0" name="pageNum" type="xs:int"/>
+          <xs:element minOccurs="0" name="perPage" type="xs:int"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getUserListResponse">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:userWrapper"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="userWrapper">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="active" type="xs:boolean"/>
+          <xs:element minOccurs="0" name="availableFromDate" type="xs:dateTime"/>
+          <xs:element minOccurs="0" name="cellPhone" type="xs:string"/>
+          <xs:element minOccurs="0" name="email" type="xs:string"/>
+          <xs:element minOccurs="0" name="id" type="xs:long"/>
+          <xs:element minOccurs="0" name="lastName" type="xs:string"/>
+          <xs:element minOccurs="0" name="login" type="xs:string"/>
+          <xs:element minOccurs="0" name="name" type="xs:string"/>
+          <xs:element minOccurs="0" name="passwordHash" type="xs:string"/>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="roles" nillable="true" type="tns:roleWrapper"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="roleWrapper">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="id" type="xs:long"/>
+          <xs:element minOccurs="0" name="name" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="deleteRole">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="id" type="xs:long"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="deleteRoleResponse">
+        <xs:sequence/>
+      </xs:complexType>
+      <xs:complexType name="getUserListFiltered">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="paged" type="xs:boolean"/>
+          <xs:element minOccurs="0" name="pageNum" type="xs:int"/>
+          <xs:element minOccurs="0" name="perPage" type="xs:int"/>
+          <xs:element minOccurs="0" name="filter" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getUserListFilteredResponse">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:userWrapper"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="createUser">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="arg0" type="tns:userWrapper"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="createUserResponse">
+        <xs:sequence/>
+      </xs:complexType>
+      <xs:complexType name="changeUserProperty">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="id" type="xs:long"/>
+          <xs:element minOccurs="0" name="propertyName" type="tns:userProperty"/>
+          <xs:element minOccurs="0" name="newValue" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="changeUserPropertyResponse">
+        <xs:sequence/>
+      </xs:complexType>
+      <xs:complexType name="getUserRolesList">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="id" type="xs:long"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getUserRolesListResponse">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:roleWrapper"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="addRoleToUser">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="userId" type="xs:long"/>
+          <xs:element minOccurs="0" name="roleId" type="xs:long"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="addRoleToUserResponse">
+        <xs:sequence/>
+      </xs:complexType>
+      <xs:complexType name="changeRoleProperty">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="id" type="xs:long"/>
+          <xs:element minOccurs="0" name="propertyName" type="tns:roleProperty"/>
+          <xs:element minOccurs="0" name="newValue" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="changeRolePropertyResponse">
+        <xs:sequence/>
+      </xs:complexType>
+      <xs:complexType name="createRole">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="arg0" type="tns:roleWrapper"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="createRoleResponse">
+        <xs:sequence/>
+      </xs:complexType>
+      <xs:complexType name="getRoleList">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="paged" type="xs:boolean"/>
+          <xs:element minOccurs="0" name="pageNum" type="xs:int"/>
+          <xs:element minOccurs="0" name="perPage" type="xs:int"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getRoleListResponse">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:roleWrapper"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:simpleType name="userProperty">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="passwordHash"/>
+          <xs:enumeration value="name"/>
+          <xs:enumeration value="lastName"/>
+          <xs:enumeration value="email"/>
+          <xs:enumeration value="cellPhone"/>
+          <xs:enumeration value="active"/>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType name="roleProperty">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="name"/>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:element name="WebServiceException" type="tns:WebServiceException"/>
+      <xs:complexType name="WebServiceException">
+        <xs:sequence>
+          <xs:element name="errorCode" nillable="true" type="xs:long"/>
+          <xs:element name="comment" nillable="true" type="xs:string"/>
+          <xs:element minOccurs="0" name="message" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="getRoleListResponse">
+    <wsdl:part element="tns:getRoleListResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="createRole">
+    <wsdl:part element="tns:createRole" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="deleteUserResponse">
+    <wsdl:part element="tns:deleteUserResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="removeRoleFromUser">
+    <wsdl:part element="tns:removeRoleFromUser" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getUserListResponse">
+    <wsdl:part element="tns:getUserListResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="changeRolePropertyResponse">
+    <wsdl:part element="tns:changeRolePropertyResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getUserRolesList">
+    <wsdl:part element="tns:getUserRolesList" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="changeUserPropertyResponse">
+    <wsdl:part element="tns:changeUserPropertyResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getRoleList">
+    <wsdl:part element="tns:getRoleList" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getUserList">
+    <wsdl:part element="tns:getUserList" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="removeRoleFromUserResponse">
+    <wsdl:part element="tns:removeRoleFromUserResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="createUserResponse">
+    <wsdl:part element="tns:createUserResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addRoleToUser">
+    <wsdl:part element="tns:addRoleToUser" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="createUser">
+    <wsdl:part element="tns:createUser" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getUserListFiltered">
+    <wsdl:part element="tns:getUserListFiltered" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="deleteUser">
+    <wsdl:part element="tns:deleteUser" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="WebServiceException">
+    <wsdl:part element="tns:WebServiceException" name="WebServiceException"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getUserRolesListResponse">
+    <wsdl:part element="tns:getUserRolesListResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="createRoleResponse">
+    <wsdl:part element="tns:createRoleResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="deleteRoleResponse">
+    <wsdl:part element="tns:deleteRoleResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="changeUserProperty">
+    <wsdl:part element="tns:changeUserProperty" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="changeRoleProperty">
+    <wsdl:part element="tns:changeRoleProperty" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="deleteRole">
+    <wsdl:part element="tns:deleteRole" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addRoleToUserResponse">
+    <wsdl:part element="tns:addRoleToUserResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getUserListFilteredResponse">
+    <wsdl:part element="tns:getUserListFilteredResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="UserWS">
+    <wsdl:operation name="deleteUser">
+      <wsdl:input message="tns:deleteUser" name="deleteUser"></wsdl:input>
+      <wsdl:output message="tns:deleteUserResponse" name="deleteUserResponse"></wsdl:output>
+      <wsdl:fault message="tns:WebServiceException" name="WebServiceException"></wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="removeRoleFromUser">
+      <wsdl:input message="tns:removeRoleFromUser" name="removeRoleFromUser"></wsdl:input>
+      <wsdl:output message="tns:removeRoleFromUserResponse" name="removeRoleFromUserResponse"></wsdl:output>
+      <wsdl:fault message="tns:WebServiceException" name="WebServiceException"></wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getUserList">
+      <wsdl:input message="tns:getUserList" name="getUserList"></wsdl:input>
+      <wsdl:output message="tns:getUserListResponse" name="getUserListResponse"></wsdl:output>
+      <wsdl:fault message="tns:WebServiceException" name="WebServiceException"></wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="deleteRole">
+      <wsdl:input message="tns:deleteRole" name="deleteRole"></wsdl:input>
+      <wsdl:output message="tns:deleteRoleResponse" name="deleteRoleResponse"></wsdl:output>
+      <wsdl:fault message="tns:WebServiceException" name="WebServiceException"></wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getUserListFiltered">
+      <wsdl:input message="tns:getUserListFiltered" name="getUserListFiltered"></wsdl:input>
+      <wsdl:output message="tns:getUserListFilteredResponse" name="getUserListFilteredResponse"></wsdl:output>
+      <wsdl:fault message="tns:WebServiceException" name="WebServiceException"></wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="createUser">
+      <wsdl:input message="tns:createUser" name="createUser"></wsdl:input>
+      <wsdl:output message="tns:createUserResponse" name="createUserResponse"></wsdl:output>
+      <wsdl:fault message="tns:WebServiceException" name="WebServiceException"></wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="changeUserProperty">
+      <wsdl:input message="tns:changeUserProperty" name="changeUserProperty"></wsdl:input>
+      <wsdl:output message="tns:changeUserPropertyResponse" name="changeUserPropertyResponse"></wsdl:output>
+      <wsdl:fault message="tns:WebServiceException" name="WebServiceException"></wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getUserRolesList">
+      <wsdl:input message="tns:getUserRolesList" name="getUserRolesList"></wsdl:input>
+      <wsdl:output message="tns:getUserRolesListResponse" name="getUserRolesListResponse"></wsdl:output>
+      <wsdl:fault message="tns:WebServiceException" name="WebServiceException"></wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="addRoleToUser">
+      <wsdl:input message="tns:addRoleToUser" name="addRoleToUser"></wsdl:input>
+      <wsdl:output message="tns:addRoleToUserResponse" name="addRoleToUserResponse"></wsdl:output>
+      <wsdl:fault message="tns:WebServiceException" name="WebServiceException"></wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="changeRoleProperty">
+      <wsdl:input message="tns:changeRoleProperty" name="changeRoleProperty"></wsdl:input>
+      <wsdl:output message="tns:changeRolePropertyResponse" name="changeRolePropertyResponse"></wsdl:output>
+      <wsdl:fault message="tns:WebServiceException" name="WebServiceException"></wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="createRole">
+      <wsdl:input message="tns:createRole" name="createRole"></wsdl:input>
+      <wsdl:output message="tns:createRoleResponse" name="createRoleResponse"></wsdl:output>
+      <wsdl:fault message="tns:WebServiceException" name="WebServiceException"></wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getRoleList">
+      <wsdl:input message="tns:getRoleList" name="getRoleList"></wsdl:input>
+      <wsdl:output message="tns:getRoleListResponse" name="getRoleListResponse"></wsdl:output>
+      <wsdl:fault message="tns:WebServiceException" name="WebServiceException"></wsdl:fault>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="UserWSServiceSoapBinding" type="tns:UserWS">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="deleteUser">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="deleteUser">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="deleteUserResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="WebServiceException">
+        <soap:fault name="WebServiceException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="deleteRole">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="deleteRole">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="deleteRoleResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="WebServiceException">
+        <soap:fault name="WebServiceException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getUserList">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getUserList">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getUserListResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="WebServiceException">
+        <soap:fault name="WebServiceException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="removeRoleFromUser">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="removeRoleFromUser">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="removeRoleFromUserResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="WebServiceException">
+        <soap:fault name="WebServiceException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="createUser">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="createUser">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="createUserResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="WebServiceException">
+        <soap:fault name="WebServiceException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getUserListFiltered">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getUserListFiltered">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getUserListFilteredResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="WebServiceException">
+        <soap:fault name="WebServiceException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="changeUserProperty">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="changeUserProperty">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="changeUserPropertyResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="WebServiceException">
+        <soap:fault name="WebServiceException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getUserRolesList">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getUserRolesList">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getUserRolesListResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="WebServiceException">
+        <soap:fault name="WebServiceException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="addRoleToUser">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="addRoleToUser">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="addRoleToUserResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="WebServiceException">
+        <soap:fault name="WebServiceException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="changeRoleProperty">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="changeRoleProperty">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="changeRolePropertyResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="WebServiceException">
+        <soap:fault name="WebServiceException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="createRole">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="createRole">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="createRoleResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="WebServiceException">
+        <soap:fault name="WebServiceException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getRoleList">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getRoleList">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getRoleListResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="WebServiceException">
+        <soap:fault name="WebServiceException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="UserWSService">
+    <wsdl:port binding="tns:UserWSServiceSoapBinding" name="UserWSPort">
+      <soap:address location="http://localhost:8080/services/UserWS"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8080/services/UserWS</con:endpoint></con:endpoints><con:operation isOneWay="false" action="" name="addRoleToUser" bindingOperationName="addRoleToUser" type="Request-Response" outputName="addRoleToUserResponse" inputName="addRoleToUser" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/services/UserWS</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:impl="http://impl.ws.services.kerey.kz/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <impl:addRoleToUser>
+         <!--Optional:-->
+         
+         <!--Optional:-->
+         <userId>3</userId><roleId>2</roleId>
+      </impl:addRoleToUser>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://impl.ws.services.kerey.kz/UserWS/addRoleToUser"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="" name="changeRoleProperty" bindingOperationName="changeRoleProperty" type="Request-Response" outputName="changeRolePropertyResponse" inputName="changeRoleProperty" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/services/UserWS</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:impl="http://impl.ws.services.kerey.kz/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <impl:changeRoleProperty>
+         <!--Optional:-->
+         
+         <!--Optional:-->
+         
+         <!--Optional:-->
+         <id>1</id><propertyName>name</propertyName><newValue>q123</newValue>
+      </impl:changeRoleProperty>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://impl.ws.services.kerey.kz/UserWS/changeRoleProperty"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="" name="changeUserProperty" bindingOperationName="changeUserProperty" type="Request-Response" outputName="changeUserPropertyResponse" inputName="changeUserProperty" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/services/UserWS</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:impl="http://impl.ws.services.kerey.kz/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <impl:changeUserProperty>
+         <!--Optional:-->
+         
+         <!--Optional:-->
+         <id>3</id><newValue>qweqwe</newValue>
+         <!--Optional:-->
+         
+      </impl:changeUserProperty>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://impl.ws.services.kerey.kz/UserWS/changeUserProperty"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="" name="createRole" bindingOperationName="createRole" type="Request-Response" outputName="createRoleResponse" inputName="createRole" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/services/UserWS</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:impl="http://impl.ws.services.kerey.kz/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <impl:createRole>
+         
+      <arg0><name>q2</name></arg0></impl:createRole>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://impl.ws.services.kerey.kz/UserWS/createRole"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="" name="createUser" bindingOperationName="createUser" type="Request-Response" outputName="createUserResponse" inputName="createUser" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/services/UserWS</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:impl="http://impl.ws.services.kerey.kz/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <impl:createUser>
+         <!--Optional:-->
+         
+      <arg0><login>daka1</login></arg0></impl:createUser>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://impl.ws.services.kerey.kz/UserWS/createUser"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="" name="deleteRole" bindingOperationName="deleteRole" type="Request-Response" outputName="deleteRoleResponse" inputName="deleteRole" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/services/UserWS</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:impl="http://impl.ws.services.kerey.kz/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <impl:deleteRole>
+         <!--Optional:-->
+         
+      <id>1</id></impl:deleteRole>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://impl.ws.services.kerey.kz/UserWS/deleteRole"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="" name="deleteUser" bindingOperationName="deleteUser" type="Request-Response" outputName="deleteUserResponse" inputName="deleteUser" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/services/UserWS</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:impl="http://impl.ws.services.kerey.kz/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <impl:deleteUser>
+         <!--Optional:-->
+         <id>?</id>
+      </impl:deleteUser>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://impl.ws.services.kerey.kz/UserWS/deleteUser"/></con:call></con:operation><con:operation isOneWay="false" action="" name="getRoleList" bindingOperationName="getRoleList" type="Request-Response" outputName="getRoleListResponse" inputName="getRoleList" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/services/UserWS</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:impl="http://impl.ws.services.kerey.kz/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <impl:getRoleList>
+         <paged>false</paged>
+         <!--Optional:-->
+         
+         <!--Optional:-->
+         
+      </impl:getRoleList>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://impl.ws.services.kerey.kz/UserWS/getRoleList"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="" name="getUserList" bindingOperationName="getUserList" type="Request-Response" outputName="getUserListResponse" inputName="getUserList" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/services/UserWS</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:impl="http://impl.ws.services.kerey.kz/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <impl:getUserList>
+         <paged>true</paged><pageNum>1</pageNum><perPage>1</perPage>
+         <!--Optional:-->
+         
+         <!--Optional:-->
+         
+      </impl:getUserList>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://impl.ws.services.kerey.kz/UserWS/getUserList"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="" name="getUserListFiltered" bindingOperationName="getUserListFiltered" type="Request-Response" outputName="getUserListFilteredResponse" inputName="getUserListFiltered" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/services/UserWS</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:impl="http://impl.ws.services.kerey.kz/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <impl:getUserListFiltered>
+         
+         <!--Optional:-->
+         
+         <!--Optional:-->
+         
+         <!--Optional:-->
+         
+      <paged>true</paged><pageNum>1</pageNum><perPage>1</perPage></impl:getUserListFiltered>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://impl.ws.services.kerey.kz/UserWS/getUserListFiltered"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="" name="getUserRolesList" bindingOperationName="getUserRolesList" type="Request-Response" outputName="getUserRolesListResponse" inputName="getUserRolesList" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/services/UserWS</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:impl="http://impl.ws.services.kerey.kz/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <impl:getUserRolesList>
+         <!--Optional:-->
+         
+      <id>3</id></impl:getUserRolesList>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://impl.ws.services.kerey.kz/UserWS/getUserRolesList"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="" name="removeRoleFromUser" bindingOperationName="removeRoleFromUser" type="Request-Response" outputName="removeRoleFromUserResponse" inputName="removeRoleFromUser" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/services/UserWS</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:impl="http://impl.ws.services.kerey.kz/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <impl:removeRoleFromUser>
+         <!--Optional:-->
+         
+         <!--Optional:-->
+         <userId>3</userId><roleId>2</roleId>
+      </impl:removeRoleFromUser>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://impl.ws.services.kerey.kz/UserWS/removeRoleFromUser"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:interface xsi:type="con:RestService" wadlVersion="http://wadl.dev.java.net/2009/02" name="UserInterfaceRest" type="rest" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart=""/><con:endpoints><con:endpoint>http://localhost:8080</con:endpoint></con:endpoints><con:resource name="Roles" path="/services/rest/roles"><con:settings/><con:parameters><con:parameter><con:name>paged</con:name><con:value/><con:style>QUERY</con:style><con:default/><con:description xsi:nil="true"/></con:parameter><con:parameter><con:name>pageNum</con:name><con:value/><con:style>QUERY</con:style><con:default/><con:description xsi:nil="true"/></con:parameter><con:parameter><con:name>perPage</con:name><con:value/><con:style>QUERY</con:style><con:default/><con:description xsi:nil="true"/></con:parameter><con:parameter><con:name>id</con:name><con:value/><con:style>QUERY</con:style><con:default/><con:description xsi:nil="true"/></con:parameter><con:parameter><con:name>propertyName</con:name><con:value/><con:style>QUERY</con:style><con:default/><con:description xsi:nil="true"/></con:parameter><con:parameter><con:name>newValue</con:name><con:value/><con:style>QUERY</con:style><con:default/><con:description xsi:nil="true"/></con:parameter></con:parameters><con:method name="GetList" method="GET"><con:settings/><con:parameters/><con:representation type="RESPONSE"><con:mediaType>application/json</con:mediaType><con:status>200</con:status><con:params/><con:element>Response</con:element></con:representation><con:representation type="FAULT"><con:mediaType>text/html;charset=utf-8</con:mediaType><con:status>400</con:status><con:params/><con:element>html</con:element></con:representation><con:request name="Request 1" mediaType="application/json"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080</con:endpoint><con:request/><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters>
+  <con:entry key="paged" value="false"/>
+  <con:entry key="perPage" value="1"/>
+  <con:entry key="pageNum" value="1"/>
+</con:parameters><con:parameterOrder><con:entry>paged</con:entry><con:entry>pageNum</con:entry><con:entry>perPage</con:entry><con:entry/><con:entry>id</con:entry><con:entry>propertyName</con:entry></con:parameterOrder></con:request></con:method><con:method name="Create" method="POST"><con:settings/><con:parameters/><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>204</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="REQUEST"><con:mediaType>application/json</con:mediaType><con:params/></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>204</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="FAULT"><con:mediaType>text/html;charset=utf-8</con:mediaType><con:status>500 409</con:status><con:params/><con:element>html</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>204</con:status><con:params/><con:element>data</con:element></con:representation><con:request name="Request 1" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080</con:endpoint><con:request>{
+	"name" : "Новая роль"
+}</con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/><con:parameterOrder><con:entry>paged</con:entry><con:entry>pageNum</con:entry><con:entry>perPage</con:entry><con:entry/><con:entry>id</con:entry><con:entry>propertyName</con:entry></con:parameterOrder></con:request></con:method><con:method name="Delete" method="DELETE"><con:settings/><con:parameters/><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>204</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="FAULT"><con:mediaType>text/html;charset=utf-8</con:mediaType><con:status>400 409</con:status><con:params/><con:element>html</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>204</con:status><con:params/><con:element>data</con:element></con:representation><con:request name="Request 1" mediaType="application/json"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080</con:endpoint><con:request/><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters><entry key="id" value="2" xmlns="http://eviware.com/soapui/config"/></con:parameters><con:parameterOrder><con:entry>paged</con:entry><con:entry>pageNum</con:entry><con:entry>perPage</con:entry><con:entry>id</con:entry><con:entry>propertyName</con:entry><con:entry>newValue</con:entry></con:parameterOrder></con:request></con:method><con:method name="UpdateProperty" method="PUT"><con:settings/><con:parameters/><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>204</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="REQUEST"><con:mediaType>application/json</con:mediaType><con:params/></con:representation><con:representation type="FAULT"><con:mediaType>text/html;charset=utf-8</con:mediaType><con:status>409 400</con:status><con:params/><con:element>html</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>204</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>204</con:status><con:params/><con:element>data</con:element></con:representation><con:request name="Request 1" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080</con:endpoint><con:request/><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters>
+  <con:entry key="propertyName" value="name"/>
+  <con:entry key="id" value="5"/>
+  <con:entry key="newValue" value="Seller"/>
+</con:parameters><con:parameterOrder><con:entry>paged</con:entry><con:entry>pageNum</con:entry><con:entry>perPage</con:entry><con:entry>id</con:entry><con:entry>propertyName</con:entry><con:entry>newValue</con:entry></con:parameterOrder></con:request></con:method></con:resource><con:resource name="users" path="/services/rest/users"><con:settings/><con:parameters><con:parameter><con:name>paged</con:name><con:value/><con:style>QUERY</con:style><con:default/><con:description xsi:nil="true"/></con:parameter><con:parameter><con:name>pageNum</con:name><con:value/><con:style>QUERY</con:style><con:default/><con:description xsi:nil="true"/></con:parameter><con:parameter><con:name>perPage</con:name><con:value/><con:style>QUERY</con:style><con:default/><con:description xsi:nil="true"/></con:parameter><con:parameter><con:name>id</con:name><con:value/><con:style>QUERY</con:style><con:default/><con:description xsi:nil="true"/></con:parameter><con:parameter><con:name>propertyName</con:name><con:value/><con:style>QUERY</con:style><con:default/><con:description xsi:nil="true"/></con:parameter><con:parameter><con:name>newValue</con:name><con:value/><con:style>QUERY</con:style><con:default/><con:description xsi:nil="true"/></con:parameter></con:parameters><con:resource name="{roleId}" path="{userId}/{roleId}"><con:settings/><con:parameters><con:parameter><con:name>userId</con:name><con:value>userId</con:value><con:style>TEMPLATE</con:style><con:default>userId</con:default></con:parameter><con:parameter><con:name>roleId</con:name><con:value>roleId</con:value><con:style>TEMPLATE</con:style><con:default>roleId</con:default></con:parameter></con:parameters><con:method name="AddRoleToUser" method="PUT"><con:settings/><con:parameters/><con:representation type="REQUEST"><con:mediaType>application/json</con:mediaType><con:params/></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>204</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="FAULT"><con:mediaType>text/html;charset=utf-8</con:mediaType><con:status>500 409</con:status><con:params/><con:element>html</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>204</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>204</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>204</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>204</con:status><con:params/><con:element>data</con:element></con:representation><con:request name="Request 1" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080</con:endpoint><con:request/><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters>
+  <con:entry key="userId" value="3"/>
+  <con:entry key="roleId" value="5"/>
+</con:parameters></con:request></con:method><con:method name="RemoveRoleFromUser" method="DELETE"><con:settings/><con:parameters/><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>204</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>204</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>204</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="FAULT"><con:mediaType>text/html;charset=utf-8</con:mediaType><con:status>409</con:status><con:params/><con:element>html</con:element></con:representation><con:request name="Request 1" mediaType="application/json"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080</con:endpoint><con:request/><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters>
+  <con:entry key="userId" value="3"/>
+  <con:entry key="roleId" value="5"/>
+</con:parameters></con:request></con:method></con:resource><con:resource name="roles" path="{userId}/roles"><con:settings/><con:parameters><con:parameter><con:name>userId</con:name><con:value>userId</con:value><con:style>TEMPLATE</con:style><con:default>userId</con:default></con:parameter></con:parameters><con:method name="UsersRoles" method="GET"><con:settings/><con:parameters/><con:representation type="FAULT"><con:mediaType>text/html;charset=utf-8</con:mediaType><con:status>500 409 400</con:status><con:params/><con:element>html</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType>application/json</con:mediaType><con:status>200</con:status><con:params/><con:element>Response</con:element></con:representation><con:request name="Request 1" mediaType="application/json"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080</con:endpoint><con:request/><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters><entry key="userId" value="3" xmlns="http://eviware.com/soapui/config"/></con:parameters></con:request></con:method></con:resource><con:method name="GetList" method="GET"><con:settings/><con:parameters/><con:representation type="RESPONSE"><con:mediaType>application/json</con:mediaType><con:status>200</con:status><con:params/><con:element>Response</con:element></con:representation><con:representation type="FAULT"><con:mediaType>text/html;charset=utf-8</con:mediaType><con:status>400</con:status><con:params/><con:element>html</con:element></con:representation><con:request name="Request 1" mediaType="application/json"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080</con:endpoint><con:request/><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters>
+  <con:entry key="paged" value="false"/>
+  <con:entry key="perPage" value="1"/>
+  <con:entry key="pageNum" value="1"/>
+</con:parameters><con:parameterOrder><con:entry>paged</con:entry><con:entry>pageNum</con:entry><con:entry>perPage</con:entry><con:entry/><con:entry>id</con:entry><con:entry>propertyName</con:entry></con:parameterOrder></con:request></con:method><con:method name="Create" method="POST"><con:settings/><con:parameters/><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>204</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="REQUEST"><con:mediaType>application/json</con:mediaType><con:params/></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>204</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="FAULT"><con:mediaType>text/html;charset=utf-8</con:mediaType><con:status>409</con:status><con:params/><con:element>html</con:element></con:representation><con:request name="Request 1" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080</con:endpoint><con:request>{
+	"login" : "super user",
+	"name" : "super user's name"
+}</con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/><con:parameterOrder><con:entry>paged</con:entry><con:entry>pageNum</con:entry><con:entry>perPage</con:entry><con:entry/><con:entry>id</con:entry><con:entry>propertyName</con:entry></con:parameterOrder></con:request></con:method><con:method name="Delete" method="DELETE"><con:settings/><con:parameters/><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>204</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="FAULT"><con:mediaType>text/html;charset=utf-8</con:mediaType><con:status>500 400 409</con:status><con:params/><con:element>html</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>204</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>204</con:status><con:params/><con:element>data</con:element></con:representation><con:request name="Request 1" mediaType="application/json"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080</con:endpoint><con:request/><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters><entry key="id" value="6" xmlns="http://eviware.com/soapui/config"/></con:parameters><con:parameterOrder><con:entry>paged</con:entry><con:entry>pageNum</con:entry><con:entry>perPage</con:entry><con:entry>id</con:entry><con:entry/><con:entry>propertyName</con:entry></con:parameterOrder></con:request></con:method><con:method name="Update" method="PUT"><con:settings/><con:parameters/><con:representation type="REQUEST"><con:mediaType>application/json</con:mediaType><con:params/></con:representation><con:representation type="FAULT"><con:mediaType>text/html;charset=utf-8</con:mediaType><con:status>500 400</con:status><con:params/><con:element>html</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>204</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>204</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>204</con:status><con:params/><con:element>data</con:element></con:representation><con:request name="Request 1" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080</con:endpoint><con:request/><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters>
+  <con:entry key="propertyName" value="lastName"/>
+  <con:entry key="id" value="3"/>
+  <con:entry key="newValue" value="Mussa"/>
+</con:parameters><con:parameterOrder><con:entry>paged</con:entry><con:entry>pageNum</con:entry><con:entry>perPage</con:entry><con:entry>id</con:entry><con:entry>propertyName</con:entry><con:entry>newValue</con:entry></con:parameterOrder></con:request></con:method></con:resource></con:interface><con:properties/><con:wssContainer/><con:databaseConnectionContainer/></con:soapui-project>

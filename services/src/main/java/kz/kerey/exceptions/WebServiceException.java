@@ -1,13 +1,16 @@
 package kz.kerey.exceptions;
 
-public class ValidatorException extends RuntimeException {
+import javax.xml.ws.WebFault;
 
-	private static final long serialVersionUID = 1820276239592982870L;
+@WebFault
+public class WebServiceException extends RuntimeException {
 
+	private static final long serialVersionUID = -7776211548782675247L;
+	
 	private Long errorCode;
 	private String comment;
 	
-	public ValidatorException(Long error, String comment) {
+	public WebServiceException(Long error, String comment) {
 		this.errorCode = error;
 		this.comment = comment;
 	}

@@ -1,12 +1,12 @@
 apply plugin:'application'
-mainClassName = "kz.kerey.ui.Main"
+mainClassName = 'kz.kerey.ui.Main'
 
 
 dependencies {
 	compile project(':persistence')
 	compile project(':interfaces')
 	
-	compile 'org.jboss.as:jboss-as-ejb-client-bom:7.2.0.Final',
-			'com.miglayout:miglayout-swing:4.2'
+	compile 'org.jboss.as:jboss-as-ejb-client-bom:7.2.0.Final'
+	//compile 'com.miglayout:miglayout-swing:4.2'
 			
 }
