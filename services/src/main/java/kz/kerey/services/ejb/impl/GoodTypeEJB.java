@@ -1,4 +1,4 @@
-package kz.kerey.business.goodtype;
+package kz.kerey.services.ejb.impl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +10,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
 
-import kz.kerey.api.GoodTypeInterface;
+import kz.kerey.services.api.GoodTypeInterface;
 import kz.kerey.business.types.GoodType;
 import kz.kerey.business.wrappers.GoodTypeWrapper;
 

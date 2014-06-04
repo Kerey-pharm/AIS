@@ -15,7 +15,7 @@ import javax.swing.JTextField;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
-import kz.kerey.api.GoodTypeInterface;
+import kz.kerey.services.api.GoodTypeInterface;
 import net.miginfocom.swing.MigLayout;
 
 public class Main {

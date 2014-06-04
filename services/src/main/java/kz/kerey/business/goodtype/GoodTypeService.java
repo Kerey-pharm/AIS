@@ -8,7 +8,7 @@ import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import javax.jws.WebService;
 
-import kz.kerey.api.GoodTypeInterface;
+import kz.kerey.services.api.GoodTypeInterface;
 import kz.kerey.business.wrappers.GoodTypeWrapper;
 import kz.kerey.constants.Constants;
 import kz.kerey.exceptions.ValidatorException;

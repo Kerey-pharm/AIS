@@ -14,8 +14,6 @@
         </KeyProvider>
     </PicketLinkSP>
     <Handlers xmlns="urn:picketlink:identity-federation:handler:config:2.1">
-		<!--Handler class="kz.bee.kudos.security.SAML2AuthenticationHandler"/ -->
-		<!--Handler class="kz.bee.kudos.security.SAML2LogOutHandler"/-->
         <Handler class="org.picketlink.identity.federation.web.handlers.saml2.SAML2LogOutHandler"/>
         <Handler class="org.picketlink.identity.federation.web.handlers.saml2.SAML2AuthenticationHandler"/>
         <Handler class="org.picketlink.identity.federation.web.handlers.saml2.SAML2SignatureGenerationHandler" />

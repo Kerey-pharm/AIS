@@ -10,7 +10,6 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
-import kz.kerey.business.user.Account;
 import kz.kerey.business.user.Role;
 
 @Entity

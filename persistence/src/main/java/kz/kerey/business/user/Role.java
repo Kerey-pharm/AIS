@@ -11,8 +11,7 @@ import javax.persistence.Table;
 @Table(name="K_ROLE")
 public class Role {
 
-	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Id @GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
 	
 	@Column
@@ -33,6 +32,5 @@ public class Role {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
 	
 }

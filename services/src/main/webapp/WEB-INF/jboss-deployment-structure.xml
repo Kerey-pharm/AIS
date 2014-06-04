@@ -4,6 +4,8 @@
 		    <module name="deployment.persistence.jar"></module>
 		    <module name="deployment.interfaces.jar"></module>
 		    <module name="org.picketlink" />
+		    <module name="org.apache.commons.codec"/>
+		    <module name="org.codehaus.jackson.jackson-jaxrs" />
 		</dependencies>
 	</deployment>
 </jboss-deployment-structure>

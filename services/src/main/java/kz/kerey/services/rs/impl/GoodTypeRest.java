@@ -1,4 +1,4 @@
-package kz.kerey.business.goodtype;
+package kz.kerey.services.rs.impl;
 
 import java.io.IOException;
 import java.util.List;
@@ -18,7 +18,8 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 
-import kz.kerey.api.GoodTypeInterface;
+import kz.kerey.services.api.GoodTypeInterface;
+import kz.kerey.business.goodtype.GoodTypeValidator;
 import kz.kerey.business.wrappers.GoodTypeWrapper;
 import kz.kerey.exceptions.ValidatorException;
 

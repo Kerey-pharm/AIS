@@ -1,4 +1,4 @@
-package kz.kerey.api;
+package kz.kerey.services.api;
 
 import java.util.List;
 
