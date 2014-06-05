@@ -10,16 +10,6 @@ public class GoodTypeWrapper implements Serializable {
 	private Long id;
 	private String name;
 
-	public static GoodTypeWrapper fromEntity(kz.kerey.business.types.GoodType obj) {
-		if (obj!=null){
-			GoodTypeWrapper res = new GoodTypeWrapper();
-			res.setId(obj.getId());
-			res.setName(obj.getName());
-			return res;
-		}
-		return null;
-	}
-
 	public GoodTypeWrapper() {}
 	
 	public Long getId() {

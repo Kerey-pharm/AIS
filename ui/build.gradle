@@ -3,7 +3,6 @@ mainClassName = 'kz.kerey.ui.Main'
 
 
 dependencies {
-	compile project(':persistence')
 	compile project(':interfaces')
 	
 	compile 'org.jboss.as:jboss-as-ejb-client-bom:7.2.0.Final'

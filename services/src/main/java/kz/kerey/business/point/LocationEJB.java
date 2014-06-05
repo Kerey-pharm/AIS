@@ -32,7 +32,7 @@ public class LocationEJB {
 			}
 			List<Location> list = query.getResultList();
 			for(Location type : list) {
-				result.add(LocationWrapper.fromEntity(type));
+				//result.add(LocationWrapper.fromEntity(type));
 			}
 			return result;
 		}
@@ -56,7 +56,7 @@ public class LocationEJB {
 			query = query.setParameter("text1", filter.toLowerCase()+"%");
 			List<Location> list = query.getResultList();
 			for(Location type : list) {
-				result.add(LocationWrapper.fromEntity(type));
+				//result.add(LocationWrapper.fromEntity(type));
 			}
 			return result;
 		}
@@ -92,8 +92,8 @@ public class LocationEJB {
 					.getResultList();
 			if (list.size()>0)
 				throw new ValidatorException(Constants.objectExists, "Location with name: "+location.getName()+" exists");
-			Location obj = LocationWrapper.toEntity(location);
-			em.persist(obj);
+			//Location obj = LocationWrapper.toEntity(location);
+			//em.persist(obj);
 		}
 		finally {
 			if (em!=null)

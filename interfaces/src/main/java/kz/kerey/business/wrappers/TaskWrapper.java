@@ -4,8 +4,6 @@ import java.util.Date;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
-import kz.kerey.business.types.enums.TaskType;
-
 @XmlRootElement
 public class TaskWrapper {
 
@@ -13,7 +11,6 @@ public class TaskWrapper {
 	private Date initialDate;
 	private Date finishDate;
 	private Date deadlineDate;
-	private TaskType type;
 	
 	public Long getId() {
 		return id;
@@ -38,13 +35,6 @@ public class TaskWrapper {
 	}
 	public void setDeadlineDate(Date deadlineDate) {
 		this.deadlineDate = deadlineDate;
-	}
-	public TaskType getType() {
-		return type;
-	}
-	public void setType(TaskType type) {
-		this.type = type;
-	}
-	
+	}	
 	
 }

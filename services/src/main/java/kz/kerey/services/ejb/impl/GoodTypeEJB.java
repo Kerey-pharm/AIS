@@ -35,7 +35,7 @@ public class GoodTypeEJB implements GoodTypeInterface {
 			}
 			List<GoodType> list = query.getResultList();
 			for(GoodType type : list) {
-				result.add(GoodTypeWrapper.fromEntity(type));
+				//result.add(GoodTypeWrapper.fromEntity(type));
 			}
 			return result;
 		}

@@ -1,6 +1,8 @@
 package kz.kerey.ui;
 
+import java.util.List;
 import java.util.Properties;
+import java.util.UUID;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -10,31 +12,36 @@ import javax.swing.JPanel;
 import javax.swing.UnsupportedLookAndFeelException;
 
 import net.miginfocom.swing.MigLayout;
+import kz.kerey.business.types.enums.UserProperty;
 import kz.kerey.business.wrappers.UserWrapper;
 import kz.kerey.services.api.UserInterface;
 
 public class Main {
 
+	private static String jndiName = "ejb:/services//UserEJB!kz.kerey.services.api.UserInterface";
+	private static UserInterface service = null;
+	
 	public static void main(String[] args) throws NamingException, ClassNotFoundException, InstantiationException, IllegalAccessException, UnsupportedLookAndFeelException {
-		
-		JFrame form = new JFrame();
-		form.setTitle("Users window");
-		
-		JPanel panel = new JPanel();
-		panel.setLayout(new MigLayout());
-		
-		
-		
-		
-		
-		String jndiName = "ejb:/services//UserEJB!kz.kerey.services.api.UserInterface";
-		UserInterface service = Main.lookupRemoteStatelessCalculator(jndiName);
-		UserWrapper wrapper = new UserWrapper();
-		wrapper.setLogin("FFF");
-		service.createUser(wrapper);
-		
+		service = Main.lookupRemoteStatelessCalculator(jndiName);
+		createUser();
 	}
 
+	private static void createUser() {
+		for (int i=0; i<10; i++) {
+			UserWrapper user = new UserWrapper();
+			user.setLogin(UUID.randomUUID().toString());
+			service.createUser(user);
+		}
+		List<UserWrapper> users = service.getUserList(false, null, null);
+		for (UserWrapper user : users) {
+			service.changeUserProperty(user.getId(), UserProperty.name, UUID.randomUUID().toString());
+		}
+		users = service.getUserList(false, null, null);
+		for (UserWrapper user : users) {
+			System.out.println(user.getLogin() + " : " + user.getName());
+		}
+	}
+	
 	private static UserInterface lookupRemoteStatelessCalculator(String url) throws NamingException {
         Properties jndiProps = new Properties();
         jndiProps.put(Context.URL_PKG_PREFIXES, "org.jboss.ejb.client.naming");

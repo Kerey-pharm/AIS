@@ -61,9 +61,8 @@ public class GoodEJB {
 					.getResultList();
 			if (list.size()>0)
 				throw new ValidatorException(Constants.objectExists, "Good exists");
-			Good good = GoodWrapper.toEntity(request);
-			good.setType(type);
-			em.persist(good);
+			
+			
 		}
 		finally {
 			if (em!=null)
@@ -84,9 +83,7 @@ public class GoodEJB {
 			}
 			query = query.setParameter("text1", filter.toLowerCase()+"%");
 			List<Good> list = query.getResultList();
-			for(Good type : list) {
-				result.add(GoodWrapper.fromEntity(type));
-			}
+			
 			return result;
 		}
 		finally {
@@ -107,9 +104,7 @@ public class GoodEJB {
 						.setMaxResults(perPage);
 			}
 			List<Good> list = query.getResultList();
-			for(Good type : list) {
-				result.add(GoodWrapper.fromEntity(type));
-			}
+			
 			return result;
 		}
 		finally {

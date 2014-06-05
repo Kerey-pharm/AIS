@@ -2,8 +2,6 @@ package kz.kerey.business.wrappers;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
-import kz.kerey.business.types.points.Point;
-
 @XmlRootElement
 public class PointWrapper {
 
@@ -11,19 +9,6 @@ public class PointWrapper {
 	private String name;
 	private String description;
 	private LocationWrapper location;
-	
-	public static void fromEntity(PointWrapper res, Point obj) {
-		res.setDescription(obj.getDescription());
-		res.setId(obj.getId());
-		res.setName(obj.getName());
-		res.setLocation(LocationWrapper.fromEntity(obj.getLocation()));
-	}
-	
-	public static void toEntity(Point res, PointWrapper obj) {
-		res.setDescription(obj.getDescription());
-		res.setId(obj.getId());
-		res.setName(obj.getName());
-	}
 	
 	public Long getId() {
 		return id;
