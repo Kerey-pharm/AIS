@@ -6,6 +6,7 @@ import java.util.List;
 import javax.annotation.Resource;
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
+import javax.enterprise.inject.Default;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
@@ -14,6 +15,7 @@ import kz.kerey.services.api.GoodTypeInterface;
 import kz.kerey.business.types.GoodType;
 import kz.kerey.business.wrappers.GoodTypeWrapper;
 
+@Default
 @Stateless
 @Remote(GoodTypeInterface.class)
 public class GoodTypeEJB implements GoodTypeInterface {

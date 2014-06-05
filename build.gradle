@@ -25,6 +25,7 @@ subprojects {
 	processResources {
 		from ('src/main/java') {
 			include '**/*.xml'
+			include '**/*.properties'
 		}		
 	}
 }

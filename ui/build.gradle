@@ -7,6 +7,6 @@ dependencies {
 	compile project(':interfaces')
 	
 	compile 'org.jboss.as:jboss-as-ejb-client-bom:7.2.0.Final'
-	//compile 'com.miglayout:miglayout-swing:4.2'
+	compile 'com.miglayout:miglayout-swing:4.2'
 			
 }

@@ -1,11 +1,3 @@
-apply plugin: 'java-library-distribution'
-
 dependencies {
 	compile project(':persistence')
-}
-
-distributions {
-    main{
-        baseName = 'kerey-interfaces'
-    }
 }

@@ -5,26 +5,41 @@ import java.util.Properties;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
 import javax.swing.UnsupportedLookAndFeelException;
 
-import kz.kerey.business.wrappers.GoodTypeWrapper;
-import kz.kerey.services.api.GoodTypeInterface;
+import net.miginfocom.swing.MigLayout;
+import kz.kerey.business.wrappers.UserWrapper;
+import kz.kerey.services.api.UserInterface;
 
 public class Main {
 
 	public static void main(String[] args) throws NamingException, ClassNotFoundException, InstantiationException, IllegalAccessException, UnsupportedLookAndFeelException {
-		String jndiName = "ejb:/services//GoodTypeEJB!kz.kerey.api.GoodTypeInterface";
-		GoodTypeInterface service = Main.lookupRemoteStatelessCalculator(jndiName);
-		GoodTypeWrapper wrapper = new GoodTypeWrapper();
-		wrapper.setName("FFF");
-		service.createGoodType(wrapper);
+		
+		JFrame form = new JFrame();
+		form.setTitle("Users window");
+		
+		JPanel panel = new JPanel();
+		panel.setLayout(new MigLayout());
+		
+		
+		
+		
+		
+		String jndiName = "ejb:/services//UserEJB!kz.kerey.services.api.UserInterface";
+		UserInterface service = Main.lookupRemoteStatelessCalculator(jndiName);
+		UserWrapper wrapper = new UserWrapper();
+		wrapper.setLogin("FFF");
+		service.createUser(wrapper);
+		
 	}
 
-	private static GoodTypeInterface lookupRemoteStatelessCalculator(String url) throws NamingException {
+	private static UserInterface lookupRemoteStatelessCalculator(String url) throws NamingException {
         Properties jndiProps = new Properties();
         jndiProps.put(Context.URL_PKG_PREFIXES, "org.jboss.ejb.client.naming");
         Context ctx = new InitialContext(jndiProps);
-        GoodTypeInterface ser = (GoodTypeInterface) ctx.lookup(url);
+        UserInterface ser = (UserInterface) ctx.lookup(url);
         return ser;
     }
 	
