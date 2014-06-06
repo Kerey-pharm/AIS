@@ -1,16 +1,18 @@
 package kz.kerey.business.wrappers;
 
-import java.util.List;
+import java.io.Serializable;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
-public class LadderWrapper {
+public class LadderWrapper implements Serializable {
 
+	private static final long serialVersionUID = 6149620454895829792L;
+	
 	private Long id;
 	private String name;
-	private List<StepWrapper> steps;
-	
+	private String comment;
+		
 	public Long getId() {
 		return id;
 	}
@@ -23,11 +25,11 @@ public class LadderWrapper {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public List<StepWrapper> getSteps() {
-		return steps;
+	public String getComment() {
+		return comment;
 	}
-	public void setSteps(List<StepWrapper> steps) {
-		this.steps = steps;
+	public void setComment(String comment) {
+		this.comment = comment;
 	}
 	
 }

@@ -10,7 +10,8 @@ public class Constants {
 	public static Long objectIsEmpty = 				2L;
 	public static Long objectExists = 				3L;
 	public static Long rangeIsIncorrect = 			4L;
-	public static Long fieldNotFilledProperly = 	7L;
+	public static Long fieldNotFilledProperly = 	5L;
 	public static Long barcodeEmpty = 				6L;
+	public static Long objectHasReferences = 		7L;
 	
 }

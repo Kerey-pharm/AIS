@@ -1,0 +1,473 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project activeEnvironment="Default" name="FlowInterface" resourceRoot="" soapui-version="5.0.0" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="FlowWSServiceSoapBinding" type="wsdl" bindingName="{http://impl.ws.services.kerey.kz/}FlowWSServiceSoapBinding" soapVersion="1_1" anonymous="optional" definition="http://localhost:8080/services/FlowWS?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://localhost:8080/services/FlowWS?wsdl"><con:part><con:url>http://localhost:8080/services/FlowWS?wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="FlowWSService" targetNamespace="http://impl.ws.services.kerey.kz/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://impl.ws.services.kerey.kz/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http">
+  <wsdl:types>
+    <xs:schema attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://impl.ws.services.kerey.kz/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="changeLadderProperty" type="tns:changeLadderProperty"/>
+      <xs:element name="changeLadderPropertyResponse" type="tns:changeLadderPropertyResponse"/>
+      <xs:element name="changeStepProperty" type="tns:changeStepProperty"/>
+      <xs:element name="changeStepPropertyResponse" type="tns:changeStepPropertyResponse"/>
+      <xs:element name="createLadder" type="tns:createLadder"/>
+      <xs:element name="createLadderResponse" type="tns:createLadderResponse"/>
+      <xs:element name="createStep" type="tns:createStep"/>
+      <xs:element name="createStepResponse" type="tns:createStepResponse"/>
+      <xs:element name="deleteLadder" type="tns:deleteLadder"/>
+      <xs:element name="deleteLadderResponse" type="tns:deleteLadderResponse"/>
+      <xs:element name="deleteStep" type="tns:deleteStep"/>
+      <xs:element name="deleteStepResponse" type="tns:deleteStepResponse"/>
+      <xs:element name="getLadderList" type="tns:getLadderList"/>
+      <xs:element name="getLadderListResponse" type="tns:getLadderListResponse"/>
+      <xs:element name="getLadderSteps" type="tns:getLadderSteps"/>
+      <xs:element name="getLadderStepsResponse" type="tns:getLadderStepsResponse"/>
+      <xs:element name="ladderWrapper" type="tns:ladderWrapper"/>
+      <xs:element name="stepWrapper" type="tns:stepWrapper"/>
+      <xs:element name="swapLadderSteps" type="tns:swapLadderSteps"/>
+      <xs:element name="swapLadderStepsResponse" type="tns:swapLadderStepsResponse"/>
+      <xs:complexType name="swapLadderSteps">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ladderId" type="xs:long"/>
+          <xs:element minOccurs="0" name="left" type="xs:long"/>
+          <xs:element minOccurs="0" name="right" type="xs:long"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="swapLadderStepsResponse">
+        <xs:sequence/>
+      </xs:complexType>
+      <xs:complexType name="getLadderList">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="paged" type="xs:boolean"/>
+          <xs:element minOccurs="0" name="pageNum" type="xs:int"/>
+          <xs:element minOccurs="0" name="perPage" type="xs:int"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getLadderListResponse">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:ladderWrapper"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ladderWrapper">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="comment" type="xs:string"/>
+          <xs:element minOccurs="0" name="id" type="xs:long"/>
+          <xs:element minOccurs="0" name="name" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getLadderSteps">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="id" type="xs:long"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getLadderStepsResponse">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:stepWrapper"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="stepWrapper">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="comment" type="xs:string"/>
+          <xs:element minOccurs="0" name="id" type="xs:long"/>
+          <xs:element minOccurs="0" name="ladder" type="xs:long"/>
+          <xs:element minOccurs="0" name="name" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="deleteLadder">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="id" type="xs:long"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="deleteLadderResponse">
+        <xs:sequence/>
+      </xs:complexType>
+      <xs:complexType name="deleteStep">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ladderId" type="xs:long"/>
+          <xs:element minOccurs="0" name="id" type="xs:long"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="deleteStepResponse">
+        <xs:sequence/>
+      </xs:complexType>
+      <xs:complexType name="changeStepProperty">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="id" type="xs:long"/>
+          <xs:element minOccurs="0" name="property" type="tns:stepProperty"/>
+          <xs:element minOccurs="0" name="newValue" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="changeStepPropertyResponse">
+        <xs:sequence/>
+      </xs:complexType>
+      <xs:complexType name="createStep">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="arg0" type="tns:stepWrapper"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="createStepResponse">
+        <xs:sequence/>
+      </xs:complexType>
+      <xs:complexType name="createLadder">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="arg0" type="tns:ladderWrapper"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="createLadderResponse">
+        <xs:sequence/>
+      </xs:complexType>
+      <xs:complexType name="changeLadderProperty">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="id" type="xs:long"/>
+          <xs:element minOccurs="0" name="property" type="tns:ladderProperty"/>
+          <xs:element minOccurs="0" name="newValue" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="changeLadderPropertyResponse">
+        <xs:sequence/>
+      </xs:complexType>
+      <xs:simpleType name="stepProperty">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="name"/>
+          <xs:enumeration value="comment"/>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType name="ladderProperty">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="name"/>
+          <xs:enumeration value="comment"/>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:element name="WebServiceException" type="tns:WebServiceException"/>
+      <xs:complexType name="WebServiceException">
+        <xs:sequence>
+          <xs:element name="errorCode" nillable="true" type="xs:long"/>
+          <xs:element name="comment" nillable="true" type="xs:string"/>
+          <xs:element minOccurs="0" name="message" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="deleteLadder">
+    <wsdl:part element="tns:deleteLadder" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="changeLadderPropertyResponse">
+    <wsdl:part element="tns:changeLadderPropertyResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="swapLadderStepsResponse">
+    <wsdl:part element="tns:swapLadderStepsResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getLadderListResponse">
+    <wsdl:part element="tns:getLadderListResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="createLadderResponse">
+    <wsdl:part element="tns:createLadderResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="WebServiceException">
+    <wsdl:part element="tns:WebServiceException" name="WebServiceException"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="deleteLadderResponse">
+    <wsdl:part element="tns:deleteLadderResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="deleteStepResponse">
+    <wsdl:part element="tns:deleteStepResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="changeStepProperty">
+    <wsdl:part element="tns:changeStepProperty" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="createStep">
+    <wsdl:part element="tns:createStep" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="changeStepPropertyResponse">
+    <wsdl:part element="tns:changeStepPropertyResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="createStepResponse">
+    <wsdl:part element="tns:createStepResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="deleteStep">
+    <wsdl:part element="tns:deleteStep" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getLadderSteps">
+    <wsdl:part element="tns:getLadderSteps" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getLadderStepsResponse">
+    <wsdl:part element="tns:getLadderStepsResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="createLadder">
+    <wsdl:part element="tns:createLadder" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="changeLadderProperty">
+    <wsdl:part element="tns:changeLadderProperty" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="swapLadderSteps">
+    <wsdl:part element="tns:swapLadderSteps" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getLadderList">
+    <wsdl:part element="tns:getLadderList" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="FlowWS">
+    <wsdl:operation name="swapLadderSteps">
+      <wsdl:input message="tns:swapLadderSteps" name="swapLadderSteps"></wsdl:input>
+      <wsdl:output message="tns:swapLadderStepsResponse" name="swapLadderStepsResponse"></wsdl:output>
+      <wsdl:fault message="tns:WebServiceException" name="WebServiceException"></wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getLadderList">
+      <wsdl:input message="tns:getLadderList" name="getLadderList"></wsdl:input>
+      <wsdl:output message="tns:getLadderListResponse" name="getLadderListResponse"></wsdl:output>
+      <wsdl:fault message="tns:WebServiceException" name="WebServiceException"></wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getLadderSteps">
+      <wsdl:input message="tns:getLadderSteps" name="getLadderSteps"></wsdl:input>
+      <wsdl:output message="tns:getLadderStepsResponse" name="getLadderStepsResponse"></wsdl:output>
+      <wsdl:fault message="tns:WebServiceException" name="WebServiceException"></wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="deleteLadder">
+      <wsdl:input message="tns:deleteLadder" name="deleteLadder"></wsdl:input>
+      <wsdl:output message="tns:deleteLadderResponse" name="deleteLadderResponse"></wsdl:output>
+      <wsdl:fault message="tns:WebServiceException" name="WebServiceException"></wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="deleteStep">
+      <wsdl:input message="tns:deleteStep" name="deleteStep"></wsdl:input>
+      <wsdl:output message="tns:deleteStepResponse" name="deleteStepResponse"></wsdl:output>
+      <wsdl:fault message="tns:WebServiceException" name="WebServiceException"></wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="changeStepProperty">
+      <wsdl:input message="tns:changeStepProperty" name="changeStepProperty"></wsdl:input>
+      <wsdl:output message="tns:changeStepPropertyResponse" name="changeStepPropertyResponse"></wsdl:output>
+      <wsdl:fault message="tns:WebServiceException" name="WebServiceException"></wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="createStep">
+      <wsdl:input message="tns:createStep" name="createStep"></wsdl:input>
+      <wsdl:output message="tns:createStepResponse" name="createStepResponse"></wsdl:output>
+      <wsdl:fault message="tns:WebServiceException" name="WebServiceException"></wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="createLadder">
+      <wsdl:input message="tns:createLadder" name="createLadder"></wsdl:input>
+      <wsdl:output message="tns:createLadderResponse" name="createLadderResponse"></wsdl:output>
+      <wsdl:fault message="tns:WebServiceException" name="WebServiceException"></wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="changeLadderProperty">
+      <wsdl:input message="tns:changeLadderProperty" name="changeLadderProperty"></wsdl:input>
+      <wsdl:output message="tns:changeLadderPropertyResponse" name="changeLadderPropertyResponse"></wsdl:output>
+      <wsdl:fault message="tns:WebServiceException" name="WebServiceException"></wsdl:fault>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="FlowWSServiceSoapBinding" type="tns:FlowWS">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="getLadderList">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getLadderList">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getLadderListResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="WebServiceException">
+        <soap:fault name="WebServiceException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="swapLadderSteps">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="swapLadderSteps">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="swapLadderStepsResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="WebServiceException">
+        <soap:fault name="WebServiceException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getLadderSteps">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getLadderSteps">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getLadderStepsResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="WebServiceException">
+        <soap:fault name="WebServiceException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="deleteLadder">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="deleteLadder">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="deleteLadderResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="WebServiceException">
+        <soap:fault name="WebServiceException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="deleteStep">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="deleteStep">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="deleteStepResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="WebServiceException">
+        <soap:fault name="WebServiceException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="changeStepProperty">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="changeStepProperty">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="changeStepPropertyResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="WebServiceException">
+        <soap:fault name="WebServiceException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="createLadder">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="createLadder">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="createLadderResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="WebServiceException">
+        <soap:fault name="WebServiceException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="createStep">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="createStep">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="createStepResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="WebServiceException">
+        <soap:fault name="WebServiceException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="changeLadderProperty">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="changeLadderProperty">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="changeLadderPropertyResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="WebServiceException">
+        <soap:fault name="WebServiceException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="FlowWSService">
+    <wsdl:port binding="tns:FlowWSServiceSoapBinding" name="FlowWSPort">
+      <soap:address location="http://localhost:8080/services/FlowWS"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8080/services/FlowWS</con:endpoint></con:endpoints><con:operation isOneWay="false" action="" name="changeLadderProperty" bindingOperationName="changeLadderProperty" type="Request-Response" outputName="changeLadderPropertyResponse" inputName="changeLadderProperty" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/services/FlowWS</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:impl="http://impl.ws.services.kerey.kz/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <impl:changeLadderProperty>
+         <!--Optional:-->
+         <id>?</id>
+         <!--Optional:-->
+         <property>?</property>
+         <!--Optional:-->
+         <newValue>?</newValue>
+      </impl:changeLadderProperty>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://impl.ws.services.kerey.kz/FlowWS/changeLadderProperty"/></con:call></con:operation><con:operation isOneWay="false" action="" name="changeStepProperty" bindingOperationName="changeStepProperty" type="Request-Response" outputName="changeStepPropertyResponse" inputName="changeStepProperty" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/services/FlowWS</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:impl="http://impl.ws.services.kerey.kz/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <impl:changeStepProperty>
+         <!--Optional:-->
+         <id>?</id>
+         <!--Optional:-->
+         <property>?</property>
+         <!--Optional:-->
+         <newValue>?</newValue>
+      </impl:changeStepProperty>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://impl.ws.services.kerey.kz/FlowWS/changeStepProperty"/></con:call></con:operation><con:operation isOneWay="false" action="" name="createLadder" bindingOperationName="createLadder" type="Request-Response" outputName="createLadderResponse" inputName="createLadder" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/services/FlowWS</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:impl="http://impl.ws.services.kerey.kz/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <impl:createLadder>
+         <!--Optional:-->
+         <arg0>
+            <!--Optional:-->
+            
+            <!--Optional:-->
+            <comment>2</comment><name>2</name>
+            <!--Optional:-->
+            
+         </arg0>
+      </impl:createLadder>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://impl.ws.services.kerey.kz/FlowWS/createLadder"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="" name="createStep" bindingOperationName="createStep" type="Request-Response" outputName="createStepResponse" inputName="createStep" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/services/FlowWS</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:impl="http://impl.ws.services.kerey.kz/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <impl:createStep>
+         <!--Optional:-->
+         <arg0>
+            <!--Optional:-->
+            
+            <!--Optional:-->
+            
+            <!--Optional:-->
+            
+            <!--Optional:-->
+            <comment>123</comment><ladder>1</ladder><name>123</name>
+         </arg0>
+      </impl:createStep>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://impl.ws.services.kerey.kz/FlowWS/createStep"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="" name="deleteLadder" bindingOperationName="deleteLadder" type="Request-Response" outputName="deleteLadderResponse" inputName="deleteLadder" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/services/FlowWS</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:impl="http://impl.ws.services.kerey.kz/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <impl:deleteLadder>
+         <!--Optional:-->
+         <id>?</id>
+      </impl:deleteLadder>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://impl.ws.services.kerey.kz/FlowWS/deleteLadder"/></con:call></con:operation><con:operation isOneWay="false" action="" name="deleteStep" bindingOperationName="deleteStep" type="Request-Response" outputName="deleteStepResponse" inputName="deleteStep" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/services/FlowWS</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:impl="http://impl.ws.services.kerey.kz/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <impl:deleteStep>
+         <!--Optional:-->
+         
+         <!--Optional:-->
+         <ladderId>1</ladderId><id>4</id>
+      </impl:deleteStep>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://impl.ws.services.kerey.kz/FlowWS/deleteStep"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="" name="getLadderList" bindingOperationName="getLadderList" type="Request-Response" outputName="getLadderListResponse" inputName="getLadderList" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/services/FlowWS</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:impl="http://impl.ws.services.kerey.kz/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <impl:getLadderList>
+         <!--Optional:-->
+         <paged>false</paged>
+         <!--Optional:-->
+         
+         <!--Optional:-->
+         
+      </impl:getLadderList>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://impl.ws.services.kerey.kz/FlowWS/getLadderList"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="" name="getLadderSteps" bindingOperationName="getLadderSteps" type="Request-Response" outputName="getLadderStepsResponse" inputName="getLadderSteps" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/services/FlowWS</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:impl="http://impl.ws.services.kerey.kz/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <impl:getLadderSteps>
+         <!--Optional:-->
+         
+      <id>2</id></impl:getLadderSteps>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://impl.ws.services.kerey.kz/FlowWS/getLadderSteps"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="" name="swapLadderSteps" bindingOperationName="swapLadderSteps" type="Request-Response" outputName="swapLadderStepsResponse" inputName="swapLadderSteps" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/services/FlowWS</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:impl="http://impl.ws.services.kerey.kz/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <impl:swapLadderSteps>
+         <!--Optional:-->
+         
+         <!--Optional:-->
+         
+         <!--Optional:-->
+         <ladderId>2</ladderId><left>19</left><right>23</right>
+      </impl:swapLadderSteps>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://impl.ws.services.kerey.kz/FlowWS/swapLadderSteps"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/><con:databaseConnectionContainer/><con:oAuth2ProfileContainer/></con:soapui-project>

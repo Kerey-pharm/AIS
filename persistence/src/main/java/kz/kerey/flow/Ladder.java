@@ -7,7 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToMany;
 import javax.persistence.OrderColumn;
 
 @Entity
@@ -20,7 +20,10 @@ public class Ladder {
 	@Column
 	private String name;
 
-	@OneToMany(orphanRemoval=true)
+	@Column
+	private String comment;
+	
+	@ManyToMany
 	@OrderColumn(name="order_index")
 	private List<Step> steps;
 
@@ -46,6 +49,14 @@ public class Ladder {
 
 	public void setSteps(List<Step> steps) {
 		this.steps = steps;
+	}
+
+	public String getComment() {
+		return comment;
+	}
+
+	public void setComment(String comment) {
+		this.comment = comment;
 	}
 	
 }

@@ -2,6 +2,8 @@ subprojects {
     apply plugin: 'java'
     apply plugin: 'eclipse'
 
+	project.ext.deployment = "../totalBuild"
+	
     repositories {
 		mavenCentral()
 		
@@ -22,10 +24,32 @@ subprojects {
         manifest.attributes provider: 'gradle'
     }
 	
+	if (['ui','persistence','interfaces'].contains(project.name)) {
+		
+		task deploy (type: Copy, dependsOn: build) {
+			from jar.archivePath
+			into deployment
+		}
+		
+	}
+	
+	if (['idp','services'].contains(project.name)) {
+		
+		apply plugin: 'war'
+		task deploy (type: Copy, dependsOn: build) {
+			from war.archivePath
+			into deployment
+		}
+		
+	}
+
 	processResources {
 		from ('src/main/java') {
 			include '**/*.xml'
 			include '**/*.properties'
 		}		
 	}
+	
+	
+	
 }

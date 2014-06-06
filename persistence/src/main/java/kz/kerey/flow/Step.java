@@ -1,16 +1,11 @@
 package kz.kerey.flow;
 
-import java.util.Set;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-
-import kz.kerey.business.user.Role;
 
 @Entity
 public class Step {
@@ -22,11 +17,11 @@ public class Step {
 	@Column
 	private String name;
 	
+	@Column
+	private String comment;
+	
 	@ManyToOne
 	private Ladder ladder;
-	
-	@OneToMany
-	private Set<Role> roles; 
 	
 	public Long getId() {
 		return id;
@@ -44,12 +39,12 @@ public class Step {
 		this.name = name;
 	}
 
-	public Set<Role> getRoles() {
-		return roles;
+	public String getComment() {
+		return comment;
 	}
 
-	public void setRoles(Set<Role> roles) {
-		this.roles = roles;
+	public void setComment(String comment) {
+		this.comment = comment;
 	}
 
 	public Ladder getLadder() {
