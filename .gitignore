@@ -28,6 +28,7 @@ local/
 
 .metadata/
 .gradle/
+totalBuild/
 /build/
 /*/build/
 /bin/
