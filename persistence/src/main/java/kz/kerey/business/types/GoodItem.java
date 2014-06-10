@@ -9,8 +9,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
-import kz.kerey.business.types.points.Point;
-
 @Entity
 public class GoodItem {
 
@@ -20,9 +18,6 @@ public class GoodItem {
 	
 	@ManyToOne
 	private GoodItem parent;
-	
-	@ManyToOne
-	private Point point;
 	
 	@ManyToOne
 	private Good good;

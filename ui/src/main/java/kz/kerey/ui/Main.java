@@ -1,24 +1,26 @@
 package kz.kerey.ui;
 
-import java.util.List;
-import java.util.Properties;
-import java.util.UUID;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
 
-import javax.naming.Context;
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.UnsupportedLookAndFeelException;
-
-import net.miginfocom.swing.MigLayout;
-import kz.kerey.business.types.enums.UserProperty;
-import kz.kerey.business.wrappers.UserWrapper;
-import kz.kerey.services.api.UserInterface;
+import org.apache.tika.Tika;
 
 public class Main {
 
-	private static String jndiName = "ejb:/services//UserEJB!kz.kerey.services.api.UserInterface";
+	public static void main(String[] args) throws IOException {
+		
+		File file = new File("D:/jboss-eap-6.2.0/jboss-eap-6.2/bin/jboss-cli.xml");
+		
+		Tika tika = new Tika();
+		String mimeType = tika.detect(file);
+		
+		System.out.println(Files.probeContentType(file.toPath()));
+		System.out.println(mimeType);
+		
+	}
+	
+	/*private static String jndiName = "ejb:/services//UserEJB!kz.kerey.services.api.UserInterface";
 	private static UserInterface service = null;
 	
 	public static void main(String[] args) throws NamingException, ClassNotFoundException, InstantiationException, IllegalAccessException, UnsupportedLookAndFeelException {
@@ -48,6 +50,6 @@ public class Main {
         Context ctx = new InitialContext(jndiProps);
         UserInterface ser = (UserInterface) ctx.lookup(url);
         return ser;
-    }
+    }*/
 	
 }

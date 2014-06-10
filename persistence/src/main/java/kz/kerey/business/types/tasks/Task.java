@@ -1,6 +1,7 @@
 package kz.kerey.business.types.tasks;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,7 +11,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OrderColumn;
 
+import kz.kerey.business.types.GoodItem;
+import kz.kerey.business.types.documents.Document;
 import kz.kerey.business.types.enums.TaskStatus;
 import kz.kerey.business.user.User;
 import kz.kerey.flow.Ladder;
@@ -35,6 +40,9 @@ public abstract class Task {
 	@Column(nullable = false)
 	@Enumerated(EnumType.STRING)
 	private TaskStatus status;
+	
+	@Column
+	private String barcode;
 
 	@ManyToOne
 	private Ladder ladder;
@@ -44,6 +52,13 @@ public abstract class Task {
 
 	@ManyToOne
 	private User executor;
+	
+	@OneToMany
+	private List<Document> documents;
+	
+	@OneToMany
+	@OrderColumn(name="index_column")
+	private List<GoodItem> items;
 
 	public Long getId() {
 		return id;

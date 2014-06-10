@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 
 @Entity
 public class Document {
@@ -13,10 +14,16 @@ public class Document {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
 	
-	@Column(nullable=false)
+	@Column
 	private String docType;
 	
-	@Column(nullable=false)
+	@Column
+	private String docExtension;
+	
+	@Column
+	private String docName;
+	
+	@Lob
 	private byte[] data;
 
 	public Long getId() {
@@ -41,6 +48,22 @@ public class Document {
 
 	public void setData(byte[] data) {
 		this.data = data;
+	}
+
+	public String getDocExtension() {
+		return docExtension;
+	}
+
+	public void setDocExtension(String docExtension) {
+		this.docExtension = docExtension;
+	}
+
+	public String getDocName() {
+		return docName;
+	}
+
+	public void setDocName(String docName) {
+		this.docName = docName;
 	}
 	
 }

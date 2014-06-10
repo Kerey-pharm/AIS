@@ -13,5 +13,6 @@ public class Constants {
 	public static Long fieldNotFilledProperly = 	5L;
 	public static Long barcodeEmpty = 				6L;
 	public static Long objectHasReferences = 		7L;
+	public static Long internalEJBError = 			8L;
 	
 }
