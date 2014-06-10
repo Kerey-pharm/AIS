@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project activeEnvironment="Default" name="GoodTypeInterface" resourceRoot="" soapui-version="5.0.0" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="GoodTypeWSServiceSoapBinding" type="wsdl" bindingName="{http://impl.ws.services.kerey.kz/}GoodTypeWSServiceSoapBinding" soapVersion="1_1" anonymous="optional" definition="http://localhost:8080/services/GoodTypeWS?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://localhost:8080/services/GoodTypeWS?wsdl"><con:part><con:url>http://localhost:8080/services/GoodTypeWS?wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="GoodTypeWSService" targetNamespace="http://impl.ws.services.kerey.kz/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://impl.ws.services.kerey.kz/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http">
+  <wsdl:types>
+    <xs:schema attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://impl.ws.services.kerey.kz/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="createGoodType" type="tns:createGoodType"/>
+      <xs:element name="createGoodTypeResponse" type="tns:createGoodTypeResponse"/>
+      <xs:element name="deleteGoodType" type="tns:deleteGoodType"/>
+      <xs:element name="deleteGoodTypeResponse" type="tns:deleteGoodTypeResponse"/>
+      <xs:element name="getGoodTypeList" type="tns:getGoodTypeList"/>
+      <xs:element name="getGoodTypeListResponse" type="tns:getGoodTypeListResponse"/>
+      <xs:element name="goodTypeWrapper" type="tns:goodTypeWrapper"/>
+      <xs:complexType name="getGoodTypeList">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="paged" type="xs:boolean"/>
+          <xs:element minOccurs="0" name="pageNum" type="xs:int"/>
+          <xs:element minOccurs="0" name="perPage" type="xs:int"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getGoodTypeListResponse">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:goodTypeWrapper"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="goodTypeWrapper">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="id" type="xs:long"/>
+          <xs:element minOccurs="0" name="name" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="createGoodType">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="arg0" type="tns:goodTypeWrapper"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="createGoodTypeResponse">
+        <xs:sequence/>
+      </xs:complexType>
+      <xs:complexType name="deleteGoodType">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="id" type="xs:long"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="deleteGoodTypeResponse">
+        <xs:sequence/>
+      </xs:complexType>
+      <xs:element name="WebServiceException" type="tns:WebServiceException"/>
+      <xs:complexType name="WebServiceException">
+        <xs:sequence>
+          <xs:element name="errorCode" nillable="true" type="xs:long"/>
+          <xs:element name="comment" nillable="true" type="xs:string"/>
+          <xs:element minOccurs="0" name="message" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="getGoodTypeListResponse">
+    <wsdl:part element="tns:getGoodTypeListResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="deleteGoodTypeResponse">
+    <wsdl:part element="tns:deleteGoodTypeResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="deleteGoodType">
+    <wsdl:part element="tns:deleteGoodType" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="createGoodType">
+    <wsdl:part element="tns:createGoodType" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="createGoodTypeResponse">
+    <wsdl:part element="tns:createGoodTypeResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getGoodTypeList">
+    <wsdl:part element="tns:getGoodTypeList" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="WebServiceException">
+    <wsdl:part element="tns:WebServiceException" name="WebServiceException"></wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="GoodTypeWS">
+    <wsdl:operation name="getGoodTypeList">
+      <wsdl:input message="tns:getGoodTypeList" name="getGoodTypeList"></wsdl:input>
+      <wsdl:output message="tns:getGoodTypeListResponse" name="getGoodTypeListResponse"></wsdl:output>
+      <wsdl:fault message="tns:WebServiceException" name="WebServiceException"></wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="createGoodType">
+      <wsdl:input message="tns:createGoodType" name="createGoodType"></wsdl:input>
+      <wsdl:output message="tns:createGoodTypeResponse" name="createGoodTypeResponse"></wsdl:output>
+      <wsdl:fault message="tns:WebServiceException" name="WebServiceException"></wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="deleteGoodType">
+      <wsdl:input message="tns:deleteGoodType" name="deleteGoodType"></wsdl:input>
+      <wsdl:output message="tns:deleteGoodTypeResponse" name="deleteGoodTypeResponse"></wsdl:output>
+      <wsdl:fault message="tns:WebServiceException" name="WebServiceException"></wsdl:fault>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="GoodTypeWSServiceSoapBinding" type="tns:GoodTypeWS">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="getGoodTypeList">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getGoodTypeList">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getGoodTypeListResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="WebServiceException">
+        <soap:fault name="WebServiceException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="createGoodType">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="createGoodType">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="createGoodTypeResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="WebServiceException">
+        <soap:fault name="WebServiceException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="deleteGoodType">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="deleteGoodType">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="deleteGoodTypeResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="WebServiceException">
+        <soap:fault name="WebServiceException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="GoodTypeWSService">
+    <wsdl:port binding="tns:GoodTypeWSServiceSoapBinding" name="GoodTypeWSPort">
+      <soap:address location="http://localhost:8080/services/GoodTypeWS"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8080/services/GoodTypeWS</con:endpoint></con:endpoints><con:operation isOneWay="false" action="" name="createGoodType" bindingOperationName="createGoodType" type="Request-Response" outputName="createGoodTypeResponse" inputName="createGoodType" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/services/GoodTypeWS</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:impl="http://impl.ws.services.kerey.kz/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <impl:createGoodType>
+         <!--Optional:-->
+         <arg0>
+            <!--Optional:-->
+            
+            <!--Optional:-->
+            
+         <name>Super</name></arg0>
+      </impl:createGoodType>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://impl.ws.services.kerey.kz/GoodTypeWS/createGoodType"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="" name="deleteGoodType" bindingOperationName="deleteGoodType" type="Request-Response" outputName="deleteGoodTypeResponse" inputName="deleteGoodType" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/services/GoodTypeWS</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:impl="http://impl.ws.services.kerey.kz/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <impl:deleteGoodType>
+         <!--Optional:-->
+         
+      <id>1</id></impl:deleteGoodType>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://impl.ws.services.kerey.kz/GoodTypeWS/deleteGoodType"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="" name="getGoodTypeList" bindingOperationName="getGoodTypeList" type="Request-Response" outputName="getGoodTypeListResponse" inputName="getGoodTypeList" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/services/GoodTypeWS</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:impl="http://impl.ws.services.kerey.kz/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <impl:getGoodTypeList>
+         <!--Optional:-->
+         <paged>false</paged><pageNum>1</pageNum><perPage>1</perPage>
+         <!--Optional:-->
+         
+         <!--Optional:-->
+         
+      </impl:getGoodTypeList>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://impl.ws.services.kerey.kz/GoodTypeWS/getGoodTypeList"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:interface xsi:type="con:RestService" wadlVersion="http://wadl.dev.java.net/2009/02" name="http://localhost:8080" type="rest" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart=""/><con:endpoints><con:endpoint>http://localhost:8080</con:endpoint></con:endpoints><con:resource name="GoodType" path="/services/rest/goodType"><con:settings/><con:parameters><con:parameter><con:name>paged</con:name><con:value/><con:style>QUERY</con:style><con:default/><con:description xsi:nil="true"/></con:parameter><con:parameter><con:name>pageNum</con:name><con:value/><con:style>QUERY</con:style><con:default/><con:description xsi:nil="true"/></con:parameter><con:parameter><con:name>perPage</con:name><con:value/><con:style>QUERY</con:style><con:default/><con:description xsi:nil="true"/></con:parameter><con:parameter><con:name>id</con:name><con:value/><con:style>QUERY</con:style><con:default/><con:description xsi:nil="true"/></con:parameter></con:parameters><con:method name="GoodType" method="GET"><con:settings/><con:parameters/><con:representation type="RESPONSE"><con:mediaType>application/json</con:mediaType><con:status>200</con:status><con:params/><con:element>Response</con:element></con:representation><con:representation type="FAULT"><con:mediaType>text/html;charset=utf-8</con:mediaType><con:status>400</con:status><con:params/><con:element>html</con:element></con:representation><con:request name="Request 1" mediaType="application/json"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080</con:endpoint><con:request/><con:originalUri>http://localhost/services/rest/goodType</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters>
+  <con:entry key="paged" value="false"/>
+  <con:entry key="perPage" value="1"/>
+  <con:entry key="pageNum" value="1"/>
+</con:parameters><con:parameterOrder><con:entry>paged</con:entry><con:entry>pageNum</con:entry><con:entry>perPage</con:entry><con:entry>id</con:entry></con:parameterOrder></con:request></con:method><con:method name="Create" method="POST"><con:settings/><con:parameters/><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>204</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="REQUEST"><con:mediaType>application/json</con:mediaType><con:params/></con:representation><con:representation type="FAULT"><con:mediaType>text/html;charset=utf-8</con:mediaType><con:status>409</con:status><con:params/><con:element>html</con:element></con:representation><con:request name="Request 1" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080</con:endpoint><con:request>{
+      "name": "daka"
+}</con:request><con:originalUri>http://localhost/services/rest/goodType</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/><con:parameterOrder><con:entry>paged</con:entry><con:entry>pageNum</con:entry><con:entry>perPage</con:entry><con:entry/></con:parameterOrder></con:request></con:method><con:method name="Method 3" method="DELETE"><con:settings/><con:parameters/><con:representation type="FAULT"><con:mediaType>text/html;charset=utf-8</con:mediaType><con:status>400 404 409</con:status><con:params/><con:element>html</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>204</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>204</con:status><con:params/><con:element>data</con:element></con:representation><con:request name="Request 1" mediaType="application/json"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080</con:endpoint><con:request/><con:originalUri>http://localhost/services/rest/goodType</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters><entry key="id" value="4" xmlns="http://eviware.com/soapui/config"/></con:parameters><con:parameterOrder><con:entry>paged</con:entry><con:entry>pageNum</con:entry><con:entry>perPage</con:entry><con:entry>id</con:entry></con:parameterOrder></con:request></con:method></con:resource></con:interface><con:properties/><con:wssContainer/><con:databaseConnectionContainer/><con:oAuth2ProfileContainer/></con:soapui-project>

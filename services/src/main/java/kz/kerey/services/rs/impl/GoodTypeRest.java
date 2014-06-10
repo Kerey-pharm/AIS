@@ -97,7 +97,7 @@ public class GoodTypeRest {
 	
 	@DELETE
 	public void deleteGoodType(
-			@PathParam("id")
+			@QueryParam("id")
 			Long id) throws IOException {
 		if (id == null || id == 0) {
 			try {
