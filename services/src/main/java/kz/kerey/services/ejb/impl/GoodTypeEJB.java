@@ -14,6 +14,8 @@ import javax.persistence.Query;
 import kz.kerey.services.api.GoodTypeInterface;
 import kz.kerey.business.types.GoodType;
 import kz.kerey.business.wrappers.GoodTypeWrapper;
+import kz.kerey.constants.Constants;
+import kz.kerey.exceptions.ServicesException;
 
 @Default
 @Stateless
@@ -23,7 +25,43 @@ public class GoodTypeEJB implements GoodTypeInterface {
 	@Resource(mappedName = "java:jboss/drugstoreEntityManagerFactory")
 	public EntityManagerFactory emf;
 	
-	public List<GoodTypeWrapper> getGoodTypeList(boolean paged, Integer pageNum, Integer perPage) {
+	public void createGoodType(GoodTypeWrapper type) {
+		EntityManager em = null;
+		try {
+			em = emf.createEntityManager();
+			List<GoodType> list = em.createQuery("from GoodType where lower(name)=:text1")
+					.setParameter("text1", type.getName().toLowerCase())
+					.getResultList();
+			if (list.size()>0)
+				throw new ServicesException(Constants.objectExists, "GoodType with name:"+type.getName()+" exists");
+			GoodType obj = new GoodType();
+			obj.setName(type.getName());
+			em.persist(obj);
+		}
+		finally {
+			if (em!=null)
+				if (em.isOpen())
+					em.close();
+		}
+	}
+	
+	public void deleteGoodType(Long id) {
+		EntityManager em = null;
+		try {
+			em = emf.createEntityManager();
+			GoodType obj = em.find(GoodType.class, id);
+			if (obj==null)
+				throw new ServicesException(Constants.objectIsNull, "GoodType with ID:"+id+" is NULL");
+			em.remove(obj);
+		}
+		finally {
+			if (em!=null) 
+				if (em.isOpen())
+					em.close();
+		}
+	}
+	
+	public List<GoodTypeWrapper> getGoodTypeList(Boolean paged, Integer pageNum, Integer perPage) {
 		EntityManager em = null;
 		List<GoodTypeWrapper> result = new ArrayList<GoodTypeWrapper>();
 		try {
@@ -35,48 +73,15 @@ public class GoodTypeEJB implements GoodTypeInterface {
 			}
 			List<GoodType> list = query.getResultList();
 			for(GoodType type : list) {
-				//result.add(GoodTypeWrapper.fromEntity(type));
+				GoodTypeWrapper r = new GoodTypeWrapper();
+				r.setId(type.getId());
+				r.setName(type.getName());
+				result.add(r);
 			}
 			return result;
 		}
 		finally {
 			if (em!=null) 
-				if (em.isOpen())
-					em.close();
-		}
-	}
-	
-	public void deleteGoodType(Long id) {
-		EntityManager em = null;
-		try {
-			em = emf.createEntityManager();
-			GoodType obj = em.find(GoodType.class, id);
-			//if (obj==null)
-			//	throw new ValidatorException(Constants.objectIsNull, "Object with ID:"+id+" is NULL");
-			em.remove(obj);
-		}
-		finally {
-			if (em!=null) 
-				if (em.isOpen())
-					em.close();
-		}
-	}
-	
-	public void createGoodType(GoodTypeWrapper type) {
-		EntityManager em = null;
-		try {
-			em = emf.createEntityManager();
-			List<GoodType> list = em.createQuery("from GoodType where lower(name)=:text1")
-					.setParameter("text1", type.getName().toLowerCase())
-					.getResultList();
-			//if (list.size()>0)
-			//	throw new ValidatorException(Constants.objectExists, "objectExists");
-			GoodType obj = new GoodType();
-			obj.setName(type.getName());
-			em.persist(obj);
-		}
-		finally {
-			if (em!=null)
 				if (em.isOpen())
 					em.close();
 		}

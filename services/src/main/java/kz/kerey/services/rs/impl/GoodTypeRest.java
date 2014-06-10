@@ -2,6 +2,7 @@ package kz.kerey.services.rs.impl;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.logging.Logger;
 
 import javax.ejb.EJB;
 import javax.inject.Inject;
@@ -21,13 +22,16 @@ import javax.ws.rs.core.MediaType;
 import kz.kerey.services.api.GoodTypeInterface;
 import kz.kerey.business.goodtype.GoodTypeValidator;
 import kz.kerey.business.wrappers.GoodTypeWrapper;
+import kz.kerey.exceptions.ServicesException;
 import kz.kerey.exceptions.ValidatorException;
 
-@Path("/goodType")
+@Path("goodType")
 @Consumes({MediaType.APPLICATION_JSON})
 @Produces({MediaType.APPLICATION_JSON})
 public class GoodTypeRest {
 
+	public static Logger logger = Logger.getLogger(DocumentRS.class.getName());
+	
 	@Context
 	HttpServletRequest request;
 
@@ -45,11 +49,21 @@ public class GoodTypeRest {
 		try {
 			validator.validate(goodType);
 			bean.createGoodType(goodType);
-		} catch (ValidatorException e) {
-			response.sendError(HttpServletResponse.SC_BAD_REQUEST,e.getComment());
-			return;
+		} catch (ValidatorException ex) {
+			try {
+				response.sendError(HttpServletResponse.SC_BAD_REQUEST,
+						ex.getComment());
+			} catch (IOException e) {
+				logger.severe(e.getMessage());
+			}
+		} catch (ServicesException ex) {
+			try {
+				response.sendError(HttpServletResponse.SC_CONFLICT,
+						ex.getComment());
+			} catch (IOException e) {
+				logger.severe(e.getMessage());
+			}
 		}
-		
 	}
 	
 	@GET
@@ -59,23 +73,51 @@ public class GoodTypeRest {
 			@QueryParam("pageNum")
 			Integer pageNum, 
 			@QueryParam("perPage")
-			Integer perPage) throws IOException {
+			Integer perPage) throws IOException {		
 		if (paged==null || (paged && (pageNum==null || pageNum==0 || perPage==null || perPage==0))) {
-			response.sendError(HttpServletResponse.SC_BAD_REQUEST,"rangeIsIncorrect");
+			try {
+				response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Range is incorrect");
+			} catch (IOException e) {
+				logger.severe(e.getMessage());
+			}
 			return null;
 		}
-		return bean.getGoodTypeList(paged, pageNum, perPage);
+		try {
+			return bean.getGoodTypeList(paged, pageNum, perPage);
+		}
+		catch (ServicesException ex) {
+			try {
+				response.sendError(HttpServletResponse.SC_CONFLICT, ex.getComment());
+			} catch (IOException e) {
+				logger.severe(e.getMessage());
+			}
+			return null;
+		}
 	}
 	
 	@DELETE
 	public void deleteGoodType(
 			@PathParam("id")
 			Long id) throws IOException {
-		if (id==null || id==0L) {
-			response.sendError(HttpServletResponse.SC_BAD_REQUEST,"ID is null");
+		if (id == null || id == 0) {
+			try {
+				response.sendError(HttpServletResponse.SC_BAD_REQUEST,
+						"ID is NULL or EMPTY");
+			} catch (IOException e) {
+				logger.severe(e.getMessage());
+			}
 			return;
 		}
-		bean.deleteGoodType(id);
+		try {
+			bean.deleteGoodType(id);
+		} catch (ServicesException ex) {
+			try {
+				response.sendError(HttpServletResponse.SC_CONFLICT,
+						ex.getComment());
+			} catch (IOException e) {
+				logger.severe(e.getMessage());
+			}
+		}
 	}
 	
 }
