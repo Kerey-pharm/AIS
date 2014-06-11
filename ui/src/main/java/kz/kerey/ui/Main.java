@@ -4,19 +4,25 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
 import org.apache.tika.Tika;
+import org.krysalis.barcode4j.impl.upcean.EAN13;
 
 public class Main {
 
 	public static void main(String[] args) throws IOException {
 		
-		File file = new File("D:/jboss-eap-6.2.0/jboss-eap-6.2/bin/jboss-cli.xml");
+		JFrame frame = new JFrame();
 		
-		Tika tika = new Tika();
-		String mimeType = tika.detect(file);
+		JPanel panel = new JPanel();
 		
-		System.out.println(Files.probeContentType(file.toPath()));
-		System.out.println(mimeType);
+		frame.add(panel);
+		
+		
+		EAN13 ean13 = new EAN13();
+		ean13.generateBarcode(null, "123123123123");
 		
 	}
 	

@@ -23,6 +23,9 @@ public class Ladder {
 	@Column
 	private String comment;
 	
+	@Column
+	private Long executionTime;
+	
 	@ManyToMany
 	@OrderColumn(name="order_index")
 	private List<Step> steps;
@@ -57,6 +60,14 @@ public class Ladder {
 
 	public void setComment(String comment) {
 		this.comment = comment;
+	}
+
+	public Long getExecutionTime() {
+		return executionTime;
+	}
+
+	public void setExecutionTime(Long executionTime) {
+		this.executionTime = executionTime;
 	}
 	
 }

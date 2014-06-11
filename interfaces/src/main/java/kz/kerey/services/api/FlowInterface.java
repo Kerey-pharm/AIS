@@ -2,23 +2,22 @@ package kz.kerey.services.api;
 
 import java.util.List;
 
-import kz.kerey.business.types.enums.LadderProperty;
-import kz.kerey.business.types.enums.StepProperty;
-import kz.kerey.business.wrappers.LadderWrapper;
-import kz.kerey.business.wrappers.StepWrapper;
+import kz.kerey.business.types.PageParam;
+import kz.kerey.business.types.enums.TaskProperty;
+import kz.kerey.business.types.enums.TaskStatus;
+import kz.kerey.business.wrappers.TaskWrapper;
 
 public interface FlowInterface {
 
-	public void createLadder(LadderWrapper ladder);
-	public void deleteLadder(Long id);
-	public List<LadderWrapper> getLadderList(Boolean paged, Integer pageNum, Integer perPage);
-	public void changeLadderProperty(Long id, LadderProperty property, String newValue);
+	public void createTask(TaskWrapper task);
+	public void deleteTask(Long id);
+	public void changeTaskProperty(Long id, TaskProperty property, String value);
+	public List<TaskWrapper> getTaskList(PageParam param);
+	public List<TaskWrapper> getTaskFiltered(PageParam param, Long userId, TaskStatus status);
 	
-	public void createStep(StepWrapper step);
-	public void deleteStep(Long ladder, Long id);
-	public void changeStepProperty(Long id, StepProperty property, String newValue);
-
-	public List<StepWrapper> getLadderSteps(Long id);
-	public void swapLadderSteps(Long ladder, Long left, Long right);
+	public void nextStep(Long taskId);
+	public void previousStep(Long taskId);
+	public void assignTask(Long taskId, Long userId);
+	
 	
 }

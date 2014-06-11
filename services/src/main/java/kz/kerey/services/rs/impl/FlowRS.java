@@ -26,14 +26,14 @@ import kz.kerey.business.wrappers.LadderWrapper;
 import kz.kerey.business.wrappers.StepWrapper;
 import kz.kerey.exceptions.ServicesException;
 import kz.kerey.exceptions.ValidatorException;
-import kz.kerey.services.api.FlowInterface;
+import kz.kerey.services.api.FlowConfigurationInterface;
 import kz.kerey.validators.LadderValidator;
 import kz.kerey.validators.StepValidator;
 
 @Path("")
 @Consumes({MediaType.APPLICATION_JSON})
 @Produces({MediaType.APPLICATION_JSON})
-public class FlowRS implements FlowInterface {
+public class FlowRS implements FlowConfigurationInterface {
 
 	public static Logger logger = Logger.getLogger(UserRS.class.getName());
 	
@@ -44,7 +44,7 @@ public class FlowRS implements FlowInterface {
 	HttpServletResponse response;
 	
 	@EJB
-	FlowInterface bean;
+	FlowConfigurationInterface bean;
 	
 	@Inject
 	LadderValidator ladderValidator;

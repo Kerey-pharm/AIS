@@ -15,15 +15,15 @@ import kz.kerey.constants.Constants;
 import kz.kerey.exceptions.ServicesException;
 import kz.kerey.exceptions.ValidatorException;
 import kz.kerey.exceptions.WebServiceException;
-import kz.kerey.services.api.FlowInterface;
+import kz.kerey.services.api.FlowConfigurationInterface;
 import kz.kerey.validators.LadderValidator;
 import kz.kerey.validators.StepValidator;
 
 @WebService
-public class FlowWS implements FlowInterface {
+public class FlowWS implements FlowConfigurationInterface {
 
 	@EJB
-	FlowInterface bean;
+	FlowConfigurationInterface bean;
 
 	@Inject
 	LadderValidator ladderValidator;

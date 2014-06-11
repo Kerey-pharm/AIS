@@ -1,6 +1,7 @@
 package kz.kerey.business.types.tasks;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import kz.kerey.business.types.documents.Document;
 import kz.kerey.business.user.User;
@@ -42,8 +44,8 @@ public class TaskHistoryItem {
 	@ManyToOne
 	private Ladder ladder;
 	
-	@ManyToOne
-	private Document documentAtStart;
+	@OneToMany
+	private List<Document> documents;
 
 	public Long getId() {
 		return id;
@@ -77,6 +79,14 @@ public class TaskHistoryItem {
 		this.dateFinished = dateFinished;
 	}
 
+	public String getComment() {
+		return comment;
+	}
+
+	public void setComment(String comment) {
+		this.comment = comment;
+	}
+
 	public User getUserFinished() {
 		return userFinished;
 	}
@@ -101,20 +111,12 @@ public class TaskHistoryItem {
 		this.ladder = ladder;
 	}
 
-	public Document getDocumentAtStart() {
-		return documentAtStart;
+	public List<Document> getDocuments() {
+		return documents;
 	}
 
-	public void setDocumentAtStart(Document documentAtStart) {
-		this.documentAtStart = documentAtStart;
+	public void setDocuments(List<Document> documents) {
+		this.documents = documents;
 	}
 
-	public String getComment() {
-		return comment;
-	}
-
-	public void setComment(String comment) {
-		this.comment = comment;
-	}
-	
 }

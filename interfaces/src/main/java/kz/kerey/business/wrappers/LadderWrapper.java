@@ -12,6 +12,7 @@ public class LadderWrapper implements Serializable {
 	private Long id;
 	private String name;
 	private String comment;
+	private Long executionTime;
 		
 	public Long getId() {
 		return id;
@@ -30,6 +31,12 @@ public class LadderWrapper implements Serializable {
 	}
 	public void setComment(String comment) {
 		this.comment = comment;
+	}
+	public Long getExecutionTime() {
+		return executionTime;
+	}
+	public void setExecutionTime(Long executionTime) {
+		this.executionTime = executionTime;
 	}
 	
 }

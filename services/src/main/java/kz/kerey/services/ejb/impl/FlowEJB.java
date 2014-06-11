@@ -20,12 +20,12 @@ import kz.kerey.constants.Constants;
 import kz.kerey.exceptions.ServicesException;
 import kz.kerey.flow.Ladder;
 import kz.kerey.flow.Step;
-import kz.kerey.services.api.FlowInterface;
+import kz.kerey.services.api.FlowConfigurationInterface;
 
 @Default
 @Stateless
-@Remote(FlowInterface.class)
-public class FlowEJB implements FlowInterface {
+@Remote(FlowConfigurationInterface.class)
+public class FlowEJB implements FlowConfigurationInterface {
 
 	@Resource(mappedName = "java:jboss/drugstoreEntityManagerFactory")
 	public EntityManagerFactory emf;

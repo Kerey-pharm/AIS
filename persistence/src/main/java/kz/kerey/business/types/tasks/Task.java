@@ -28,10 +28,16 @@ public abstract class Task {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
+	@Column(nullable=false)
+	private String taskName;
+	
+	@Column
+	private String taskComment;
+	
 	@Column(nullable = false)
 	private Date initialDate;
 
-	@Column(nullable = false)
+	@Column
 	private Date finishDate;
 
 	@Column(nullable = false)
@@ -41,7 +47,7 @@ public abstract class Task {
 	@Enumerated(EnumType.STRING)
 	private TaskStatus status;
 	
-	@Column
+	@Column(nullable=false)
 	private String barcode;
 
 	@ManyToOne
@@ -100,6 +106,14 @@ public abstract class Task {
 		this.status = status;
 	}
 
+	public String getBarcode() {
+		return barcode;
+	}
+
+	public void setBarcode(String barcode) {
+		this.barcode = barcode;
+	}
+
 	public Ladder getLadder() {
 		return ladder;
 	}
@@ -122,6 +136,22 @@ public abstract class Task {
 
 	public void setExecutor(User executor) {
 		this.executor = executor;
+	}
+
+	public List<Document> getDocuments() {
+		return documents;
+	}
+
+	public void setDocuments(List<Document> documents) {
+		this.documents = documents;
+	}
+
+	public List<GoodItem> getItems() {
+		return items;
+	}
+
+	public void setItems(List<GoodItem> items) {
+		this.items = items;
 	}
 
 }
