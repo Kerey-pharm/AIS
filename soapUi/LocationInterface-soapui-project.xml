@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project activeEnvironment="Default" name="LocationInterface" resourceRoot="" soapui-version="5.0.0" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="LocationWSServiceSoapBinding" type="wsdl" bindingName="{http://impl.ws.services.kerey.kz/}LocationWSServiceSoapBinding" soapVersion="1_1" anonymous="optional" definition="http://localhost:8080/services/LocationWS?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://localhost:8080/services/LocationWS?wsdl"><con:part><con:url>http://localhost:8080/services/LocationWS?wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="LocationWSService" targetNamespace="http://impl.ws.services.kerey.kz/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://impl.ws.services.kerey.kz/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http">
+  <wsdl:types>
+    <xs:schema attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://impl.ws.services.kerey.kz/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="changeLocation" type="tns:changeLocation"/>
+      <xs:element name="changeLocationResponse" type="tns:changeLocationResponse"/>
+      <xs:element name="createLocation" type="tns:createLocation"/>
+      <xs:element name="createLocationResponse" type="tns:createLocationResponse"/>
+      <xs:element name="deleteLocation" type="tns:deleteLocation"/>
+      <xs:element name="deleteLocationResponse" type="tns:deleteLocationResponse"/>
+      <xs:element name="getLocationsList" type="tns:getLocationsList"/>
+      <xs:element name="getLocationsListResponse" type="tns:getLocationsListResponse"/>
+      <xs:element name="locationWrapper" type="tns:locationWrapper"/>
+      <xs:complexType name="createLocation">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="location" type="tns:locationWrapper"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="locationWrapper">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="id" type="xs:long"/>
+          <xs:element minOccurs="0" name="name" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="createLocationResponse">
+        <xs:sequence/>
+      </xs:complexType>
+      <xs:complexType name="deleteLocation">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="id" type="xs:long"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="deleteLocationResponse">
+        <xs:sequence/>
+      </xs:complexType>
+      <xs:complexType name="getLocationsList">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="paged" type="xs:boolean"/>
+          <xs:element minOccurs="0" name="pageNum" type="xs:int"/>
+          <xs:element minOccurs="0" name="perPage" type="xs:int"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getLocationsListResponse">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:locationWrapper"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="changeLocation">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="id" type="xs:long"/>
+          <xs:element minOccurs="0" name="property" type="tns:locationProperty"/>
+          <xs:element minOccurs="0" name="newValue" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="changeLocationResponse">
+        <xs:sequence/>
+      </xs:complexType>
+      <xs:simpleType name="locationProperty">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="name"/>
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:element name="WebServiceException" type="tns:WebServiceException"/>
+      <xs:complexType name="WebServiceException">
+        <xs:sequence>
+          <xs:element name="errorCode" nillable="true" type="xs:long"/>
+          <xs:element name="comment" nillable="true" type="xs:string"/>
+          <xs:element minOccurs="0" name="message" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="createLocationResponse">
+    <wsdl:part element="tns:createLocationResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="deleteLocation">
+    <wsdl:part element="tns:deleteLocation" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getLocationsListResponse">
+    <wsdl:part element="tns:getLocationsListResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getLocationsList">
+    <wsdl:part element="tns:getLocationsList" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="changeLocationResponse">
+    <wsdl:part element="tns:changeLocationResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="changeLocation">
+    <wsdl:part element="tns:changeLocation" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="createLocation">
+    <wsdl:part element="tns:createLocation" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="deleteLocationResponse">
+    <wsdl:part element="tns:deleteLocationResponse" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="WebServiceException">
+    <wsdl:part element="tns:WebServiceException" name="WebServiceException"></wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="LocationWS">
+    <wsdl:operation name="createLocation">
+      <wsdl:input message="tns:createLocation" name="createLocation"></wsdl:input>
+      <wsdl:output message="tns:createLocationResponse" name="createLocationResponse"></wsdl:output>
+      <wsdl:fault message="tns:WebServiceException" name="WebServiceException"></wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="deleteLocation">
+      <wsdl:input message="tns:deleteLocation" name="deleteLocation"></wsdl:input>
+      <wsdl:output message="tns:deleteLocationResponse" name="deleteLocationResponse"></wsdl:output>
+      <wsdl:fault message="tns:WebServiceException" name="WebServiceException"></wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getLocationsList">
+      <wsdl:input message="tns:getLocationsList" name="getLocationsList"></wsdl:input>
+      <wsdl:output message="tns:getLocationsListResponse" name="getLocationsListResponse"></wsdl:output>
+      <wsdl:fault message="tns:WebServiceException" name="WebServiceException"></wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="changeLocation">
+      <wsdl:input message="tns:changeLocation" name="changeLocation"></wsdl:input>
+      <wsdl:output message="tns:changeLocationResponse" name="changeLocationResponse"></wsdl:output>
+      <wsdl:fault message="tns:WebServiceException" name="WebServiceException"></wsdl:fault>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="LocationWSServiceSoapBinding" type="tns:LocationWS">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="createLocation">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="createLocation">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="createLocationResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="WebServiceException">
+        <soap:fault name="WebServiceException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="deleteLocation">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="deleteLocation">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="deleteLocationResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="WebServiceException">
+        <soap:fault name="WebServiceException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getLocationsList">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getLocationsList">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getLocationsListResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="WebServiceException">
+        <soap:fault name="WebServiceException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="changeLocation">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="changeLocation">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="changeLocationResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="WebServiceException">
+        <soap:fault name="WebServiceException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="LocationWSService">
+    <wsdl:port binding="tns:LocationWSServiceSoapBinding" name="LocationWSPort">
+      <soap:address location="http://localhost:8080/services/LocationWS"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8080/services/LocationWS</con:endpoint></con:endpoints><con:operation isOneWay="false" action="" name="changeLocation" bindingOperationName="changeLocation" type="Request-Response" outputName="changeLocationResponse" inputName="changeLocation" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/services/LocationWS</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:impl="http://impl.ws.services.kerey.kz/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <impl:changeLocation>
+         <!--Optional:-->
+         
+         <!--Optional:-->
+         <id>1</id><property>name</property><newValue>dauren</newValue>
+         <!--Optional:-->
+         
+      </impl:changeLocation>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://impl.ws.services.kerey.kz/LocationWS/changeLocation"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="" name="createLocation" bindingOperationName="createLocation" type="Request-Response" outputName="createLocationResponse" inputName="createLocation" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/services/LocationWS</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:impl="http://impl.ws.services.kerey.kz/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <impl:createLocation>
+         <!--Optional:-->
+         <location>
+            <!--Optional:-->
+            
+            <!--Optional:-->
+            
+         </location>
+      </impl:createLocation>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://impl.ws.services.kerey.kz/LocationWS/createLocation"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="" name="deleteLocation" bindingOperationName="deleteLocation" type="Request-Response" outputName="deleteLocationResponse" inputName="deleteLocation" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/services/LocationWS</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:impl="http://impl.ws.services.kerey.kz/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <impl:deleteLocation>
+         <!--Optional:-->
+         
+      <id>2</id></impl:deleteLocation>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://impl.ws.services.kerey.kz/LocationWS/deleteLocation"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="" name="getLocationsList" bindingOperationName="getLocationsList" type="Request-Response" outputName="getLocationsListResponse" inputName="getLocationsList" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/services/LocationWS</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:impl="http://impl.ws.services.kerey.kz/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <impl:getLocationsList>
+         <!--Optional:-->
+         <paged>false</paged>
+         <!--Optional:-->
+         
+         <!--Optional:-->
+         <pageNum>1</pageNum><perPage>1</perPage>
+      </impl:getLocationsList>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://impl.ws.services.kerey.kz/LocationWS/getLocationsList"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:interface xsi:type="con:RestService" wadlVersion="http://wadl.dev.java.net/2009/02" name="http://localhost:8080" type="rest" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart=""/><con:endpoints><con:endpoint>http://localhost:8080</con:endpoint></con:endpoints><con:resource name="Location" path="/services/rest/location"><con:settings/><con:parameters><con:parameter><con:name>paged</con:name><con:value/><con:style>QUERY</con:style><con:default/><con:description xsi:nil="true"/></con:parameter><con:parameter><con:name>perPage</con:name><con:value/><con:style>QUERY</con:style><con:default/><con:description xsi:nil="true"/></con:parameter><con:parameter><con:name>pageNum</con:name><con:value/><con:style>QUERY</con:style><con:default/><con:description xsi:nil="true"/></con:parameter><con:parameter><con:name>id</con:name><con:value/><con:style>QUERY</con:style><con:default/><con:description xsi:nil="true"/></con:parameter><con:parameter><con:name>property</con:name><con:value/><con:style>QUERY</con:style><con:default/><con:description xsi:nil="true"/></con:parameter><con:parameter><con:name>newValue</con:name><con:value/><con:style>QUERY</con:style><con:default/><con:description xsi:nil="true"/></con:parameter></con:parameters><con:method name="Location" method="GET"><con:settings/><con:parameters/><con:representation type="RESPONSE"><con:mediaType>application/json</con:mediaType><con:status>200</con:status><con:params/><con:element>Response</con:element></con:representation><con:request name="Request 1" mediaType="application/json"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080</con:endpoint><con:request/><con:originalUri>http://localhost/services/rest/location</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters>
+  <con:entry key="paged" value="false"/>
+  <con:entry key="perPage" value="1"/>
+  <con:entry key="pageNum" value="1"/>
+</con:parameters><con:parameterOrder><con:entry>paged</con:entry><con:entry>perPage</con:entry><con:entry>pageNum</con:entry><con:entry/><con:entry>id</con:entry><con:entry>property</con:entry></con:parameterOrder></con:request></con:method><con:method name="Create" method="POST"><con:settings/><con:parameters/><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>204</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="REQUEST"><con:mediaType>application/json</con:mediaType><con:params/></con:representation><con:request name="Request 1" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080</con:endpoint><con:request>{
+	"name" : "дака"
+}</con:request><con:originalUri>http://localhost/services/rest/location</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/><con:parameterOrder><con:entry>paged</con:entry><con:entry>perPage</con:entry><con:entry>pageNum</con:entry><con:entry/><con:entry>id</con:entry><con:entry>property</con:entry></con:parameterOrder></con:request></con:method><con:method name="Change" method="PUT"><con:settings/><con:parameters/><con:representation type="REQUEST"><con:mediaType>application/json</con:mediaType><con:params/></con:representation><con:representation type="FAULT"><con:mediaType>text/html;charset=utf-8</con:mediaType><con:status>400</con:status><con:params/><con:element>html</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>204</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>204</con:status><con:params/><con:element>data</con:element></con:representation><con:request name="Request 1" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080</con:endpoint><con:request/><con:originalUri>http://localhost/services/rest/location</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters>
+  <con:entry key="id" value="1"/>
+  <con:entry key="newValue" value="dakosha"/>
+  <con:entry key="property" value="name"/>
+</con:parameters><con:parameterOrder><con:entry>paged</con:entry><con:entry>perPage</con:entry><con:entry>pageNum</con:entry><con:entry>id</con:entry><con:entry>property</con:entry><con:entry>newValue</con:entry></con:parameterOrder></con:request></con:method><con:method name="Delete" method="DELETE"><con:settings/><con:parameters/><con:representation type="FAULT"><con:mediaType>text/html;charset=utf-8</con:mediaType><con:status>409</con:status><con:params/><con:element>html</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>204</con:status><con:params/><con:element>data</con:element></con:representation><con:request name="Request 1" mediaType="application/json"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080</con:endpoint><con:request/><con:originalUri>http://localhost/services/rest/location</con:originalUri><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters><entry key="id" value="1" xmlns="http://eviware.com/soapui/config"/></con:parameters></con:request></con:method></con:resource></con:interface><con:properties/><con:wssContainer/><con:databaseConnectionContainer/><con:oAuth2ProfileContainer/></con:soapui-project>

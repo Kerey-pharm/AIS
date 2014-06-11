@@ -1,12 +1,15 @@
 package kz.kerey.business.wrappers;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
-public class GoodItemWrapper {
+public class GoodItemWrapper implements Serializable {
 
+	private static final long serialVersionUID = 6827601736927070247L;
+	
 	private Long id;
 	private GoodItemWrapper parent;
 	private GoodWrapper good;

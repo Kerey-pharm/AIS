@@ -1,9 +1,13 @@
 package kz.kerey.business.wrappers;
 
+import java.io.Serializable;
+
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
-public class GoodWrapper {
+public class GoodWrapper implements Serializable {
+	
+	private static final long serialVersionUID = 9193164450976229712L;
 	
 	private Long id;
 	private String name;

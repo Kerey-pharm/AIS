@@ -1,12 +1,15 @@
 package kz.kerey.business.wrappers;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
-public class TaskWrapper {
+public class TaskWrapper implements Serializable {
 
+	private static final long serialVersionUID = -1560064299717535289L;
+	
 	private Long id;
 	private Date initialDate;
 	private Date finishDate;

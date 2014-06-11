@@ -9,6 +9,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class UserWrapper implements Serializable {
 
+	private static final long serialVersionUID = -5550835620030461035L;
+	
 	private Long id;
 	private String login;
 	private String passwordHash;

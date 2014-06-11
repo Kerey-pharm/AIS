@@ -1,9 +1,12 @@
 package kz.kerey.validators;
 
+import javax.inject.Singleton;
+
 import kz.kerey.business.wrappers.StepWrapper;
 import kz.kerey.constants.Constants;
 import kz.kerey.exceptions.ValidatorException;
 
+@Singleton
 public class StepValidator extends Validator<StepWrapper> {
 
 	@Override

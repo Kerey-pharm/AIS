@@ -1,10 +1,14 @@
 package kz.kerey.business.wrappers;
 
+import java.io.Serializable;
+
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
-public class DistributorWrapper extends PointWrapper {
+public class DistributorWrapper extends PointWrapper implements Serializable {
 
+	private static final long serialVersionUID = -8168581471924616980L;
+	
 	private String bin;
 	private String bankAccount;
 	private String bankAccountDescription;

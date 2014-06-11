@@ -1,11 +1,10 @@
-package kz.kerey.business.goodtype;
+package kz.kerey.validators;
 
 import javax.inject.Singleton;
 
 import kz.kerey.business.wrappers.GoodTypeWrapper;
 import kz.kerey.constants.Constants;
 import kz.kerey.exceptions.ValidatorException;
-import kz.kerey.validators.Validator;
 
 @Singleton
 public class GoodTypeValidator extends Validator<GoodTypeWrapper> {

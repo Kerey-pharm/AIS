@@ -8,7 +8,6 @@ import javax.ejb.EJB;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.websocket.server.PathParam;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -20,20 +19,19 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 
-import kz.kerey.services.api.GoodTypeInterface;
-import kz.kerey.validators.GoodTypeValidator;
-import kz.kerey.business.types.enums.GoodTypeProperty;
-import kz.kerey.business.types.enums.LadderProperty;
-import kz.kerey.business.wrappers.GoodTypeWrapper;
+import kz.kerey.business.types.enums.LocationProperty;
+import kz.kerey.business.wrappers.LocationWrapper;
 import kz.kerey.exceptions.ServicesException;
 import kz.kerey.exceptions.ValidatorException;
+import kz.kerey.services.api.LocationInterface;
+import kz.kerey.validators.LocationValidator;
 
-@Path("goodType")
+@Path("location")
 @Consumes({MediaType.APPLICATION_JSON})
 @Produces({MediaType.APPLICATION_JSON})
-public class GoodTypeRest implements GoodTypeInterface {
+public class LocationRS implements LocationInterface {
 
-	public static Logger logger = Logger.getLogger(DocumentRS.class.getName());
+	public static Logger logger = Logger.getLogger(LocationRS.class.getName());
 	
 	@Context
 	HttpServletRequest request;
@@ -42,51 +40,23 @@ public class GoodTypeRest implements GoodTypeInterface {
 	HttpServletResponse response;
 	
 	@EJB
-	GoodTypeInterface bean;
+	LocationInterface bean;
 	
 	@Inject
-	GoodTypeValidator validator;
-
-	@POST
-	public void createGoodType(GoodTypeWrapper goodType) {
-		try {
-			validator.validate(goodType);
-			bean.createGoodType(goodType);
-		} catch (ValidatorException ex) {
-			try {
-				response.sendError(HttpServletResponse.SC_BAD_REQUEST,
-						ex.getComment());
-			} catch (IOException e) {
-				logger.severe(e.getMessage());
-			}
-		} catch (ServicesException ex) {
-			try {
-				response.sendError(HttpServletResponse.SC_CONFLICT,
-						ex.getComment());
-			} catch (IOException e) {
-				logger.severe(e.getMessage());
-			}
-		}
-	}
+	LocationValidator validator;
 	
-	@GET
-	public List<GoodTypeWrapper> getGoodTypeList(
-			@QueryParam("paged")
-			Boolean paged, 
-			@QueryParam("pageNum")
-			Integer pageNum, 
-			@QueryParam("perPage")
-			Integer perPage) {		
-		if (paged==null || (paged && (pageNum==null || pageNum==0 || perPage==null || perPage==0))) {
+	@POST
+	public void createLocation(LocationWrapper location) {
+		try {
+			validator.validate(location);
+			bean.createLocation(location);
+		}
+		catch (ValidatorException ex) {
 			try {
-				response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Range is incorrect");
+				response.sendError(HttpServletResponse.SC_BAD_REQUEST, ex.getComment());
 			} catch (IOException e) {
 				logger.severe(e.getMessage());
 			}
-			return null;
-		}
-		try {
-			return bean.getGoodTypeList(paged, pageNum, perPage);
 		}
 		catch (ServicesException ex) {
 			try {
@@ -94,12 +64,11 @@ public class GoodTypeRest implements GoodTypeInterface {
 			} catch (IOException e) {
 				logger.severe(e.getMessage());
 			}
-			return null;
 		}
 	}
-	
+
 	@DELETE
-	public void deleteGoodType(
+	public void deleteLocation(
 			@QueryParam("id")
 			Long id) {
 		if (id == null || id == 0) {
@@ -112,7 +81,7 @@ public class GoodTypeRest implements GoodTypeInterface {
 			return;
 		}
 		try {
-			bean.deleteGoodType(id);
+			bean.deleteLocation(id);
 		} catch (ServicesException ex) {
 			try {
 				response.sendError(HttpServletResponse.SC_CONFLICT,
@@ -124,11 +93,11 @@ public class GoodTypeRest implements GoodTypeInterface {
 	}
 
 	@PUT
-	public void changeGoodTypeProperty(
+	public void changeLocation(
 			@QueryParam("id")
 			Long id, 
 			@QueryParam("property")
-			GoodTypeProperty property, 
+			LocationProperty property,
 			@QueryParam("newValue")
 			String newValue) {
 		if (id==null || id==0) {
@@ -148,7 +117,7 @@ public class GoodTypeRest implements GoodTypeInterface {
 			return;
 		}
 		try {
-			bean.changeGoodTypeProperty(id, property, newValue);
+			bean.changeLocation(id, property, newValue);
 		}
 		catch (ServicesException ex) {
 			try {
@@ -158,5 +127,34 @@ public class GoodTypeRest implements GoodTypeInterface {
 			}
 		}
 	}
-	
+
+	@GET
+	public List<LocationWrapper> getLocationsList(
+			@QueryParam("paged")
+			Boolean paged,
+			@QueryParam("pageNum")
+			Integer pageNum, 
+			@QueryParam("perPage")
+			Integer perPage) {
+		if (paged==null || (paged && (pageNum==null || pageNum==0 || perPage==null || perPage==0))) {
+			try {
+				response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Range is incorrect");
+			} catch (IOException e) {
+				logger.severe(e.getMessage());
+			}
+			return null;
+		}
+		try {
+			return bean.getLocationsList(paged, pageNum, perPage);
+		}
+		catch (ServicesException ex) {
+			try {
+				response.sendError(HttpServletResponse.SC_CONFLICT, ex.getComment());
+			} catch (IOException e) {
+				logger.severe(e.getMessage());
+			}
+			return null;
+		}
+	}
+
 }

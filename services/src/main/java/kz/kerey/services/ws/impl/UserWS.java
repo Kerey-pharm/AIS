@@ -32,10 +32,12 @@ public class UserWS implements UserInterface {
 	@Inject
 	RoleValidator roleValidator;
 
-	public void createRole(RoleWrapper obj) throws WebServiceException {
+	public void createRole(
+			@WebParam(name="role")
+			RoleWrapper role) throws WebServiceException {
 		try {
-			roleValidator.validate(obj);
-			bean.createRole(obj);
+			roleValidator.validate(role);
+			bean.createRole(role);
 		} catch (ValidatorException ex) {
 			throw new WebServiceException(ex.getErrorCode(), ex.getComment());
 		} catch (ServicesException ex) {
@@ -90,10 +92,12 @@ public class UserWS implements UserInterface {
 		}
 	}
 
-	public void createUser(UserWrapper obj) throws WebServiceException {
+	public void createUser(
+			@WebParam(name="user")
+			UserWrapper user) throws WebServiceException {
 		try {
-			userValidator.validate(obj);
-			bean.createUser(obj);
+			userValidator.validate(user);
+			bean.createUser(user);
 		} catch (ValidatorException ex) {
 			throw new WebServiceException(ex.getErrorCode(), ex.getComment());
 		} catch (ServicesException ex) {

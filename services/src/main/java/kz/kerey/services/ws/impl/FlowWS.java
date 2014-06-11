@@ -31,7 +31,9 @@ public class FlowWS implements FlowInterface {
 	@Inject
 	StepValidator stepValidator;
 
-	public void createLadder(LadderWrapper ladder) throws WebServiceException {
+	public void createLadder(
+			@WebParam(name="ladder")
+			LadderWrapper ladder) throws WebServiceException {
 		try {
 			ladderValidator.validate(ladder);
 			bean.createLadder(ladder);
@@ -89,7 +91,9 @@ public class FlowWS implements FlowInterface {
 		}
 	}
 
-	public void createStep(StepWrapper step) throws WebServiceException {
+	public void createStep(
+			@WebParam(name="step")
+			StepWrapper step) throws WebServiceException {
 		try {
 			stepValidator.validate(step);
 			bean.createStep(step);

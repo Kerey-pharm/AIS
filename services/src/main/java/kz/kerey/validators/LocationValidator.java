@@ -1,21 +1,19 @@
-package kz.kerey.business.point;
+package kz.kerey.validators;
 
 import javax.inject.Singleton;
 
 import kz.kerey.business.wrappers.LocationWrapper;
 import kz.kerey.constants.Constants;
 import kz.kerey.exceptions.ValidatorException;
-import kz.kerey.validators.Validator;
 
 @Singleton
 public class LocationValidator extends Validator<LocationWrapper> {
 
-	@Override
 	public void validate(LocationWrapper t) throws ValidatorException {
 		if (t==null)
-			throw new ValidatorException(Constants.objectIsNull, "objectIsNull");
+			throw new ValidatorException(Constants.objectIsNull, "Location is NULL");
 		if (t.getName()==null || t.getName().trim().length()==0)
-			throw new ValidatorException(Constants.fieldNotFilledProperly, "locationNameIsEmpty");
+			throw new ValidatorException(Constants.fieldNotFilledProperly, "Location name is NULL or EMPTY");
 	}
 
 }

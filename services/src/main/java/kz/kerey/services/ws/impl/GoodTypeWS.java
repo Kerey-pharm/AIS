@@ -7,7 +7,6 @@ import javax.inject.Inject;
 import javax.jws.WebParam;
 import javax.jws.WebService;
 
-import kz.kerey.business.goodtype.GoodTypeValidator;
 import kz.kerey.business.types.enums.GoodTypeProperty;
 import kz.kerey.business.wrappers.GoodTypeWrapper;
 import kz.kerey.constants.Constants;
@@ -15,6 +14,7 @@ import kz.kerey.exceptions.ServicesException;
 import kz.kerey.exceptions.ValidatorException;
 import kz.kerey.exceptions.WebServiceException;
 import kz.kerey.services.api.GoodTypeInterface;
+import kz.kerey.validators.GoodTypeValidator;
 
 @WebService
 public class GoodTypeWS implements GoodTypeInterface {
@@ -25,7 +25,9 @@ public class GoodTypeWS implements GoodTypeInterface {
 	@Inject
 	GoodTypeValidator validator;
 	
-	public void createGoodType(GoodTypeWrapper type) throws WebServiceException {
+	public void createGoodType(
+			@WebParam(name="type")
+			GoodTypeWrapper type) throws WebServiceException {
 		try {
 			validator.validate(type);
 			bean.createGoodType(type);

@@ -1,10 +1,14 @@
 package kz.kerey.business.wrappers;
 
+import java.io.Serializable;
+
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
-public class PointWrapper {
+public class PointWrapper implements Serializable {
 
+	private static final long serialVersionUID = 2280363752905486890L;
+	
 	private Long id;
 	private String name;
 	private String description;
