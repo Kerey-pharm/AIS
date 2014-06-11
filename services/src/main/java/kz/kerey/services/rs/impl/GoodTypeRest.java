@@ -13,6 +13,7 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
@@ -21,6 +22,8 @@ import javax.ws.rs.core.MediaType;
 
 import kz.kerey.services.api.GoodTypeInterface;
 import kz.kerey.business.goodtype.GoodTypeValidator;
+import kz.kerey.business.types.enums.GoodTypeProperty;
+import kz.kerey.business.types.enums.LadderProperty;
 import kz.kerey.business.wrappers.GoodTypeWrapper;
 import kz.kerey.exceptions.ServicesException;
 import kz.kerey.exceptions.ValidatorException;
@@ -28,7 +31,7 @@ import kz.kerey.exceptions.ValidatorException;
 @Path("goodType")
 @Consumes({MediaType.APPLICATION_JSON})
 @Produces({MediaType.APPLICATION_JSON})
-public class GoodTypeRest {
+public class GoodTypeRest implements GoodTypeInterface {
 
 	public static Logger logger = Logger.getLogger(DocumentRS.class.getName());
 	
@@ -45,7 +48,7 @@ public class GoodTypeRest {
 	GoodTypeValidator validator;
 
 	@POST
-	public void createGoodType(GoodTypeWrapper goodType) throws IOException  {
+	public void createGoodType(GoodTypeWrapper goodType) {
 		try {
 			validator.validate(goodType);
 			bean.createGoodType(goodType);
@@ -73,7 +76,7 @@ public class GoodTypeRest {
 			@QueryParam("pageNum")
 			Integer pageNum, 
 			@QueryParam("perPage")
-			Integer perPage) throws IOException {		
+			Integer perPage) {		
 		if (paged==null || (paged && (pageNum==null || pageNum==0 || perPage==null || perPage==0))) {
 			try {
 				response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Range is incorrect");
@@ -98,7 +101,7 @@ public class GoodTypeRest {
 	@DELETE
 	public void deleteGoodType(
 			@QueryParam("id")
-			Long id) throws IOException {
+			Long id) {
 		if (id == null || id == 0) {
 			try {
 				response.sendError(HttpServletResponse.SC_BAD_REQUEST,
@@ -114,6 +117,42 @@ public class GoodTypeRest {
 			try {
 				response.sendError(HttpServletResponse.SC_CONFLICT,
 						ex.getComment());
+			} catch (IOException e) {
+				logger.severe(e.getMessage());
+			}
+		}
+	}
+
+	@PUT
+	public void changeGoodTypeProperty(
+			@QueryParam("id")
+			Long id, 
+			@QueryParam("property")
+			GoodTypeProperty property, 
+			@QueryParam("newValue")
+			String newValue) {
+		if (id==null || id==0) {
+			try {
+				response.sendError(HttpServletResponse.SC_BAD_REQUEST, "ID is NULL or EMPTY");
+			} catch (IOException e) {
+				logger.severe(e.getMessage());
+			}
+			return;
+		}
+		if (property==null || newValue==null || newValue.trim().length()==0) {
+			try {
+				response.sendError(HttpServletResponse.SC_BAD_REQUEST, "PropertyName or newValue is NULL");
+			} catch (IOException e) {
+				logger.severe(e.getMessage());
+			}
+			return;
+		}
+		try {
+			bean.changeGoodTypeProperty(id, property, newValue);
+		}
+		catch (ServicesException ex) {
+			try {
+				response.sendError(HttpServletResponse.SC_CONFLICT, ex.getComment());
 			} catch (IOException e) {
 				logger.severe(e.getMessage());
 			}
