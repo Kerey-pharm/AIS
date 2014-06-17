@@ -22,7 +22,7 @@ import kz.kerey.flow.Ladder;
 import kz.kerey.flow.Step;
 
 @Entity
-public abstract class Task {
+public class Task {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

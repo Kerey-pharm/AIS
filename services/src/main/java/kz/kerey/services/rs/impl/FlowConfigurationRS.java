@@ -33,7 +33,7 @@ import kz.kerey.validators.StepValidator;
 @Path("")
 @Consumes({MediaType.APPLICATION_JSON})
 @Produces({MediaType.APPLICATION_JSON})
-public class FlowRS implements FlowConfigurationInterface {
+public class FlowConfigurationRS implements FlowConfigurationInterface {
 
 	public static Logger logger = Logger.getLogger(UserRS.class.getName());
 	

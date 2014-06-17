@@ -14,5 +14,6 @@ public class Constants {
 	public static Long barcodeEmpty = 				6L;
 	public static Long objectHasReferences = 		7L;
 	public static Long internalEJBError = 			8L;
+	public static Long businessError = 				9L;
 	
 }

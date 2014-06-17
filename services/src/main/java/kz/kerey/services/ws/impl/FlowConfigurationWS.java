@@ -20,7 +20,7 @@ import kz.kerey.validators.LadderValidator;
 import kz.kerey.validators.StepValidator;
 
 @WebService
-public class FlowWS implements FlowConfigurationInterface {
+public class FlowConfigurationWS implements FlowConfigurationInterface {
 
 	@EJB
 	FlowConfigurationInterface bean;
