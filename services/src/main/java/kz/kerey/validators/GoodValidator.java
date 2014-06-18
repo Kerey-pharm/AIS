@@ -23,8 +23,8 @@ public class GoodValidator extends Validator<GoodWrapper> {
 			throw new ValidatorException(Constants.fieldNotFilledProperly, "Field : CountPerBox");
 		if (t.getCountSellable()==null || t.getCountSellable()==0L)
 			throw new ValidatorException(Constants.fieldNotFilledProperly, "Field : CountSellable");
-		if (t.getType()==null)
-			throw new ValidatorException(Constants.fieldNotFilledProperly, "Field : Type");
+		if (t.getGoodTypeId()==null || t.getGoodTypeId()==0)
+			throw new ValidatorException(Constants.fieldNotFilledProperly, "Field : GoodTypeId");
 	}
 	
 }

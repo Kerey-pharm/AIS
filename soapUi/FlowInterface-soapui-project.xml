@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<con:soapui-project activeEnvironment="Default" name="FlowInterface" resourceRoot="" soapui-version="5.0.0" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="FlowWSServiceSoapBinding" type="wsdl" bindingName="{http://impl.ws.services.kerey.kz/}FlowWSServiceSoapBinding" soapVersion="1_1" anonymous="optional" definition="http://localhost:8080/services/FlowWS?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://localhost:8080/services/FlowWS?wsdl"><con:part><con:url>http://localhost:8080/services/FlowWS?wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="FlowWSService" targetNamespace="http://impl.ws.services.kerey.kz/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://impl.ws.services.kerey.kz/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http">
+<con:soapui-project activeEnvironment="Default" name="FlowInterface" resourceRoot="" soapui-version="5.0.0" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="FlowConfigurationWSServiceSoapBinding" type="wsdl" bindingName="{http://impl.ws.services.kerey.kz/}FlowConfigurationWSServiceSoapBinding" soapVersion="1_1" anonymous="optional" definition="http://localhost:8080/services/FlowConfigurationWS?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://localhost:8080/services/FlowConfigurationWS?wsdl"><con:part><con:url>http://localhost:8080/services/FlowConfigurationWS?wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="FlowConfigurationWSService" targetNamespace="http://impl.ws.services.kerey.kz/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://impl.ws.services.kerey.kz/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http">
   <wsdl:types>
     <xs:schema attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://impl.ws.services.kerey.kz/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
       <xs:element name="changeLadderProperty" type="tns:changeLadderProperty"/>
@@ -47,6 +47,7 @@
       <xs:complexType name="ladderWrapper">
         <xs:sequence>
           <xs:element minOccurs="0" name="comment" type="xs:string"/>
+          <xs:element minOccurs="0" name="executionTime" type="xs:long"/>
           <xs:element minOccurs="0" name="id" type="xs:long"/>
           <xs:element minOccurs="0" name="name" type="xs:string"/>
         </xs:sequence>
@@ -98,7 +99,7 @@
       </xs:complexType>
       <xs:complexType name="createStep">
         <xs:sequence>
-          <xs:element minOccurs="0" name="arg0" type="tns:stepWrapper"/>
+          <xs:element minOccurs="0" name="step" type="tns:stepWrapper"/>
         </xs:sequence>
       </xs:complexType>
       <xs:complexType name="createStepResponse">
@@ -106,7 +107,7 @@
       </xs:complexType>
       <xs:complexType name="createLadder">
         <xs:sequence>
-          <xs:element minOccurs="0" name="arg0" type="tns:ladderWrapper"/>
+          <xs:element minOccurs="0" name="ladder" type="tns:ladderWrapper"/>
         </xs:sequence>
       </xs:complexType>
       <xs:complexType name="createLadderResponse">
@@ -132,6 +133,7 @@
         <xs:restriction base="xs:string">
           <xs:enumeration value="name"/>
           <xs:enumeration value="comment"/>
+          <xs:enumeration value="executionTime"/>
         </xs:restriction>
       </xs:simpleType>
       <xs:element name="WebServiceException" type="tns:WebServiceException"/>
@@ -201,7 +203,7 @@
   <wsdl:message name="getLadderList">
     <wsdl:part element="tns:getLadderList" name="parameters"></wsdl:part>
   </wsdl:message>
-  <wsdl:portType name="FlowWS">
+  <wsdl:portType name="FlowConfigurationWS">
     <wsdl:operation name="swapLadderSteps">
       <wsdl:input message="tns:swapLadderSteps" name="swapLadderSteps"></wsdl:input>
       <wsdl:output message="tns:swapLadderStepsResponse" name="swapLadderStepsResponse"></wsdl:output>
@@ -248,7 +250,7 @@
       <wsdl:fault message="tns:WebServiceException" name="WebServiceException"></wsdl:fault>
     </wsdl:operation>
   </wsdl:portType>
-  <wsdl:binding name="FlowWSServiceSoapBinding" type="tns:FlowWS">
+  <wsdl:binding name="FlowConfigurationWSServiceSoapBinding" type="tns:FlowConfigurationWS">
     <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
     <wsdl:operation name="getLadderList">
       <soap:operation soapAction="" style="document"/>
@@ -359,12 +361,12 @@
       </wsdl:fault>
     </wsdl:operation>
   </wsdl:binding>
-  <wsdl:service name="FlowWSService">
-    <wsdl:port binding="tns:FlowWSServiceSoapBinding" name="FlowWSPort">
-      <soap:address location="http://localhost:8080/services/FlowWS"/>
+  <wsdl:service name="FlowConfigurationWSService">
+    <wsdl:port binding="tns:FlowConfigurationWSServiceSoapBinding" name="FlowConfigurationWSPort">
+      <soap:address location="http://localhost:8080/services/FlowConfigurationWS"/>
     </wsdl:port>
   </wsdl:service>
-</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8080/services/FlowWS</con:endpoint></con:endpoints><con:operation isOneWay="false" action="" name="changeLadderProperty" bindingOperationName="changeLadderProperty" type="Request-Response" outputName="changeLadderPropertyResponse" inputName="changeLadderProperty" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/services/FlowWS</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:impl="http://impl.ws.services.kerey.kz/">
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8080/services/FlowConfigurationWS</con:endpoint><con:endpoint>http://localhost:8080/services/FlowWS</con:endpoint></con:endpoints><con:operation isOneWay="false" action="" name="changeLadderProperty" bindingOperationName="changeLadderProperty" type="Request-Response" outputName="changeLadderPropertyResponse" inputName="changeLadderProperty" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/services/FlowConfigurationWS</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:impl="http://impl.ws.services.kerey.kz/">
    <soapenv:Header/>
    <soapenv:Body>
       <impl:changeLadderProperty>
@@ -376,7 +378,7 @@
          <newValue>?</newValue>
       </impl:changeLadderProperty>
    </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://impl.ws.services.kerey.kz/FlowWS/changeLadderProperty"/></con:call></con:operation><con:operation isOneWay="false" action="" name="changeStepProperty" bindingOperationName="changeStepProperty" type="Request-Response" outputName="changeStepPropertyResponse" inputName="changeStepProperty" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/services/FlowWS</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:impl="http://impl.ws.services.kerey.kz/">
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://impl.ws.services.kerey.kz/FlowWS/changeLadderProperty"/></con:call></con:operation><con:operation isOneWay="false" action="" name="changeStepProperty" bindingOperationName="changeStepProperty" type="Request-Response" outputName="changeStepPropertyResponse" inputName="changeStepProperty" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/services/FlowConfigurationWS</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:impl="http://impl.ws.services.kerey.kz/">
    <soapenv:Header/>
    <soapenv:Body>
       <impl:changeStepProperty>
@@ -388,27 +390,29 @@
          
       </impl:changeStepProperty>
    </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://impl.ws.services.kerey.kz/FlowWS/changeStepProperty"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="" name="createLadder" bindingOperationName="createLadder" type="Request-Response" outputName="createLadderResponse" inputName="createLadder" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/services/FlowWS</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:impl="http://impl.ws.services.kerey.kz/">
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://impl.ws.services.kerey.kz/FlowWS/changeStepProperty"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="" name="createLadder" bindingOperationName="createLadder" type="Request-Response" outputName="createLadderResponse" inputName="createLadder" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/services/FlowConfigurationWS</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:impl="http://impl.ws.services.kerey.kz/">
    <soapenv:Header/>
    <soapenv:Body>
       <impl:createLadder>
          <!--Optional:-->
-         <arg0>
+         <ladder>
             <!--Optional:-->
             
             <!--Optional:-->
             
             <!--Optional:-->
+            <executionTime>5000000</executionTime><name>super</name>
+            <!--Optional:-->
             
-         <name>Поступление товара от поставщика</name></arg0>
+         </ladder>
       </impl:createLadder>
    </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:credentials><con:authType>NTLM</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://impl.ws.services.kerey.kz/FlowWS/createLadder"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="" name="createStep" bindingOperationName="createStep" type="Request-Response" outputName="createStepResponse" inputName="createStep" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/services/FlowWS</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:impl="http://impl.ws.services.kerey.kz/">
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://impl.ws.services.kerey.kz/FlowConfigurationWS/createLadder"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="" name="createStep" bindingOperationName="createStep" type="Request-Response" outputName="createStepResponse" inputName="createStep" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/services/FlowConfigurationWS</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:impl="http://impl.ws.services.kerey.kz/">
    <soapenv:Header/>
    <soapenv:Body>
       <impl:createStep>
          <!--Optional:-->
-         <arg0>
+         <step>
             <!--Optional:-->
             
             <!--Optional:-->
@@ -416,11 +420,11 @@
             <!--Optional:-->
             
             <!--Optional:-->
-            <ladder>1</ladder><name>Оформить перемещение товара</name>
-         </arg0>
+            <ladder>1</ladder><name>fifth</name>
+         </step>
       </impl:createStep>
    </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:credentials><con:authType>NTLM</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://impl.ws.services.kerey.kz/FlowWS/createStep"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="" name="deleteLadder" bindingOperationName="deleteLadder" type="Request-Response" outputName="deleteLadderResponse" inputName="deleteLadder" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/services/FlowWS</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:impl="http://impl.ws.services.kerey.kz/">
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://impl.ws.services.kerey.kz/FlowConfigurationWS/createStep"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="" name="deleteLadder" bindingOperationName="deleteLadder" type="Request-Response" outputName="deleteLadderResponse" inputName="deleteLadder" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/services/FlowConfigurationWS</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:impl="http://impl.ws.services.kerey.kz/">
    <soapenv:Header/>
    <soapenv:Body>
       <impl:deleteLadder>
@@ -428,7 +432,7 @@
          <id>?</id>
       </impl:deleteLadder>
    </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://impl.ws.services.kerey.kz/FlowWS/deleteLadder"/></con:call></con:operation><con:operation isOneWay="false" action="" name="deleteStep" bindingOperationName="deleteStep" type="Request-Response" outputName="deleteStepResponse" inputName="deleteStep" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/services/FlowWS</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:impl="http://impl.ws.services.kerey.kz/">
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://impl.ws.services.kerey.kz/FlowWS/deleteLadder"/></con:call></con:operation><con:operation isOneWay="false" action="" name="deleteStep" bindingOperationName="deleteStep" type="Request-Response" outputName="deleteStepResponse" inputName="deleteStep" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/services/FlowConfigurationWS</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:impl="http://impl.ws.services.kerey.kz/">
    <soapenv:Header/>
    <soapenv:Body>
       <impl:deleteStep>
@@ -438,7 +442,7 @@
          <ladderId>1</ladderId><id>4</id>
       </impl:deleteStep>
    </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://impl.ws.services.kerey.kz/FlowWS/deleteStep"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="" name="getLadderList" bindingOperationName="getLadderList" type="Request-Response" outputName="getLadderListResponse" inputName="getLadderList" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/services/FlowWS</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:impl="http://impl.ws.services.kerey.kz/">
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://impl.ws.services.kerey.kz/FlowWS/deleteStep"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="" name="getLadderList" bindingOperationName="getLadderList" type="Request-Response" outputName="getLadderListResponse" inputName="getLadderList" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/services/FlowConfigurationWS</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:impl="http://impl.ws.services.kerey.kz/">
    <soapenv:Header/>
    <soapenv:Body>
       <impl:getLadderList>
@@ -450,7 +454,7 @@
          
       </impl:getLadderList>
    </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:credentials><con:authType>NTLM</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://impl.ws.services.kerey.kz/FlowWS/getLadderList"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="" name="getLadderSteps" bindingOperationName="getLadderSteps" type="Request-Response" outputName="getLadderStepsResponse" inputName="getLadderSteps" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/services/FlowWS</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:impl="http://impl.ws.services.kerey.kz/">
+</soapenv:Envelope>]]></con:request><con:credentials><con:selectedAuthProfile>NTLM</con:selectedAuthProfile><con:addedBasicAuthenticationTypes>NTLM</con:addedBasicAuthenticationTypes><con:authType>NTLM</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://impl.ws.services.kerey.kz/FlowWS/getLadderList"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="" name="getLadderSteps" bindingOperationName="getLadderSteps" type="Request-Response" outputName="getLadderStepsResponse" inputName="getLadderSteps" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/services/FlowConfigurationWS</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:impl="http://impl.ws.services.kerey.kz/">
    <soapenv:Header/>
    <soapenv:Body>
       <impl:getLadderSteps>
@@ -458,7 +462,7 @@
          
       <id>1</id></impl:getLadderSteps>
    </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:credentials><con:authType>NTLM</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://impl.ws.services.kerey.kz/FlowWS/getLadderSteps"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="" name="swapLadderSteps" bindingOperationName="swapLadderSteps" type="Request-Response" outputName="swapLadderStepsResponse" inputName="swapLadderSteps" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/services/FlowWS</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:impl="http://impl.ws.services.kerey.kz/">
+</soapenv:Envelope>]]></con:request><con:credentials><con:selectedAuthProfile>NTLM</con:selectedAuthProfile><con:addedBasicAuthenticationTypes>NTLM</con:addedBasicAuthenticationTypes><con:authType>NTLM</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://impl.ws.services.kerey.kz/FlowWS/getLadderSteps"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="" name="swapLadderSteps" bindingOperationName="swapLadderSteps" type="Request-Response" outputName="swapLadderStepsResponse" inputName="swapLadderSteps" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/services/FlowConfigurationWS</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:impl="http://impl.ws.services.kerey.kz/">
    <soapenv:Header/>
    <soapenv:Body>
       <impl:swapLadderSteps>
@@ -489,7 +493,7 @@
 </con:parameters></con:request></con:method></con:resource><con:method name="Create" method="POST"><con:settings/><con:parameters/><con:representation type="REQUEST"><con:mediaType>application/json</con:mediaType><con:params/></con:representation><con:representation type="FAULT"><con:mediaType>text/html;charset=utf-8</con:mediaType><con:status>409</con:status><con:params/><con:element>html</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>204</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>204</con:status><con:params/><con:element>data</con:element></con:representation><con:request name="Request 1" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080</con:endpoint><con:request>{
 	"name" : "Ladder1",
 	"comment" : "Некоторый коммент"
-}</con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/><con:parameterOrder><con:entry>paged</con:entry><con:entry>pageNum</con:entry><con:entry>perPage</con:entry><con:entry>ladderId</con:entry><con:entry>property</con:entry><con:entry>newValue</con:entry></con:parameterOrder></con:request></con:method><con:method name="GetLadderList" method="GET"><con:settings/><con:parameters/><con:representation type="RESPONSE"><con:mediaType>application/json</con:mediaType><con:status>200</con:status><con:params/><con:element>Response</con:element></con:representation><con:request name="Request 1" mediaType="application/json"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080</con:endpoint><con:request/><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters><entry key="paged" value="false" xmlns="http://eviware.com/soapui/config"/></con:parameters><con:parameterOrder><con:entry>paged</con:entry><con:entry>pageNum</con:entry><con:entry>perPage</con:entry><con:entry/><con:entry>ladderId</con:entry><con:entry>property</con:entry></con:parameterOrder></con:request></con:method><con:method name="DeleteLadder" method="DELETE"><con:settings/><con:parameters/><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>204</con:status><con:params/><con:element>data</con:element></con:representation><con:request name="Request 1" mediaType="application/json"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080</con:endpoint><con:request/><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters><entry key="ladderId" value="13" xmlns="http://eviware.com/soapui/config"/></con:parameters><con:parameterOrder><con:entry>paged</con:entry><con:entry>pageNum</con:entry><con:entry>perPage</con:entry><con:entry>ladderId</con:entry><con:entry>property</con:entry><con:entry>newValue</con:entry></con:parameterOrder></con:request></con:method><con:method name="ChangeLadderProperty" method="PUT"><con:settings/><con:parameters/><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>204</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="REQUEST"><con:mediaType>application/json</con:mediaType><con:params/></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>204</con:status><con:params/><con:element>data</con:element></con:representation><con:request name="Request 1" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080</con:endpoint><con:request/><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters>
+}</con:request><con:credentials><con:selectedAuthProfile>Basic</con:selectedAuthProfile><con:addedBasicAuthenticationTypes>Basic</con:addedBasicAuthenticationTypes><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/><con:parameterOrder><con:entry>paged</con:entry><con:entry>pageNum</con:entry><con:entry>perPage</con:entry><con:entry>ladderId</con:entry><con:entry>property</con:entry><con:entry>newValue</con:entry></con:parameterOrder></con:request></con:method><con:method name="GetLadderList" method="GET"><con:settings/><con:parameters/><con:representation type="RESPONSE"><con:mediaType>application/json</con:mediaType><con:status>200</con:status><con:params/><con:element>Response</con:element></con:representation><con:request name="Request 1" mediaType="application/json"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080</con:endpoint><con:request/><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters><entry key="paged" value="false" xmlns="http://eviware.com/soapui/config"/></con:parameters><con:parameterOrder><con:entry>paged</con:entry><con:entry>pageNum</con:entry><con:entry>perPage</con:entry><con:entry/><con:entry>ladderId</con:entry><con:entry>property</con:entry></con:parameterOrder></con:request></con:method><con:method name="DeleteLadder" method="DELETE"><con:settings/><con:parameters/><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>204</con:status><con:params/><con:element>data</con:element></con:representation><con:request name="Request 1" mediaType="application/json"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080</con:endpoint><con:request/><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters><entry key="ladderId" value="13" xmlns="http://eviware.com/soapui/config"/></con:parameters><con:parameterOrder><con:entry>paged</con:entry><con:entry>pageNum</con:entry><con:entry>perPage</con:entry><con:entry>ladderId</con:entry><con:entry>property</con:entry><con:entry>newValue</con:entry></con:parameterOrder></con:request></con:method><con:method name="ChangeLadderProperty" method="PUT"><con:settings/><con:parameters/><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>204</con:status><con:params/><con:element>data</con:element></con:representation><con:representation type="REQUEST"><con:mediaType>application/json</con:mediaType><con:params/></con:representation><con:representation type="RESPONSE"><con:mediaType xsi:nil="true"/><con:status>204</con:status><con:params/><con:element>data</con:element></con:representation><con:request name="Request 1" mediaType="application/json" postQueryString="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080</con:endpoint><con:request/><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters>
   <con:entry key="ladderId" value="14"/>
   <con:entry key="newValue" value="FUCK ТРАХ"/>
   <con:entry key="property" value="comment"/>

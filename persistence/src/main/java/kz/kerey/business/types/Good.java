@@ -18,7 +18,7 @@ public class Good {
 	@Column(unique=true, nullable=false)
 	private String name;
 
-	@Column(unique=true, nullable=false)
+	@Column(nullable=false)
 	private String primaryBarcode;
 	
 	@Column(nullable=false)
@@ -32,14 +32,6 @@ public class Good {
 	
 	@ManyToOne(fetch=FetchType.LAZY)
 	private GoodType type;
-	
-	public GoodType getType() {
-		return type;
-	}
-
-	public void setType(GoodType type) {
-		this.type = type;
-	}
 
 	public Long getId() {
 		return id;
@@ -49,20 +41,20 @@ public class Good {
 		this.id = id;
 	}
 
-	public String getPrimaryBarcode() {
-		return primaryBarcode;
-	}
-
-	public void setPrimaryBarcode(String primaryBarcode) {
-		this.primaryBarcode = primaryBarcode;
-	}
-
 	public String getName() {
 		return name;
 	}
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getPrimaryBarcode() {
+		return primaryBarcode;
+	}
+
+	public void setPrimaryBarcode(String primaryBarcode) {
+		this.primaryBarcode = primaryBarcode;
 	}
 
 	public Boolean getPartialSelling() {
@@ -89,4 +81,12 @@ public class Good {
 		this.countSellable = countSellable;
 	}
 
+	public GoodType getType() {
+		return type;
+	}
+
+	public void setType(GoodType type) {
+		this.type = type;
+	}
+	
 }

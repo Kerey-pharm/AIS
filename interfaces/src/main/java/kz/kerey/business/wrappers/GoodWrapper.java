@@ -15,62 +15,49 @@ public class GoodWrapper implements Serializable {
 	private Boolean partialSelling;
 	private Long countPerBox;
 	private Long countSellable;
-	private GoodTypeWrapper type;
+	private Long goodTypeId;
 	
 	public Long getId() {
 		return id;
 	}
-
 	public void setId(Long id) {
 		this.id = id;
 	}
-
 	public String getName() {
 		return name;
 	}
-
 	public void setName(String name) {
 		this.name = name;
 	}
-
 	public String getPrimaryBarcode() {
 		return primaryBarcode;
 	}
-
 	public void setPrimaryBarcode(String primaryBarcode) {
 		this.primaryBarcode = primaryBarcode;
 	}
-
-	public GoodTypeWrapper getType() {
-		return type;
-	}
-
-	public void setType(GoodTypeWrapper type) {
-		this.type = type;
-	}
-
 	public Boolean getPartialSelling() {
 		return partialSelling;
 	}
-
 	public void setPartialSelling(Boolean partialSelling) {
 		this.partialSelling = partialSelling;
 	}
-
 	public Long getCountPerBox() {
 		return countPerBox;
 	}
-
 	public void setCountPerBox(Long countPerBox) {
 		this.countPerBox = countPerBox;
 	}
-
 	public Long getCountSellable() {
 		return countSellable;
 	}
-
 	public void setCountSellable(Long countSellable) {
 		this.countSellable = countSellable;
 	}
-
+	public Long getGoodTypeId() {
+		return goodTypeId;
+	}
+	public void setGoodTypeId(Long goodTypeId) {
+		this.goodTypeId = goodTypeId;
+	}
+	
 }
