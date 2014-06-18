@@ -31,7 +31,7 @@ import kz.kerey.exceptions.ValidatorException;
 @Path("goodType")
 @Consumes({MediaType.APPLICATION_JSON})
 @Produces({MediaType.APPLICATION_JSON})
-public class GoodTypeRest implements GoodTypeInterface {
+public class GoodTypeRS implements GoodTypeInterface {
 
 	public static Logger logger = Logger.getLogger(DocumentRS.class.getName());
 	
