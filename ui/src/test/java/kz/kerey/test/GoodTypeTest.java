@@ -55,7 +55,7 @@ public class GoodTypeTest {
         goodService = (GoodInterface) ctx.lookup(goodJndiName);
 	}
 	
-	@Test
+	
 	public void goodTypeTest1() {
 		GoodTypeWrapper goodType1 = new GoodTypeWrapper();
 		goodType1.setName("GoodType1");

@@ -145,7 +145,7 @@ public class Main {
 			System.out.println(good.getName());
 		}
 		
-		goods = goodService.getGoodList(null, null, null);
+		/*goods = goodService.getGoodList(null, null, null);
 		for(GoodWrapper good : goods) {
 			goodService.deleteGood(good.getId());
 		}
@@ -153,7 +153,7 @@ public class Main {
 		List<GoodTypeWrapper> goodTypes = goodTypeService.getGoodTypeList(false, 1, 1);
 		for(GoodTypeWrapper goodtype : goodTypes) {
 			goodTypeService.deleteGoodType(goodtype.getId());
-		}
+		}*/
 	}
 	
 	public static void main(String[] args) throws IOException, NamingException {

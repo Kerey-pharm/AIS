@@ -59,5 +59,10 @@ public class GoodWrapper implements Serializable {
 	public void setGoodTypeId(Long goodTypeId) {
 		this.goodTypeId = goodTypeId;
 	}
+
+	@Override
+	public String toString() {
+		return this.name + " ("+this.primaryBarcode+")";
+	}
 	
 }
