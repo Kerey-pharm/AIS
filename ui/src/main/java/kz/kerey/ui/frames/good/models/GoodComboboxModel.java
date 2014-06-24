@@ -10,9 +10,17 @@ public class GoodComboboxModel extends DefaultComboBoxModel<GoodWrapper> {
 
 	private static final long serialVersionUID = -5311669618799660525L;
 
-	public GoodComboboxModel(List<GoodWrapper> data) {
-		for (GoodWrapper good : data)
-			this.addElement(good);
+	final private static GoodComboboxModel model = new GoodComboboxModel();
+	private GoodComboboxModel() {
+	}
+	public static GoodComboboxModel getModel() {
+		return model;
+	}
+	
+	public void setData(List<GoodWrapper> data) {
+		this.removeAllElements();
+		for (GoodWrapper type : data) 
+			this.addElement(type);
 	}
 	
 }

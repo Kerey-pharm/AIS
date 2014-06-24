@@ -6,24 +6,24 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 
+import kz.kerey.business.wrappers.GoodTypeWrapper;
 import kz.kerey.business.wrappers.GoodWrapper;
-import kz.kerey.loaders.GoodLoader;
 import kz.kerey.loaders.GoodTypeLoader;
 import kz.kerey.ui.frames.good.models.GoodTypeComboboxModel;
 import kz.kerey.ui.frames.good.models.GoodTypeListModel;
 import kz.kerey.ui.tools.WindowTool;
 
-public class GoodAddFrame extends JFrame {
+public class GoodTypeAddFrame extends JFrame {
 
-	private static final long serialVersionUID = -5600819889520437028L;
+	private static final long serialVersionUID = 5396624147326536479L;
 
-	private GoodLoader loader = GoodLoader.getLoader();
+	private GoodTypeLoader loader = GoodTypeLoader.getLoader();
 	
-	private GoodEditPanel editPanel = new GoodEditPanel();
+	private GoodTypeEditPanel goodTypeEditPanel = new GoodTypeEditPanel();
 	
-	public GoodAddFrame() {
+	public GoodTypeAddFrame() {
 		this.initComponents();
-		WindowTool.setWindowDimensions(this, 400, 600);
+		WindowTool.setWindowDimensions(this, 400, 400);
 		WindowTool.setWindowAtCenter(this);
 	}
 	
@@ -34,24 +34,25 @@ public class GoodAddFrame extends JFrame {
 	private void initComponents() {
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		this.setLayout(new BorderLayout());
-		this.add(editPanel, BorderLayout.CENTER);
+		this.add(goodTypeEditPanel, BorderLayout.NORTH);
 		
-		editPanel.setGoodWrapperObject(new GoodWrapper());
-		GoodTypeComboboxModel.getModel().reloadData();
+		goodTypeEditPanel.setGoodWrapperObject(new GoodTypeWrapper());
 		
-		editPanel.setUndoButtonActionListener(new ActionListener() {
+		goodTypeEditPanel.setUndoButtonActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
 			}
 		});
-		editPanel.setSaveButtonActionListener(new ActionListener() {
+		goodTypeEditPanel.setSaveButtonActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				loader.saveElement(editPanel.getUpdatedGoodWrapper());
-				GoodTypeComboboxModel.getModel().reloadData();
+				loader.saveElement(goodTypeEditPanel.getUpdatedGoodWrapper());
 				GoodTypeListModel.getModel().reloadData();
+				GoodTypeComboboxModel.getModel().reloadData();
 				dispose();
 			}
 		});
+		
+		pack();
 	}
 	
 }

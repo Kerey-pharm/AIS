@@ -30,4 +30,11 @@ public class GoodTypeWrapper implements Serializable {
 		this.name = name;
 	}
 
+	@Override
+	public String toString() {
+		if (this.getId()!=null && this.getId()!=0)
+			return this.getName();
+		return "ПУСТО";
+	}
+	
 }

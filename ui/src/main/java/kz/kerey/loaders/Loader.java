@@ -58,5 +58,6 @@ public abstract class Loader<T> {
 	public abstract List<T> loadElements();
 	public abstract T loadById(Long id);
 	public abstract void updateElement(T objWas, T objNew);
+	public abstract void saveElement(T obj);
 	
 }

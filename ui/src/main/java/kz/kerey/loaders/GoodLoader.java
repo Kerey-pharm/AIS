@@ -6,7 +6,14 @@ import kz.kerey.business.types.enums.GoodProperty;
 import kz.kerey.business.wrappers.GoodWrapper;
 
 public class GoodLoader extends Loader<GoodWrapper> {
-
+	
+	final private static GoodLoader self = new GoodLoader();
+	private GoodLoader() {
+	}
+	public static GoodLoader getLoader() {
+		return self;
+	}
+	
 	@Override
 	public List<GoodWrapper> loadElements() {
 		return goodService.getGoodList(null, null, null);
@@ -39,7 +46,17 @@ public class GoodLoader extends Loader<GoodWrapper> {
 			if (!objWas.getPrimaryBarcode().equals(objNew.getPrimaryBarcode())) {
 				goodService.changeGoodProperty(objNew.getId(), GoodProperty.primaryBarcode, objNew.getPrimaryBarcode());
 			}
+			
+			if (objWas.getGoodTypeId()==null || !objWas.getGoodTypeId().equals(objNew.getGoodTypeId())) {
+				goodService.changeGoodType(objNew.getId(), objNew.getGoodTypeId());
+			}
 		}
 	}
+
+	@Override
+	public void saveElement(GoodWrapper obj) {
+		goodService.createGood(obj);
+	}
+	
 
 }

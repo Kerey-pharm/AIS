@@ -6,6 +6,7 @@ import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -19,6 +20,7 @@ import javax.swing.border.LineBorder;
 
 import kz.kerey.business.wrappers.GoodTypeWrapper;
 import kz.kerey.business.wrappers.GoodWrapper;
+import kz.kerey.ui.frames.good.models.GoodTypeComboboxModel;
 
 public class GoodEditPanel extends JPanel {
 
@@ -43,6 +45,8 @@ public class GoodEditPanel extends JPanel {
 	private JButton saveButton = new JButton("Сохранить");
 	private JButton undoButton = new JButton("Вернуть");
 	
+	private JButton typesEditButton = new JButton("...");
+	
 	private JSplitPane splitter = new JSplitPane(JSplitPane.VERTICAL_SPLIT);
 	
 	private GoodWrapper good;
@@ -60,15 +64,15 @@ public class GoodEditPanel extends JPanel {
 	private void initComponents() {
 		buttonPanel.add(saveButton);
 		buttonPanel.add(undoButton);
-		undoButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				updateData();
-			}
-		});
 		
 		JPanel panel1 = new JPanel();
 		JPanel panel2 = new JPanel();
 		aboutGood.setBorder(new LineBorder(Color.BLACK));
+		
+		JPanel combo = new JPanel();
+		combo.setLayout(new BorderLayout());
+		combo.add(goodTypeIdField,BorderLayout.CENTER);
+		combo.add(typesEditButton, BorderLayout.EAST);
 		
 		panel1.setLayout(new GridLayout(12,1));
 		panel1.add(nameLabel);
@@ -81,7 +85,7 @@ public class GoodEditPanel extends JPanel {
 		panel1.add(countSellableLabel);
 		panel1.add(countSellableField);
 		panel1.add(goodTypeIdLabel);
-		panel1.add(goodTypeIdField);
+		panel1.add(combo);
 		panel1.add(buttonPanel);
 		
 		panel2.setLayout(new BorderLayout());
@@ -93,6 +97,8 @@ public class GoodEditPanel extends JPanel {
 		
 		this.setLayout(new BorderLayout());
 		this.add(splitter, BorderLayout.CENTER);
+		
+		goodTypeIdField.setModel(GoodTypeComboboxModel.getModel());
 	}
 	
 	public void setGoodWrapperObject(GoodWrapper good) {
@@ -108,6 +114,7 @@ public class GoodEditPanel extends JPanel {
 		this.updatedGood.setCountSellable(Long.valueOf(this.countSellableField.getText()));
 		this.updatedGood.setPartialSelling(this.partialSellingField.isSelected());
 		this.updatedGood.setPrimaryBarcode(this.primaryBarcodeField.getText());
+		this.updatedGood.setGoodTypeId(((GoodTypeWrapper) this.goodTypeIdField.getSelectedItem()).getId());
 		return this.updatedGood;
 	}
 	
@@ -125,11 +132,22 @@ public class GoodEditPanel extends JPanel {
 	
 	private void updateData() {
 		if (this.good!=null) {
-			this.nameField.setText(this.good.getName());
-			this.primaryBarcodeField.setText(this.good.getPrimaryBarcode());
-			this.partialSellingField.setSelected(this.good.getPartialSelling());
-			this.countPerBoxField.setText(String.valueOf(this.good.getCountPerBox()));
-			this.countSellableField.setText(String.valueOf(this.good.getCountSellable()));
+			this.nameField.setText(this.good.getName()!=null ? this.good.getName() : "");
+			this.primaryBarcodeField.setText(this.good.getPrimaryBarcode()!=null ? this.good.getPrimaryBarcode() : "");
+			this.partialSellingField.setSelected(this.good.getPartialSelling()!=null ? this.good.getPartialSelling() : false);
+			this.countPerBoxField.setText(String.valueOf(this.good.getCountPerBox()!=null ? this.good.getCountPerBox() : 0L));
+			this.countSellableField.setText(String.valueOf(this.good.getCountSellable()!=null ? this.good.getCountSellable() : 0L));
+			
+			if (this.good.getGoodTypeId()!=null && this.good.getGoodTypeId()!=0) {
+				GoodTypeComboboxModel model = GoodTypeComboboxModel.getModel();
+				for (int i=0; i<model.getSize(); i++) {
+					if (model.getElementAt(i).getId()!=null && model.getElementAt(i).getId().equals(this.good.getGoodTypeId())) {
+						this.goodTypeIdField.setSelectedIndex(i);
+						break;
+					}
+				}
+			}
+			
 			return;
 		}
 		this.clearData();
@@ -137,6 +155,14 @@ public class GoodEditPanel extends JPanel {
 	
 	public void setSaveButtonActionListener(ActionListener listener) {
 		this.saveButton.addActionListener(listener);
+	}
+	
+	public void setUndoButtonActionListener(ActionListener listener) {
+		this.undoButton.addActionListener(listener);
+	}
+	
+	public void setTypesButtonActionListener(ActionListener listener) {
+		this.typesEditButton.addActionListener(listener);
 	}
 	
 }

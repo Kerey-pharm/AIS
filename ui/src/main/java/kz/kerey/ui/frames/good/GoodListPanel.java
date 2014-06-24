@@ -47,14 +47,15 @@ public class GoodListPanel extends JPanel {
 		this.add(goodListPanel, BorderLayout.CENTER);
 		this.add(buttonsPanel, BorderLayout.SOUTH);
 		
-		this.goodList.setModel(new GoodListModel());
+		this.goodList.setModel(GoodListModel.getModel());
 	}
 	
-	public void setGoods(List<GoodWrapper> goods) {
-		GoodListModel model = (GoodListModel) this.goodList.getModel();
-		model.clear();
-		for(GoodWrapper good : goods) 
-			model.addElement(good);		
+	public void setDeleteButtonActionListener(ActionListener listener) {
+		this.delButton.addActionListener(listener);
+	}
+	
+	public void setAddButtonActionListener(ActionListener listener) {
+		this.addButton.addActionListener(listener);
 	}
 	
 	public void setUpdateButtonActionListener(ActionListener actionListener) {
