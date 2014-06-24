@@ -19,9 +19,9 @@ import javax.ws.rs.core.MediaType;
 
 import kz.kerey.business.wrappers.DocumentWrapper;
 import kz.kerey.exceptions.ServicesException;
-import kz.kerey.exceptions.ValidatorException;
 import kz.kerey.services.api.DocumentInterface;
 import kz.kerey.validators.DocumentValidator;
+import kz.kerey.validators.ValidatorException;
 
 @Path("documents")
 @Consumes({ MediaType.APPLICATION_JSON })
@@ -39,8 +39,7 @@ public class DocumentRS implements DocumentInterface {
 	@EJB
 	DocumentInterface bean;
 
-	@Inject
-	DocumentValidator validator;
+	DocumentValidator validator = DocumentValidator.getValidator();
 
 	@POST
 	public void saveDocument(DocumentWrapper doc) {

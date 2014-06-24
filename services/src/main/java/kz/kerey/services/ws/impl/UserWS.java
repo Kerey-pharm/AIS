@@ -13,11 +13,11 @@ import kz.kerey.business.wrappers.RoleWrapper;
 import kz.kerey.business.wrappers.UserWrapper;
 import kz.kerey.constants.Constants;
 import kz.kerey.exceptions.ServicesException;
-import kz.kerey.exceptions.ValidatorException;
 import kz.kerey.exceptions.WebServiceException;
 import kz.kerey.services.api.UserInterface;
 import kz.kerey.validators.RoleValidator;
 import kz.kerey.validators.UserValidator;
+import kz.kerey.validators.ValidatorException;
 
 @WebService
 // @HandlerChain(file="/kz/kerey/services/ws/handlers/handlers.xml")
@@ -26,11 +26,9 @@ public class UserWS implements UserInterface {
 	@EJB
 	UserInterface bean;
 
-	@Inject
-	UserValidator userValidator;
+	UserValidator userValidator = UserValidator.getValidator();
 
-	@Inject
-	RoleValidator roleValidator;
+	RoleValidator roleValidator = RoleValidator.getValidator();
 
 	public void createRole(
 			@WebParam(name="role")

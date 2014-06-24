@@ -1,14 +1,17 @@
 package kz.kerey.validators;
 
-import javax.inject.Singleton;
-
 import kz.kerey.business.wrappers.StepWrapper;
 import kz.kerey.constants.Constants;
-import kz.kerey.exceptions.ValidatorException;
 
-@Singleton
 public class StepValidator extends Validator<StepWrapper> {
 
+	private static StepValidator validator = new StepValidator();
+	private StepValidator() {
+	}
+	public static StepValidator getValidator() {
+		return validator;
+	}
+	
 	@Override
 	public void validate(StepWrapper t) throws ValidatorException {
 		if (t==null)

@@ -1,4 +1,4 @@
-package kz.kerey.exceptions;
+package kz.kerey.validators;
 
 public class ValidatorException extends RuntimeException {
 

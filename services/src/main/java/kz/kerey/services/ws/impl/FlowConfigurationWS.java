@@ -13,11 +13,11 @@ import kz.kerey.business.wrappers.LadderWrapper;
 import kz.kerey.business.wrappers.StepWrapper;
 import kz.kerey.constants.Constants;
 import kz.kerey.exceptions.ServicesException;
-import kz.kerey.exceptions.ValidatorException;
 import kz.kerey.exceptions.WebServiceException;
 import kz.kerey.services.api.FlowConfigurationInterface;
 import kz.kerey.validators.LadderValidator;
 import kz.kerey.validators.StepValidator;
+import kz.kerey.validators.ValidatorException;
 
 @WebService
 public class FlowConfigurationWS implements FlowConfigurationInterface {
@@ -25,11 +25,9 @@ public class FlowConfigurationWS implements FlowConfigurationInterface {
 	@EJB
 	FlowConfigurationInterface bean;
 
-	@Inject
-	LadderValidator ladderValidator;
+	LadderValidator ladderValidator = LadderValidator.getValidator();
 
-	@Inject
-	StepValidator stepValidator;
+	StepValidator stepValidator = StepValidator.getValidator();
 
 	public void createLadder(
 			@WebParam(name="ladder")

@@ -11,10 +11,10 @@ import kz.kerey.business.types.enums.GoodTypeProperty;
 import kz.kerey.business.wrappers.GoodTypeWrapper;
 import kz.kerey.constants.Constants;
 import kz.kerey.exceptions.ServicesException;
-import kz.kerey.exceptions.ValidatorException;
 import kz.kerey.exceptions.WebServiceException;
 import kz.kerey.services.api.GoodTypeInterface;
 import kz.kerey.validators.GoodTypeValidator;
+import kz.kerey.validators.ValidatorException;
 
 @WebService
 public class GoodTypeWS implements GoodTypeInterface {
@@ -22,8 +22,7 @@ public class GoodTypeWS implements GoodTypeInterface {
 	@EJB
 	GoodTypeInterface bean;
 	
-	@Inject
-	GoodTypeValidator validator;
+	GoodTypeValidator validator = GoodTypeValidator.getValidator();
 	
 	public void createGoodType(
 			@WebParam(name="type")

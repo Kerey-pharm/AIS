@@ -22,9 +22,9 @@ import javax.ws.rs.core.MediaType;
 import kz.kerey.business.types.enums.LocationProperty;
 import kz.kerey.business.wrappers.LocationWrapper;
 import kz.kerey.exceptions.ServicesException;
-import kz.kerey.exceptions.ValidatorException;
 import kz.kerey.services.api.LocationInterface;
 import kz.kerey.validators.LocationValidator;
+import kz.kerey.validators.ValidatorException;
 
 @Path("location")
 @Consumes({MediaType.APPLICATION_JSON})
@@ -42,8 +42,7 @@ public class LocationRS implements LocationInterface {
 	@EJB
 	LocationInterface bean;
 	
-	@Inject
-	LocationValidator validator;
+	LocationValidator validator = LocationValidator.getValidator();
 	
 	@POST
 	public void createLocation(LocationWrapper location) {

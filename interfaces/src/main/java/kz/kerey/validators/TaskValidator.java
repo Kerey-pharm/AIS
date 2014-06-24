@@ -2,10 +2,16 @@ package kz.kerey.validators;
 
 import kz.kerey.business.wrappers.TaskWrapper;
 import kz.kerey.constants.Constants;
-import kz.kerey.exceptions.ValidatorException;
 
 public class TaskValidator extends Validator<TaskWrapper> {
 
+	private static TaskValidator validator = new TaskValidator();
+	private TaskValidator() {
+	}
+	public static TaskValidator getValidator() {
+		return validator;
+	}
+	
 	@Override
 	public void validate(TaskWrapper t) throws ValidatorException {
 		

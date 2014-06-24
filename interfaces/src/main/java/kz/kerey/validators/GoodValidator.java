@@ -1,13 +1,16 @@
 package kz.kerey.validators;
 
-import javax.inject.Singleton;
-
 import kz.kerey.business.wrappers.GoodWrapper;
 import kz.kerey.constants.Constants;
-import kz.kerey.exceptions.ValidatorException;
 
-@Singleton
 public class GoodValidator extends Validator<GoodWrapper> {
+	
+	private static GoodValidator validator = new GoodValidator();
+	private GoodValidator() {
+	}
+	public static GoodValidator getValidator() {
+		return validator;
+	}
 	
 	@Override
 	public void validate(GoodWrapper t) throws ValidatorException {

@@ -1,14 +1,17 @@
 package kz.kerey.validators;
 
-import javax.inject.Singleton;
-
 import kz.kerey.business.wrappers.UserWrapper;
 import kz.kerey.constants.Constants;
-import kz.kerey.exceptions.ValidatorException;
 
-@Singleton
 public class UserValidator extends Validator<UserWrapper> {
 
+	private static UserValidator validator = new UserValidator();
+	private UserValidator() {
+	}
+	public static UserValidator getValidator() {
+		return validator;
+	}
+	
 	@Override
 	public void validate(UserWrapper t) throws ValidatorException {
 		if (t==null)

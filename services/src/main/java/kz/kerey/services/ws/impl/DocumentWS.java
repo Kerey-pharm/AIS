@@ -9,10 +9,10 @@ import javax.jws.WebService;
 import kz.kerey.business.wrappers.DocumentWrapper;
 import kz.kerey.constants.Constants;
 import kz.kerey.exceptions.ServicesException;
-import kz.kerey.exceptions.ValidatorException;
 import kz.kerey.exceptions.WebServiceException;
 import kz.kerey.services.api.DocumentInterface;
 import kz.kerey.validators.DocumentValidator;
+import kz.kerey.validators.ValidatorException;
 
 @WebService
 public class DocumentWS implements DocumentInterface {
@@ -20,8 +20,7 @@ public class DocumentWS implements DocumentInterface {
 	@EJB
 	DocumentInterface bean;
 	
-	@Inject
-	DocumentValidator validator;
+	DocumentValidator validator = DocumentValidator.getValidator();
 	
 	@WebMethod
 	public void saveDocument(

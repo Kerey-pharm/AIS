@@ -1,14 +1,17 @@
 package kz.kerey.validators;
 
-import javax.inject.Singleton;
-
 import kz.kerey.business.wrappers.RoleWrapper;
 import kz.kerey.constants.Constants;
-import kz.kerey.exceptions.ValidatorException;
 
-@Singleton
 public class RoleValidator extends Validator<RoleWrapper> {
 
+	private static RoleValidator validator = new RoleValidator();
+	private RoleValidator() {
+	}
+	public static RoleValidator getValidator() {
+		return validator;
+	}
+	
 	@Override
 	public void validate(RoleWrapper t) throws ValidatorException {
 		if (t==null)

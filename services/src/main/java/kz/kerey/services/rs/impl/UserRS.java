@@ -25,11 +25,11 @@ import kz.kerey.business.types.enums.UserProperty;
 import kz.kerey.business.wrappers.RoleWrapper;
 import kz.kerey.business.wrappers.UserWrapper;
 import kz.kerey.exceptions.ServicesException;
-import kz.kerey.exceptions.ValidatorException;
 import kz.kerey.exceptions.WebServiceException;
 import kz.kerey.services.api.UserInterface;
 import kz.kerey.validators.RoleValidator;
 import kz.kerey.validators.UserValidator;
+import kz.kerey.validators.ValidatorException;
 
 @Path("")
 @Consumes({MediaType.APPLICATION_JSON})
@@ -47,11 +47,9 @@ public class UserRS implements UserInterface {
 	@EJB
 	UserInterface bean;
 	
-	@Inject
-	UserValidator userValidator;
+	UserValidator userValidator = UserValidator.getValidator();
 	
-	@Inject
-	RoleValidator roleValidator;
+	RoleValidator roleValidator = RoleValidator.getValidator();
 	
 	@Path("roles")
 	@POST

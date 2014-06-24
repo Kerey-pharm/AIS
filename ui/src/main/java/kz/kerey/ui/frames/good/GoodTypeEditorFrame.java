@@ -22,7 +22,7 @@ public class GoodTypeEditorFrame extends JFrame {
 	
 	private GoodTypeLoader loader = GoodTypeLoader.getLoader();
 
-	private GoodTypeAddFrame addFrame = new GoodTypeAddFrame();
+	private GoodTypeAddFrame addFrame = GoodTypeAddFrame.getSelf();
 	
 	private GoodTypeEditPanel goodTypeEditPanel = new GoodTypeEditPanel();
 	private GoodTypeListPanel goodTypeListPanel = new GoodTypeListPanel();
@@ -30,7 +30,12 @@ public class GoodTypeEditorFrame extends JFrame {
 	
 	private GoodTypeWrapper selectedObject;
 	
-	public GoodTypeEditorFrame() {
+	final private static GoodTypeEditorFrame self = new GoodTypeEditorFrame();
+	public static GoodTypeEditorFrame getSelf() {
+		return self;
+	}
+	
+	private GoodTypeEditorFrame() {
 		this.initComponents();
 		WindowTool.setWindowDimensions(this, 800, 400);
 		WindowTool.setWindowAtCenter(this);

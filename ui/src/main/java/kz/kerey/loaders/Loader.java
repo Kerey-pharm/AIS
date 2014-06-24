@@ -17,22 +17,22 @@ import kz.kerey.services.api.UserInterface;
 
 public abstract class Loader<T> {
 
-	private static String goodTypeJndiName = "ejb:/services//GoodTypeEJB!kz.kerey.services.api.GoodTypeInterface";
-	private static String docJndiName = "ejb:/services//DocumentEJB!kz.kerey.services.api.DocumentInterface";
-	private static String flowConfJndiName = "ejb:/services//FlowConfigurationEJB!kz.kerey.services.api.FlowConfigurationInterface";
-	private static String flowJndiName = "ejb:/services//FlowEJB!kz.kerey.services.api.FlowInterface";
-	private static String locationJndiName = "ejb:/services//LocationEJB!kz.kerey.services.api.LocationInterface";
-	private static String userJndiName = "ejb:/services//UserEJB!kz.kerey.services.api.UserInterface";
-	private static String goodJndiName = "ejb:/services//GoodEJB!kz.kerey.services.api.GoodInterface";
+	final private static String goodTypeJndiName = "ejb:/services//GoodTypeEJB!kz.kerey.services.api.GoodTypeInterface";
+	final private static String docJndiName = "ejb:/services//DocumentEJB!kz.kerey.services.api.DocumentInterface";
+	final private static String flowConfJndiName = "ejb:/services//FlowConfigurationEJB!kz.kerey.services.api.FlowConfigurationInterface";
+	final private static String flowJndiName = "ejb:/services//FlowEJB!kz.kerey.services.api.FlowInterface";
+	final private static String locationJndiName = "ejb:/services//LocationEJB!kz.kerey.services.api.LocationInterface";
+	final private static String userJndiName = "ejb:/services//UserEJB!kz.kerey.services.api.UserInterface";
+	final private static String goodJndiName = "ejb:/services//GoodEJB!kz.kerey.services.api.GoodInterface";
 	
-	public static GoodTypeInterface goodTypeService;
-	public static DocumentInterface docService;
-	public static FlowConfigurationInterface flowConfigService;
-	public static FlowInterface flowService;
-	public static LocationInterface locationService;
-	public static UserInterface userService;
-	public static GoodInterface goodService;
-
+	static GoodTypeInterface goodTypeService;
+	static DocumentInterface docService;
+	static FlowConfigurationInterface flowConfigService;
+	static FlowInterface flowService;
+	static LocationInterface locationService;
+	static UserInterface userService;
+	static GoodInterface goodService;
+	
 	static {
 		try {
 			loadEJBs();

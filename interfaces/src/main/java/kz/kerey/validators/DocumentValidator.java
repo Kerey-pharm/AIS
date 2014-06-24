@@ -1,14 +1,17 @@
 package kz.kerey.validators;
 
-import javax.inject.Singleton;
-
 import kz.kerey.business.wrappers.DocumentWrapper;
 import kz.kerey.constants.Constants;
-import kz.kerey.exceptions.ValidatorException;
 
-@Singleton
 public class DocumentValidator extends Validator<DocumentWrapper> {
 
+	private static DocumentValidator validator = new DocumentValidator();
+	private DocumentValidator() {
+	}
+	public static DocumentValidator getValidator() {
+		return validator;
+	}
+	
 	@Override
 	public void validate(DocumentWrapper t) throws ValidatorException {
 		if (t==null)

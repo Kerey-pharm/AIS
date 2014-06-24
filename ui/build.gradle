@@ -1,5 +1,5 @@
 apply plugin:'application'
-mainClassName = 'kz.kerey.ui.Main'
+mainClassName = 'kz.kerey.ui.MainFrame'
 
 
 dependencies {

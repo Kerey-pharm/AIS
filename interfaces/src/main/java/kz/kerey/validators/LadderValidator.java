@@ -1,14 +1,17 @@
 package kz.kerey.validators;
 
-import javax.inject.Singleton;
-
 import kz.kerey.business.wrappers.LadderWrapper;
 import kz.kerey.constants.Constants;
-import kz.kerey.exceptions.ValidatorException;
 
-@Singleton
 public class LadderValidator extends Validator<LadderWrapper> {
 
+	private static LadderValidator validator = new LadderValidator();
+	private LadderValidator() {
+	}
+	public static LadderValidator getValidator() {
+		return validator;
+	}
+	
 	@Override
 	public void validate(LadderWrapper t) throws ValidatorException {
 		if (t==null)

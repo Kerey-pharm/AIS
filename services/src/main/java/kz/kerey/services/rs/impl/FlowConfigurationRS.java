@@ -25,10 +25,10 @@ import kz.kerey.business.types.enums.StepProperty;
 import kz.kerey.business.wrappers.LadderWrapper;
 import kz.kerey.business.wrappers.StepWrapper;
 import kz.kerey.exceptions.ServicesException;
-import kz.kerey.exceptions.ValidatorException;
 import kz.kerey.services.api.FlowConfigurationInterface;
 import kz.kerey.validators.LadderValidator;
 import kz.kerey.validators.StepValidator;
+import kz.kerey.validators.ValidatorException;
 
 @Path("")
 @Consumes({MediaType.APPLICATION_JSON})
@@ -46,11 +46,9 @@ public class FlowConfigurationRS implements FlowConfigurationInterface {
 	@EJB
 	FlowConfigurationInterface bean;
 	
-	@Inject
-	LadderValidator ladderValidator;
+	LadderValidator ladderValidator = LadderValidator.getValidator();
 	
-	@Inject
-	StepValidator stepValidator;
+	StepValidator stepValidator = StepValidator.getValidator();
 
 	@Path("ladders")
 	@POST

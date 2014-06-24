@@ -24,9 +24,9 @@ import kz.kerey.business.types.PageParam;
 import kz.kerey.business.types.enums.GoodProperty;
 import kz.kerey.business.wrappers.GoodWrapper;
 import kz.kerey.exceptions.ServicesException;
-import kz.kerey.exceptions.ValidatorException;
 import kz.kerey.services.api.GoodInterface;
 import kz.kerey.validators.GoodValidator;
+import kz.kerey.validators.ValidatorException;
 
 @Path("goods")
 @Consumes({MediaType.APPLICATION_JSON})
@@ -44,8 +44,7 @@ public class GoodRS implements GoodInterface {
 	@EJB
 	private GoodInterface bean;
 	
-	@Inject
-	GoodValidator validator;
+	GoodValidator validator = GoodValidator.getValidator();
 	
 	@POST
 	public void createGood(GoodWrapper obj) {

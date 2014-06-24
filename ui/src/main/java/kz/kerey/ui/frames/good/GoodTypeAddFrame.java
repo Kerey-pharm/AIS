@@ -21,7 +21,11 @@ public class GoodTypeAddFrame extends JFrame {
 	
 	private GoodTypeEditPanel goodTypeEditPanel = new GoodTypeEditPanel();
 	
-	public GoodTypeAddFrame() {
+	final private static GoodTypeAddFrame self = new GoodTypeAddFrame();
+	public static GoodTypeAddFrame getSelf() {
+		return self;
+	}
+	private GoodTypeAddFrame() {
 		this.initComponents();
 		WindowTool.setWindowDimensions(this, 400, 400);
 		WindowTool.setWindowAtCenter(this);

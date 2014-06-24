@@ -8,9 +8,9 @@ import javax.swing.JFrame;
 
 import kz.kerey.business.wrappers.GoodWrapper;
 import kz.kerey.loaders.GoodLoader;
-import kz.kerey.loaders.GoodTypeLoader;
+import kz.kerey.ui.frames.good.models.GoodComboboxModel;
+import kz.kerey.ui.frames.good.models.GoodListModel;
 import kz.kerey.ui.frames.good.models.GoodTypeComboboxModel;
-import kz.kerey.ui.frames.good.models.GoodTypeListModel;
 import kz.kerey.ui.tools.WindowTool;
 
 public class GoodAddFrame extends JFrame {
@@ -21,7 +21,13 @@ public class GoodAddFrame extends JFrame {
 	
 	private GoodEditPanel editPanel = new GoodEditPanel();
 	
-	public GoodAddFrame() {
+	private GoodTypeEditorFrame addTypeEditorFrame = GoodTypeEditorFrame.getSelf();
+	
+	final private static GoodAddFrame self = new GoodAddFrame();
+	public static GoodAddFrame getSelf() {
+		return self;
+	}
+	private GoodAddFrame() {
 		this.initComponents();
 		WindowTool.setWindowDimensions(this, 400, 600);
 		WindowTool.setWindowAtCenter(this);
@@ -47,9 +53,14 @@ public class GoodAddFrame extends JFrame {
 		editPanel.setSaveButtonActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				loader.saveElement(editPanel.getUpdatedGoodWrapper());
-				GoodTypeComboboxModel.getModel().reloadData();
-				GoodTypeListModel.getModel().reloadData();
+				GoodComboboxModel.getModel().reloadData();
+				GoodListModel.getModel().reloadData();
 				dispose();
+			}
+		});
+		editPanel.setTypesButtonActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				addTypeEditorFrame.setVisible(true);
 			}
 		});
 	}

@@ -18,7 +18,7 @@ public class MainFrame extends javax.swing.JFrame {
 		
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new GoodEditorFrame().setVisible(true);
+                GoodEditorFrame.getSelf().setVisible(true);
             }
         });
 	}

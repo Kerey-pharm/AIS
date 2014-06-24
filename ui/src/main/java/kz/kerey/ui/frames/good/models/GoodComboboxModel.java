@@ -5,6 +5,7 @@ import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 
 import kz.kerey.business.wrappers.GoodWrapper;
+import kz.kerey.loaders.GoodLoader;
 
 public class GoodComboboxModel extends DefaultComboBoxModel<GoodWrapper> {
 
@@ -17,10 +18,14 @@ public class GoodComboboxModel extends DefaultComboBoxModel<GoodWrapper> {
 		return model;
 	}
 	
-	public void setData(List<GoodWrapper> data) {
+	private void setData(List<GoodWrapper> data) {
 		this.removeAllElements();
 		for (GoodWrapper type : data) 
 			this.addElement(type);
+	}
+	
+	public void reloadData() {
+		this.setData(GoodLoader.getLoader().loadElements());
 	}
 	
 }

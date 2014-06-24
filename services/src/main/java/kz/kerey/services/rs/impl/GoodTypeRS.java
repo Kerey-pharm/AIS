@@ -22,11 +22,11 @@ import javax.ws.rs.core.MediaType;
 
 import kz.kerey.services.api.GoodTypeInterface;
 import kz.kerey.validators.GoodTypeValidator;
+import kz.kerey.validators.ValidatorException;
 import kz.kerey.business.types.enums.GoodTypeProperty;
 import kz.kerey.business.types.enums.LadderProperty;
 import kz.kerey.business.wrappers.GoodTypeWrapper;
 import kz.kerey.exceptions.ServicesException;
-import kz.kerey.exceptions.ValidatorException;
 
 @Path("goodType")
 @Consumes({MediaType.APPLICATION_JSON})
@@ -44,8 +44,7 @@ public class GoodTypeRS implements GoodTypeInterface {
 	@EJB
 	GoodTypeInterface bean;
 	
-	@Inject
-	GoodTypeValidator validator;
+	GoodTypeValidator validator = GoodTypeValidator.getValidator();
 
 	@POST
 	public void createGoodType(GoodTypeWrapper goodType) {

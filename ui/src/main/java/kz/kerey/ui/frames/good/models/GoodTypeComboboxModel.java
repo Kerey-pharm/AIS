@@ -20,6 +20,7 @@ public class GoodTypeComboboxModel extends DefaultComboBoxModel<GoodTypeWrapper>
 	
 	private void setData(List<GoodTypeWrapper> data) {
 		this.removeAllElements();
+		this.addElement(new GoodTypeWrapper());
 		for (GoodTypeWrapper type : data) 
 			this.addElement(type);
 	}

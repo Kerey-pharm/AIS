@@ -138,6 +138,8 @@ public class GoodEditPanel extends JPanel {
 			this.countPerBoxField.setText(String.valueOf(this.good.getCountPerBox()!=null ? this.good.getCountPerBox() : 0L));
 			this.countSellableField.setText(String.valueOf(this.good.getCountSellable()!=null ? this.good.getCountSellable() : 0L));
 			
+			if (GoodTypeComboboxModel.getModel().getSize()>0)
+				this.goodTypeIdField.setSelectedIndex(0);
 			if (this.good.getGoodTypeId()!=null && this.good.getGoodTypeId()!=0) {
 				GoodTypeComboboxModel model = GoodTypeComboboxModel.getModel();
 				for (int i=0; i<model.getSize(); i++) {

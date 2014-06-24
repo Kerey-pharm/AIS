@@ -11,10 +11,10 @@ import kz.kerey.business.types.enums.LocationProperty;
 import kz.kerey.business.wrappers.LocationWrapper;
 import kz.kerey.constants.Constants;
 import kz.kerey.exceptions.ServicesException;
-import kz.kerey.exceptions.ValidatorException;
 import kz.kerey.exceptions.WebServiceException;
 import kz.kerey.services.api.LocationInterface;
 import kz.kerey.validators.LocationValidator;
+import kz.kerey.validators.ValidatorException;
 
 @WebService
 public class LocationWS implements LocationInterface {
@@ -22,8 +22,7 @@ public class LocationWS implements LocationInterface {
 	@EJB
 	LocationInterface bean;
 	
-	@Inject
-	LocationValidator validator;
+	LocationValidator validator = LocationValidator.getValidator();
 
 	public void createLocation(
 			@WebParam(name="location")
