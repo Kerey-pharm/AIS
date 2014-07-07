@@ -19,14 +19,13 @@ public class PropertiesLoader {
 		loadProperties();
 	}
 	
+	public static String getProperty(String name) {
+		return properties.getProperty(name);
+	}
+	
 	private static void loadProperties() {
 		try {
-			File propertiesFile = new File("properties.dat");
-			if (!propertiesFile.exists()) {
-				if (propertiesFile.createNewFile()) {
-					
-				}
-			}
+			File propertiesFile = new File("ejb.properties");
 			FileInputStream input;
 			input = new FileInputStream(propertiesFile);
 			properties.load(input);

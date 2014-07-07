@@ -17,13 +17,13 @@ import kz.kerey.services.api.UserInterface;
 
 public abstract class Loader<T> {
 
-	final private static String goodTypeJndiName = "ejb:/services//GoodTypeEJB!kz.kerey.services.api.GoodTypeInterface";
-	final private static String docJndiName = "ejb:/services//DocumentEJB!kz.kerey.services.api.DocumentInterface";
-	final private static String flowConfJndiName = "ejb:/services//FlowConfigurationEJB!kz.kerey.services.api.FlowConfigurationInterface";
-	final private static String flowJndiName = "ejb:/services//FlowEJB!kz.kerey.services.api.FlowInterface";
-	final private static String locationJndiName = "ejb:/services//LocationEJB!kz.kerey.services.api.LocationInterface";
-	final private static String userJndiName = "ejb:/services//UserEJB!kz.kerey.services.api.UserInterface";
-	final private static String goodJndiName = "ejb:/services//GoodEJB!kz.kerey.services.api.GoodInterface";
+	final private static String goodTypeJndiName = PropertiesLoader.getProperty("goodTypeJndiName");
+	final private static String docJndiName = PropertiesLoader.getProperty("docJndiName");
+	final private static String flowConfJndiName = PropertiesLoader.getProperty("flowConfJndiName");
+	final private static String flowJndiName = PropertiesLoader.getProperty("flowJndiName");
+	final private static String locationJndiName = PropertiesLoader.getProperty("locationJndiName");
+	final private static String userJndiName = PropertiesLoader.getProperty("userJndiName");
+	final private static String goodJndiName = PropertiesLoader.getProperty("goodJndiName");
 	
 	static GoodTypeInterface goodTypeService;
 	static DocumentInterface docService;
