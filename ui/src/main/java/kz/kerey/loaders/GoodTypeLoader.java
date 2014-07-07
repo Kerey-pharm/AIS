@@ -37,5 +37,9 @@ public class GoodTypeLoader extends Loader<GoodTypeWrapper> {
 	public void saveElement(GoodTypeWrapper obj) {
 		goodTypeService.createGoodType(obj);
 	}
+	@Override
+	public void deleteElement(GoodTypeWrapper obj) {
+		goodTypeService.deleteGoodType(obj.getId());
+	}
 
 }

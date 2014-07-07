@@ -57,6 +57,9 @@ public class GoodLoader extends Loader<GoodWrapper> {
 	public void saveElement(GoodWrapper obj) {
 		goodService.createGood(obj);
 	}
+	@Override
+	public void deleteElement(GoodWrapper obj) {
+		goodService.deleteGood(obj.getId());
+	}
 	
-
 }

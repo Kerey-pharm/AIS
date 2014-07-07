@@ -1,7 +1,6 @@
 package kz.kerey.ui;
 
 import kz.kerey.ui.frames.good.GoodEditorFrame;
-import kz.kerey.ui.frames.good.GoodTypeEditorFrame;
 
 public class MainFrame extends javax.swing.JFrame {
 

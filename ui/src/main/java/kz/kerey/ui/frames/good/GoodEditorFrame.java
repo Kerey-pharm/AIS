@@ -14,6 +14,7 @@ import kz.kerey.business.wrappers.GoodWrapper;
 import kz.kerey.loaders.GoodLoader;
 import kz.kerey.ui.frames.good.models.GoodListModel;
 import kz.kerey.ui.frames.good.models.GoodTypeComboboxModel;
+import kz.kerey.ui.tools.ErrorDialog;
 import kz.kerey.ui.tools.WindowTool;
 
 public class GoodEditorFrame extends JFrame {
@@ -82,6 +83,19 @@ public class GoodEditorFrame extends JFrame {
 		goodEditPanel.setTypesButtonActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				addTypeEditorFrame.setVisible(true);
+			}
+		});
+		goodListPanel.setDeleteButtonActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (selectedObject!=null) {
+					try {
+						goodLoader.deleteElement(selectedObject);
+						GoodListModel.getModel().reloadData();
+					}
+					catch (RuntimeException ex) {
+						ErrorDialog.showDialog(GoodEditorFrame.getSelf(), "Удаление не возможно, существуют зависимости.");
+					}
+				}
 			}
 		});
 		

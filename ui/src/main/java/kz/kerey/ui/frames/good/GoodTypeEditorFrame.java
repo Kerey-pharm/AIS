@@ -13,7 +13,9 @@ import javax.swing.event.ListSelectionListener;
 
 import kz.kerey.business.wrappers.GoodTypeWrapper;
 import kz.kerey.loaders.GoodTypeLoader;
+import kz.kerey.ui.frames.good.models.GoodTypeComboboxModel;
 import kz.kerey.ui.frames.good.models.GoodTypeListModel;
+import kz.kerey.ui.tools.ErrorDialog;
 import kz.kerey.ui.tools.WindowTool;
 
 public class GoodTypeEditorFrame extends JFrame {
@@ -74,6 +76,20 @@ public class GoodTypeEditorFrame extends JFrame {
 		goodTypeEditPanel.setUndoButtonActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				goodTypeEditPanel.setGoodWrapperObject(selectedObject);
+			}
+		});
+		goodTypeListPanel.setDeleteButtonActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (selectedObject!=null) {
+					try {
+						loader.deleteElement(selectedObject);
+						GoodTypeListModel.getModel().reloadData();
+						GoodTypeComboboxModel.getModel().reloadData();
+					}
+					catch (RuntimeException ex) {
+						ErrorDialog.showDialog(GoodTypeEditorFrame.getSelf(), "Удаление не возможно, существуют зависимости.");
+  					}
+				}
 			}
 		});
 		
