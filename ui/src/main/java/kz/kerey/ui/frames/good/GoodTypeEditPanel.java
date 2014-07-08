@@ -23,16 +23,17 @@ public class GoodTypeEditPanel extends JPanel {
 	
 	private JPanel buttonPanel = new JPanel(new FlowLayout());
 	private JButton saveButton = new JButton("Сохранить");
-	private JButton undoButton = new JButton("Вернуть");
+	private JButton undoButton = new JButton();
 	
 	private JSplitPane splitter = new JSplitPane(JSplitPane.VERTICAL_SPLIT);
 	
 	private GoodTypeWrapper goodType;
 	private GoodTypeWrapper updatedGoodType;
 	
-	public GoodTypeEditPanel() {
+	public GoodTypeEditPanel(String undoButtonTitle) {
 		this.initComponents();
 		this.initComponentsValidators();
+		this.undoButton.setText(undoButtonTitle);
 	}
 	
 	private void initComponentsValidators() {
@@ -92,6 +93,10 @@ public class GoodTypeEditPanel extends JPanel {
 	
 	public void setUndoButtonActionListener(ActionListener listener) {
 		this.undoButton.addActionListener(listener);
+	}
+	
+	public void cleanPanel() {
+		this.nameField.setText("");
 	}
 	
 }

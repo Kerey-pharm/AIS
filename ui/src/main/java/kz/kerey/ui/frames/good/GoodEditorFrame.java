@@ -12,7 +12,8 @@ import javax.swing.event.ListSelectionListener;
 
 import kz.kerey.business.wrappers.GoodWrapper;
 import kz.kerey.loaders.GoodLoader;
-import kz.kerey.ui.frames.good.models.GoodListModel;
+import kz.kerey.ui.frames.base.ListPanel;
+import kz.kerey.ui.frames.good.models.GoodComboboxModel;
 import kz.kerey.ui.frames.good.models.GoodTypeComboboxModel;
 import kz.kerey.ui.tools.ErrorDialog;
 import kz.kerey.ui.tools.WindowTool;
@@ -23,7 +24,7 @@ public class GoodEditorFrame extends JFrame {
 	
 	private GoodLoader goodLoader = GoodLoader.getLoader();
 
-	private final GoodListPanel goodListPanel = new GoodListPanel();
+	private final ListPanel goodListPanel = new ListPanel("Препараты",GoodComboboxModel.getModel());
 	private final GoodEditPanel goodEditPanel = new GoodEditPanel();
 	private JSplitPane splitter = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT);
 	
@@ -40,6 +41,7 @@ public class GoodEditorFrame extends JFrame {
 		this.initComponents();
 		WindowTool.setWindowDimensions(this, 800, 600);
 		WindowTool.setWindowAtCenter(this);
+		this.setTitle("Редактор номенклатуры");
 	}
 	
 	private void initComponents() {
@@ -47,12 +49,12 @@ public class GoodEditorFrame extends JFrame {
 		this.setLayout(new BorderLayout());
 		addTypeEditorFrame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		
-		GoodListModel.getModel().reloadData();
+		GoodComboboxModel.getModel().reloadData();
 		GoodTypeComboboxModel.getModel().reloadData();
 		
 		goodListPanel.setUpdateButtonActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				GoodListModel.getModel().reloadData();
+				GoodComboboxModel.getModel().reloadData();
 			}
 		});
 		goodListPanel.setGoodListSelectionActionListener(new ListSelectionListener() {
@@ -64,6 +66,7 @@ public class GoodEditorFrame extends JFrame {
 		});
 		goodListPanel.setAddButtonActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				addFrame.cleanFrame();
 				addFrame.setVisible(true);
 			}
 		});
@@ -71,7 +74,7 @@ public class GoodEditorFrame extends JFrame {
 		goodEditPanel.setSaveButtonActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				goodLoader.updateElement(goodEditPanel.getGoodWrapper(), goodEditPanel.getUpdatedGoodWrapper());
-				GoodListModel.getModel().reloadData();
+				GoodComboboxModel.getModel().reloadData();
 			}
 		});
 		
@@ -90,7 +93,7 @@ public class GoodEditorFrame extends JFrame {
 				if (selectedObject!=null) {
 					try {
 						goodLoader.deleteElement(selectedObject);
-						GoodListModel.getModel().reloadData();
+						GoodComboboxModel.getModel().reloadData();
 					}
 					catch (RuntimeException ex) {
 						ErrorDialog.showDialog(GoodEditorFrame.getSelf(), "Удаление не возможно, существуют зависимости.");

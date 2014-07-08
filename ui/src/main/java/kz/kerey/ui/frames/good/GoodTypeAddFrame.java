@@ -7,10 +7,9 @@ import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 
 import kz.kerey.business.wrappers.GoodTypeWrapper;
-import kz.kerey.business.wrappers.GoodWrapper;
 import kz.kerey.loaders.GoodTypeLoader;
+import kz.kerey.ui.frames.good.models.GoodComboboxModel;
 import kz.kerey.ui.frames.good.models.GoodTypeComboboxModel;
-import kz.kerey.ui.frames.good.models.GoodTypeListModel;
 import kz.kerey.ui.tools.WindowTool;
 
 public class GoodTypeAddFrame extends JFrame {
@@ -19,7 +18,7 @@ public class GoodTypeAddFrame extends JFrame {
 
 	private GoodTypeLoader loader = GoodTypeLoader.getLoader();
 	
-	private GoodTypeEditPanel goodTypeEditPanel = new GoodTypeEditPanel();
+	private GoodTypeEditPanel goodTypeEditPanel = new GoodTypeEditPanel("Закрыть");
 	
 	final private static GoodTypeAddFrame self = new GoodTypeAddFrame();
 	public static GoodTypeAddFrame getSelf() {
@@ -29,6 +28,7 @@ public class GoodTypeAddFrame extends JFrame {
 		this.initComponents();
 		WindowTool.setWindowDimensions(this, 400, 400);
 		WindowTool.setWindowAtCenter(this);
+		this.setTitle("Добавление номенклатурного типа");
 	}
 	
 	public void dispose() {
@@ -50,13 +50,17 @@ public class GoodTypeAddFrame extends JFrame {
 		goodTypeEditPanel.setSaveButtonActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				loader.saveElement(goodTypeEditPanel.getUpdatedGoodWrapper());
-				GoodTypeListModel.getModel().reloadData();
+				GoodComboboxModel.getModel().reloadData();
 				GoodTypeComboboxModel.getModel().reloadData();
 				dispose();
 			}
 		});
 		
 		pack();
+	}
+
+	public void cleanFrame() {
+		this.goodTypeEditPanel.cleanPanel();
 	}
 	
 }

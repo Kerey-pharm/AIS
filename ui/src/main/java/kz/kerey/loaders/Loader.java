@@ -2,6 +2,7 @@ package kz.kerey.loaders;
 
 import java.util.List;
 import java.util.Properties;
+import java.util.logging.Logger;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -33,7 +34,10 @@ public abstract class Loader<T> {
 	static UserInterface userService;
 	static GoodInterface goodService;
 	
+	private static Logger logger = Logger.getLogger("EJB_Loader"); 
+	
 	static {
+		logger.addHandler(LoggerManager.getFileHandler());
 		try {
 			loadEJBs();
 		} catch (NamingException e) {
@@ -42,17 +46,20 @@ public abstract class Loader<T> {
 	}
 	
 	private static void loadEJBs() throws NamingException {
+		logger.info("Starting loading EJB Clients");
 		Properties jndiProps = new Properties();
         jndiProps.put(Context.URL_PKG_PREFIXES, "org.jboss.ejb.client.naming");
         Context ctx = new InitialContext(jndiProps);
         
-        goodTypeService = (GoodTypeInterface) ctx.lookup(goodTypeJndiName);
+        goodTypeService = (GoodTypeInterface) ctx.lookup(goodTypeJndiName);        
         docService = (DocumentInterface) ctx.lookup(docJndiName);
         flowConfigService = (FlowConfigurationInterface) ctx.lookup(flowConfJndiName);
         flowService = (FlowInterface) ctx.lookup(flowJndiName);
         locationService = (LocationInterface) ctx.lookup(locationJndiName);
         userService = (UserInterface) ctx.lookup(userJndiName);
         goodService = (GoodInterface) ctx.lookup(goodJndiName);
+        
+        logger.info("Ended loading EJB Clients");
 	}
 	
 	public abstract List<T> loadElements();

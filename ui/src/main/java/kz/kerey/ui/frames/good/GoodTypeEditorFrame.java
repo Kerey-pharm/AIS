@@ -13,8 +13,8 @@ import javax.swing.event.ListSelectionListener;
 
 import kz.kerey.business.wrappers.GoodTypeWrapper;
 import kz.kerey.loaders.GoodTypeLoader;
+import kz.kerey.ui.frames.base.ListPanel;
 import kz.kerey.ui.frames.good.models.GoodTypeComboboxModel;
-import kz.kerey.ui.frames.good.models.GoodTypeListModel;
 import kz.kerey.ui.tools.ErrorDialog;
 import kz.kerey.ui.tools.WindowTool;
 
@@ -26,8 +26,8 @@ public class GoodTypeEditorFrame extends JFrame {
 
 	private GoodTypeAddFrame addFrame = GoodTypeAddFrame.getSelf();
 	
-	private GoodTypeEditPanel goodTypeEditPanel = new GoodTypeEditPanel();
-	private GoodTypeListPanel goodTypeListPanel = new GoodTypeListPanel();
+	private GoodTypeEditPanel goodTypeEditPanel = new GoodTypeEditPanel("Вернуть");
+	private ListPanel goodTypeListPanel = new ListPanel("Производные",GoodTypeComboboxModel.getModel());
 	private JSplitPane splitter = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT);
 	
 	private GoodTypeWrapper selectedObject;
@@ -41,16 +41,17 @@ public class GoodTypeEditorFrame extends JFrame {
 		this.initComponents();
 		WindowTool.setWindowDimensions(this, 800, 400);
 		WindowTool.setWindowAtCenter(this);
+		this.setTitle("Редактор номенклатур");
 	}
 	
 	private void initComponents() {
 		this.setLayout(new BorderLayout());
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
-		GoodTypeListModel.getModel().reloadData();
+		GoodTypeComboboxModel.getModel().reloadData();
 		goodTypeListPanel.setUpdateButtonActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				GoodTypeListModel.getModel().reloadData();
+				GoodTypeComboboxModel.getModel().reloadData();
 			}
 		});
 		goodTypeListPanel.setGoodListSelectionActionListener(new ListSelectionListener() {
@@ -62,6 +63,7 @@ public class GoodTypeEditorFrame extends JFrame {
 		});
 		goodTypeListPanel.setAddButtonActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				addFrame.cleanFrame();
 				addFrame.setVisible(true);
 			}
 		});
@@ -69,7 +71,7 @@ public class GoodTypeEditorFrame extends JFrame {
 		goodTypeEditPanel.setSaveButtonActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				loader.updateElement(goodTypeEditPanel.getGoodWrapper(), goodTypeEditPanel.getUpdatedGoodWrapper());
-				GoodTypeListModel.getModel().reloadData();
+				GoodTypeComboboxModel.getModel().reloadData();
 			}
 		});
 		
@@ -83,7 +85,6 @@ public class GoodTypeEditorFrame extends JFrame {
 				if (selectedObject!=null) {
 					try {
 						loader.deleteElement(selectedObject);
-						GoodTypeListModel.getModel().reloadData();
 						GoodTypeComboboxModel.getModel().reloadData();
 					}
 					catch (RuntimeException ex) {

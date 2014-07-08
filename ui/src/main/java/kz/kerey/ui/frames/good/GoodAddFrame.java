@@ -9,7 +9,6 @@ import javax.swing.JFrame;
 import kz.kerey.business.wrappers.GoodWrapper;
 import kz.kerey.loaders.GoodLoader;
 import kz.kerey.ui.frames.good.models.GoodComboboxModel;
-import kz.kerey.ui.frames.good.models.GoodListModel;
 import kz.kerey.ui.frames.good.models.GoodTypeComboboxModel;
 import kz.kerey.ui.tools.WindowTool;
 
@@ -31,6 +30,7 @@ public class GoodAddFrame extends JFrame {
 		this.initComponents();
 		WindowTool.setWindowDimensions(this, 400, 600);
 		WindowTool.setWindowAtCenter(this);
+		this.setTitle("Добавить номенклатуру");
 	}
 	
 	public void dispose() {
@@ -54,7 +54,6 @@ public class GoodAddFrame extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				loader.saveElement(editPanel.getUpdatedGoodWrapper());
 				GoodComboboxModel.getModel().reloadData();
-				GoodListModel.getModel().reloadData();
 				dispose();
 			}
 		});
@@ -63,6 +62,10 @@ public class GoodAddFrame extends JFrame {
 				addTypeEditorFrame.setVisible(true);
 			}
 		});
+	}
+	
+	public void cleanFrame() {
+		this.editPanel.cleanPanel();
 	}
 	
 }

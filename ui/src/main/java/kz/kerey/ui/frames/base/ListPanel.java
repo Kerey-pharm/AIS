@@ -1,36 +1,30 @@
-package kz.kerey.ui.frames.good;
+package kz.kerey.ui.frames.base;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.event.ActionListener;
-import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
+import javax.swing.ListModel;
 import javax.swing.border.LineBorder;
 import javax.swing.event.ListSelectionListener;
 
-import kz.kerey.business.wrappers.GoodWrapper;
-import kz.kerey.ui.frames.good.models.GoodListModel;
+public class ListPanel extends JPanel {
 
-public class GoodListPanel extends JPanel {
+	private static final long serialVersionUID = -7248480257302449680L;
 
-	private static final long serialVersionUID = 8333475170490065058L;
+	private JPanel listPanel = new JPanel();
 	
-	private JPanel goodListPanel = new JPanel();
-	private JLabel titleLabel = new JLabel("Наименования"); 
-	private JList<GoodWrapper> goodList = new JList<GoodWrapper>();
-
+	private JLabel titleLabel = new JLabel();
+	private JList list = new JList();
+	
 	private JPanel buttonsPanel = new JPanel();
 	private JButton addButton = new JButton("Добавить");
 	private JButton delButton = new JButton("Удалить");
 	private JButton refButton = new JButton("Обновить");
-	
-	public GoodListPanel() {
-		this.initComponents();
-	}
 	
 	private void initComponents() {
 		buttonsPanel.setLayout(new BorderLayout());
@@ -38,16 +32,24 @@ public class GoodListPanel extends JPanel {
 		buttonsPanel.add(refButton, BorderLayout.CENTER);
 		buttonsPanel.add(delButton, BorderLayout.EAST);
 		
-		goodListPanel.setLayout(new BorderLayout());
-		goodListPanel.add(titleLabel, BorderLayout.NORTH);
-		goodListPanel.add(goodList, BorderLayout.CENTER);
-		goodList.setBorder(new LineBorder(Color.BLACK));
+		listPanel.setLayout(new BorderLayout());
+		listPanel.add(titleLabel, BorderLayout.NORTH);
+		listPanel.add(list, BorderLayout.CENTER);
+		list.setBorder(new LineBorder(Color.BLACK));
 		
 		this.setLayout(new BorderLayout());
-		this.add(goodListPanel, BorderLayout.CENTER);
+		this.add(listPanel, BorderLayout.CENTER);
 		this.add(buttonsPanel, BorderLayout.SOUTH);
-		
-		this.goodList.setModel(GoodListModel.getModel());
+	}
+	
+	public ListPanel(String title, ListModel<?> model) {
+		this.initComponents();		
+		this.titleLabel.setText(title);
+		this.list.setModel(model);
+	}
+	
+	public void setListModel(ListModel<?> model) {
+		this.list.setModel(model);
 	}
 	
 	public void setDeleteButtonActionListener(ActionListener listener) {
@@ -63,7 +65,7 @@ public class GoodListPanel extends JPanel {
 	}
 	
 	public void setGoodListSelectionActionListener(ListSelectionListener listener) {
-		this.goodList.addListSelectionListener(listener);
+		this.list.addListSelectionListener(listener);
 	}
 	
 }

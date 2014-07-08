@@ -4,9 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -165,6 +163,17 @@ public class GoodEditPanel extends JPanel {
 	
 	public void setTypesButtonActionListener(ActionListener listener) {
 		this.typesEditButton.addActionListener(listener);
+	}
+	
+	public void cleanPanel() {
+		nameField.setText("");
+		primaryBarcodeField.setText("");
+		partialSellingField.setSelected(false);
+		countPerBoxField.setText("");
+		countSellableField.setText("");
+		if (goodTypeIdField.getModel().getSize()>0)
+			goodTypeIdField.setSelectedIndex(0);
+		aboutGood.setText("");
 	}
 	
 }

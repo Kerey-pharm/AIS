@@ -17,6 +17,7 @@ public class PropertiesLoader {
 	
 	static {
 		loadProperties();
+		logger.addHandler(LoggerManager.getFileHandler());
 	}
 	
 	public static String getProperty(String name) {
@@ -31,9 +32,11 @@ public class PropertiesLoader {
 			properties.load(input);
 		} catch (FileNotFoundException e) {
 			ErrorDialog.showDialog(null, "Файл параметров не найден!");
+			logger.severe("Файл параметров не найден!");
 			System.exit(0);
 		} catch (IOException e) {
 			ErrorDialog.showDialog(null, "Ошибка чтения параметров из файла!");
+			logger.severe("Ошибка чтения параметров из файла!");
 			System.exit(0);
 		}
 	}
