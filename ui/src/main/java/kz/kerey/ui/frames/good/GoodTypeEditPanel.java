@@ -37,7 +37,6 @@ public class GoodTypeEditPanel extends JPanel {
 	}
 	
 	private void initComponentsValidators() {
-		
 	}
 	
 	private void initComponents() {
