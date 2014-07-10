@@ -11,19 +11,20 @@ import kz.kerey.ui.tools.ErrorDialog;
 
 public class PropertiesLoader {
 
-	private static Logger logger = Logger.getLogger(PropertiesLoader.class.getName());
-	
+	private static Logger logger = Logger.getLogger(PropertiesLoader.class
+			.getName());
+
 	private static Properties properties = new Properties();
-	
+
 	static {
 		loadProperties();
 		logger.addHandler(LoggerManager.getFileHandler());
 	}
-	
+
 	public static String getProperty(String name) {
 		return properties.getProperty(name);
 	}
-	
+
 	private static void loadProperties() {
 		try {
 			File propertiesFile = new File("ejb.properties");
@@ -40,5 +41,5 @@ public class PropertiesLoader {
 			System.exit(0);
 		}
 	}
-	
+
 }

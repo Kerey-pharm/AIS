@@ -12,19 +12,22 @@ public class RoleComboModel extends DefaultComboBoxModel<RoleWrapper> {
 	private static final long serialVersionUID = 807553782299404958L;
 
 	private static final RoleComboModel model = new RoleComboModel();
-	private RoleComboModel() {}
+
+	private RoleComboModel() {
+	}
+
 	public static RoleComboModel getModel() {
 		return model;
 	}
-	
+
 	private void setData(List<RoleWrapper> data) {
 		this.removeAllElements();
-		for (RoleWrapper role : data) 
+		for (RoleWrapper role : data)
 			this.addElement(role);
 	}
 
 	public void reloadData() {
 		this.setData(RoleLoader.getLoader().loadElements());
 	}
-	
+
 }

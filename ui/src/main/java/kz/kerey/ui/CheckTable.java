@@ -1,4 +1,5 @@
 package kz.kerey.ui;
+
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.EventQueue;
@@ -25,132 +26,135 @@ import javax.swing.table.TableCellRenderer;
 /** @see http://stackoverflow.com/a/13919878/230513 */
 public class CheckTable {
 
-    private static final CheckModel model = new CheckModel(5000);
-    private static final JTable table = new JTable(model) {
+	private static final CheckModel model = new CheckModel(5000);
+	private static final JTable table = new JTable(model) {
 
-        @Override
-        public Dimension getPreferredScrollableViewportSize() {
-            return new Dimension(150, 300);
-        }
+		@Override
+		public Dimension getPreferredScrollableViewportSize() {
+			return new Dimension(150, 300);
+		}
 
-        @Override
-        public Component prepareRenderer(TableCellRenderer renderer, int row, int column) {
-            JCheckBox jcb = (JCheckBox) super.prepareRenderer(renderer, row, column);
-            //jcb.setHorizontalTextPosition(JCheckBox.LEADING);
-            jcb.setHorizontalAlignment(SwingConstants.LEFT);
-            jcb.setText(String.valueOf(row));
-            //jcb.setSelected(true);
-            return jcb;
-        }
-    };
+		@Override
+		public Component prepareRenderer(TableCellRenderer renderer, int row,
+				int column) {
+			JCheckBox jcb = (JCheckBox) super.prepareRenderer(renderer, row,
+					column);
+			// jcb.setHorizontalTextPosition(JCheckBox.LEADING);
+			jcb.setHorizontalAlignment(SwingConstants.LEFT);
+			jcb.setText(String.valueOf(row));
+			// jcb.setSelected(true);
+			return jcb;
+		}
+	};
 
-    public static void main(String[] args) {
-        EventQueue.invokeLater(new Runnable() {
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
 
-            @Override
-            public void run() {
-            	
-            	try {
-        			javax.swing.UIManager.setLookAndFeel(javax.swing.UIManager.getSystemLookAndFeelClassName());
-                } catch (ClassNotFoundException ex) {
-                } catch (InstantiationException ex) {
-                } catch (IllegalAccessException ex) {
-                } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-                }
-        		
-                java.awt.EventQueue.invokeLater(new Runnable() {
-                    public void run() {
-                    	JFrame f = new JFrame("CheckTable");
-                        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                        f.setLayout(new GridLayout(1, 0));
-                        f.add(new JScrollPane(table));
-                        f.add(new DisplayPanel(model));
-                        f.pack();
-                        f.setLocationRelativeTo(null);
-                        f.setVisible(true);
-                    }
-                });
-            	
-            }
-        });
-    }
+			@Override
+			public void run() {
 
-    private static class DisplayPanel extends JPanel {
+				try {
+					javax.swing.UIManager.setLookAndFeel(javax.swing.UIManager
+							.getSystemLookAndFeelClassName());
+				} catch (ClassNotFoundException ex) {
+				} catch (InstantiationException ex) {
+				} catch (IllegalAccessException ex) {
+				} catch (javax.swing.UnsupportedLookAndFeelException ex) {
+				}
 
-        private DefaultListModel dlm = new DefaultListModel();
-        private JList list = new JList(dlm);
+				java.awt.EventQueue.invokeLater(new Runnable() {
+					public void run() {
+						JFrame f = new JFrame("CheckTable");
+						f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+						f.setLayout(new GridLayout(1, 0));
+						f.add(new JScrollPane(table));
+						f.add(new DisplayPanel(model));
+						f.pack();
+						f.setLocationRelativeTo(null);
+						f.setVisible(true);
+					}
+				});
 
-        public DisplayPanel(final CheckModel model) {
-            super(new GridLayout());
-            this.setBorder(BorderFactory.createTitledBorder("Checked"));
-            this.add(new JScrollPane(list));
-            model.addTableModelListener(new TableModelListener() {
-            	
-                @Override
-                public void tableChanged(TableModelEvent e) {
-                    dlm.removeAllElements();
-                    for (Integer integer : model.checked) {
-                        dlm.addElement(integer);
-                    }
-                }
-            });
-        }
-    }
+			}
+		});
+	}
 
-    private static class CheckModel extends AbstractTableModel {
+	private static class DisplayPanel extends JPanel {
 
-        private final int rows;
-        private List<Boolean> rowList;
-        private Set<Integer> checked = new TreeSet<Integer>();
+		private DefaultListModel dlm = new DefaultListModel();
+		private JList list = new JList(dlm);
 
-        public CheckModel(int rows) {
-            this.rows = rows;
-            rowList = new ArrayList<Boolean>(rows);
-            for (int i = 0; i < rows; i++) {
-                rowList.add(Boolean.FALSE);
-            }
-        }
+		public DisplayPanel(final CheckModel model) {
+			super(new GridLayout());
+			this.setBorder(BorderFactory.createTitledBorder("Checked"));
+			this.add(new JScrollPane(list));
+			model.addTableModelListener(new TableModelListener() {
 
-        @Override
-        public int getRowCount() {
-            return rows;
-        }
+				@Override
+				public void tableChanged(TableModelEvent e) {
+					dlm.removeAllElements();
+					for (Integer integer : model.checked) {
+						dlm.addElement(integer);
+					}
+				}
+			});
+		}
+	}
 
-        @Override
-        public int getColumnCount() {
-            return 1;
-        }
+	private static class CheckModel extends AbstractTableModel {
 
-        @Override
-        public String getColumnName(int col) {
-            return "Column " + col;
-        }
+		private final int rows;
+		private List<Boolean> rowList;
+		private Set<Integer> checked = new TreeSet<Integer>();
 
-        @Override
-        public Object getValueAt(int row, int col) {
-                return rowList.get(row);
-        }
+		public CheckModel(int rows) {
+			this.rows = rows;
+			rowList = new ArrayList<Boolean>(rows);
+			for (int i = 0; i < rows; i++) {
+				rowList.add(Boolean.FALSE);
+			}
+		}
 
-        @Override
-        public void setValueAt(Object aValue, int row, int col) {
-            boolean b = (Boolean) aValue;
-            rowList.set(row, b);
-            if (b) {
-                checked.add(row);
-            } else {
-                checked.remove(row);
-            }
-            fireTableRowsUpdated(row, row);
-        }
+		@Override
+		public int getRowCount() {
+			return rows;
+		}
 
-        @Override
-        public Class<?> getColumnClass(int col) {
-            return getValueAt(0, col).getClass();
-        }
+		@Override
+		public int getColumnCount() {
+			return 1;
+		}
 
-        @Override
-        public boolean isCellEditable(int row, int col) {
-            return true;
-        }
-    }
+		@Override
+		public String getColumnName(int col) {
+			return "Column " + col;
+		}
+
+		@Override
+		public Object getValueAt(int row, int col) {
+			return rowList.get(row);
+		}
+
+		@Override
+		public void setValueAt(Object aValue, int row, int col) {
+			boolean b = (Boolean) aValue;
+			rowList.set(row, b);
+			if (b) {
+				checked.add(row);
+			} else {
+				checked.remove(row);
+			}
+			fireTableRowsUpdated(row, row);
+		}
+
+		@Override
+		public Class<?> getColumnClass(int col) {
+			return getValueAt(0, col).getClass();
+		}
+
+		@Override
+		public boolean isCellEditable(int row, int col) {
+			return true;
+		}
+	}
 }

@@ -6,7 +6,7 @@ import javax.mail.internet.InternetAddress;
 public class ValidatorTool {
 
 	private static InternetAddress emailAddr = new InternetAddress();
-	
+
 	public static boolean isValidEmailAddress(String email) {
 		try {
 			emailAddr.setAddress(email);

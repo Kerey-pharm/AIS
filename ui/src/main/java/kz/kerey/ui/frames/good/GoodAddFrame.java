@@ -17,34 +17,37 @@ public class GoodAddFrame extends JFrame {
 	private static final long serialVersionUID = -5600819889520437028L;
 
 	private GoodLoader loader = GoodLoader.getLoader();
-	
+
 	private GoodEditPanel editPanel = new GoodEditPanel();
-	
-	private GoodTypeEditorFrame addTypeEditorFrame = GoodTypeEditorFrame.getSelf();
-	
+
+	private GoodTypeEditorFrame addTypeEditorFrame = GoodTypeEditorFrame
+			.getSelf();
+
 	final private static GoodAddFrame self = new GoodAddFrame();
+
 	public static GoodAddFrame getSelf() {
 		return self;
 	}
+
 	private GoodAddFrame() {
 		this.initComponents();
 		WindowTool.setWindowDimensions(this, 400, 600);
 		WindowTool.setWindowAtCenter(this);
 		this.setTitle("Добавить номенклатуру");
 	}
-	
+
 	public void dispose() {
 		super.dispose();
 	}
-	
+
 	private void initComponents() {
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		this.setLayout(new BorderLayout());
 		this.add(editPanel, BorderLayout.CENTER);
-		
+
 		editPanel.setGoodWrapperObject(new GoodWrapper());
 		GoodTypeComboboxModel.getModel().reloadData();
-		
+
 		editPanel.setUndoButtonActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
@@ -63,9 +66,9 @@ public class GoodAddFrame extends JFrame {
 			}
 		});
 	}
-	
+
 	public void cleanFrame() {
 		this.editPanel.cleanPanel();
 	}
-	
+
 }

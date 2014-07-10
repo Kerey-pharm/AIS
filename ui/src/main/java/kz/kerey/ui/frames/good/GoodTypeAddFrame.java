@@ -17,31 +17,34 @@ public class GoodTypeAddFrame extends JFrame {
 	private static final long serialVersionUID = 5396624147326536479L;
 
 	private GoodTypeLoader loader = GoodTypeLoader.getLoader();
-	
-	private GoodTypeEditPanel goodTypeEditPanel = new GoodTypeEditPanel("Закрыть");
-	
+
+	private GoodTypeEditPanel goodTypeEditPanel = new GoodTypeEditPanel(
+			"Закрыть");
+
 	final private static GoodTypeAddFrame self = new GoodTypeAddFrame();
+
 	public static GoodTypeAddFrame getSelf() {
 		return self;
 	}
+
 	private GoodTypeAddFrame() {
 		this.initComponents();
 		WindowTool.setWindowDimensions(this, 400, 400);
 		WindowTool.setWindowAtCenter(this);
 		this.setTitle("Добавление номенклатурного типа");
 	}
-	
+
 	public void dispose() {
 		super.dispose();
 	}
-	
+
 	private void initComponents() {
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		this.setLayout(new BorderLayout());
 		this.add(goodTypeEditPanel, BorderLayout.NORTH);
-		
+
 		goodTypeEditPanel.setGoodWrapperObject(new GoodTypeWrapper());
-		
+
 		goodTypeEditPanel.setUndoButtonActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
@@ -55,12 +58,12 @@ public class GoodTypeAddFrame extends JFrame {
 				dispose();
 			}
 		});
-		
+
 		pack();
 	}
 
 	public void cleanFrame() {
 		this.goodTypeEditPanel.cleanPanel();
 	}
-	
+
 }

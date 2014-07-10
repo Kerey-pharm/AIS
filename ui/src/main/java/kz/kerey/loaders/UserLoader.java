@@ -7,11 +7,14 @@ import kz.kerey.business.wrappers.UserWrapper;
 public class UserLoader extends Loader<UserWrapper> {
 
 	private static UserLoader self = new UserLoader();
-	private UserLoader() {}
+
+	private UserLoader() {
+	}
+
 	public static UserLoader getSelf() {
 		return self;
 	}
-	
+
 	@Override
 	public List<UserWrapper> loadElements() {
 		return userService.getUserList(false, null, null);
@@ -24,7 +27,7 @@ public class UserLoader extends Loader<UserWrapper> {
 
 	@Override
 	public void updateElement(UserWrapper objWas, UserWrapper objNew) {
-		
+
 	}
 
 	@Override

@@ -7,12 +7,14 @@ import kz.kerey.business.wrappers.RoleWrapper;
 public class RoleLoader extends Loader<RoleWrapper> {
 
 	final private static RoleLoader self = new RoleLoader();
+
 	private RoleLoader() {
 	}
+
 	public static RoleLoader getLoader() {
 		return self;
 	}
-	
+
 	@Override
 	public List<RoleWrapper> loadElements() {
 		return userService.getRoleList(false, null, null);

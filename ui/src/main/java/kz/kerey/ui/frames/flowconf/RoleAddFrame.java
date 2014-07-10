@@ -14,33 +14,34 @@ import kz.kerey.ui.tools.WindowTool;
 public class RoleAddFrame extends JFrame {
 
 	private static final long serialVersionUID = -6696723001354943754L;
-	
+
 	private final RoleLoader loader = RoleLoader.getLoader();
 	private static final RoleAddFrame self = new RoleAddFrame();
+
 	public static RoleAddFrame getSelf() {
 		return self;
 	}
 
 	private RoleEditPanel editPanel = new RoleEditPanel("Закрыть");
-	
+
 	private RoleAddFrame() {
 		this.initComponents();
 		WindowTool.setWindowDimensions(this, 400, 400);
 		WindowTool.setWindowAtCenter(this);
 		this.setTitle("Добавление роли");
 	}
-	
+
 	public void dispose() {
 		super.dispose();
 	}
-	
+
 	private void initComponents() {
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		this.setLayout(new BorderLayout());
 		this.add(editPanel, BorderLayout.NORTH);
-		
+
 		editPanel.setRoleWrapperObject(new RoleWrapper());
-		
+
 		editPanel.setUndoButtonActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
@@ -53,12 +54,12 @@ public class RoleAddFrame extends JFrame {
 				dispose();
 			}
 		});
-		
+
 		pack();
 	}
 
 	public void cleanFrame() {
 		this.editPanel.cleanPanel();
 	}
-	
+
 }

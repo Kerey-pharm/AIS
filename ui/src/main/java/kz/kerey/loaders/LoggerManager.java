@@ -8,9 +8,9 @@ import java.util.logging.Handler;
 public class LoggerManager {
 
 	private static Handler handler = null;
-	
+
 	public static Handler getFileHandler() {
-		if (handler==null) {
+		if (handler == null) {
 			Date today = new Date();
 			String year = String.valueOf(today.getYear());
 			String month = String.valueOf(today.getMonth());
@@ -24,5 +24,5 @@ public class LoggerManager {
 		}
 		return handler;
 	}
-	
+
 }
