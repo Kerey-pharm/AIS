@@ -15,8 +15,8 @@ public class RoleAddFrame extends JFrame {
 
 	private static final long serialVersionUID = -6696723001354943754L;
 	
-	private RoleLoader loader = RoleLoader.getLoader();
-	private static RoleAddFrame self = new RoleAddFrame();
+	private final RoleLoader loader = RoleLoader.getLoader();
+	private static final RoleAddFrame self = new RoleAddFrame();
 	public static RoleAddFrame getSelf() {
 		return self;
 	}

@@ -2,6 +2,7 @@ package kz.kerey.ui.frames.base;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.GridLayout;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
@@ -27,10 +28,10 @@ public class ListPanel extends JPanel {
 	private JButton refButton = new JButton("Обновить");
 	
 	private void initComponents() {
-		buttonsPanel.setLayout(new BorderLayout());
-		buttonsPanel.add(addButton, BorderLayout.WEST);
-		buttonsPanel.add(refButton, BorderLayout.CENTER);
-		buttonsPanel.add(delButton, BorderLayout.EAST);
+		buttonsPanel.setLayout(new GridLayout(1,1));
+		buttonsPanel.add(addButton);
+		buttonsPanel.add(refButton);
+		buttonsPanel.add(delButton);
 		
 		listPanel.setLayout(new BorderLayout());
 		listPanel.add(titleLabel, BorderLayout.NORTH);

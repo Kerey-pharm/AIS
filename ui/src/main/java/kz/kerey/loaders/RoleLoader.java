@@ -25,8 +25,6 @@ public class RoleLoader extends Loader<RoleWrapper> {
 
 	@Override
 	public void updateElement(RoleWrapper objWas, RoleWrapper objNew) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override

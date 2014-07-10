@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2014-07-10T16:00:27</date>
+  <millis>1404997227084</millis>
+  <sequence>0</sequence>
+  <logger>EJB_Loader</logger>
+  <level>INFO</level>
+  <class>kz.kerey.loaders.Loader</class>
+  <method>loadEJBs</method>
+  <thread>13</thread>
+  <message>Starting loading EJB Clients</message>
+</record>
+<record>
+  <date>2014-07-10T16:00:27</date>
+  <millis>1404997227189</millis>
+  <sequence>2</sequence>
+  <logger>EJB_Loader</logger>
+  <level>INFO</level>
+  <class>kz.kerey.loaders.Loader</class>
+  <method>loadEJBs</method>
+  <thread>13</thread>
+  <message>Ended loading EJB Clients</message>
+</record>
+</log>
