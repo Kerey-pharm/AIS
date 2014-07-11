@@ -7,8 +7,9 @@ import javax.swing.JSplitPane;
 
 import kz.kerey.ui.frames.base.ListPanel;
 import kz.kerey.ui.frames.flowconf.models.UserComboModel;
+import kz.kerey.ui.tools.WindowTool;
 
-public class UserEditorFrame extends JFrame {
+public class UserEditorFrame extends JFrame  {
 
 	private static final long serialVersionUID = -8870460508492310659L;
 
@@ -16,6 +17,7 @@ public class UserEditorFrame extends JFrame {
 
 	private UserEditorFrame() {
 		initComponents();
+		WindowTool.setWindowAtCenter(this);
 	}
 
 	public static UserEditorFrame getSelf() {

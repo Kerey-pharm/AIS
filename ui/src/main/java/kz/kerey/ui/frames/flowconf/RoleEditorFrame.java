@@ -19,7 +19,7 @@ import kz.kerey.ui.frames.good.models.GoodTypeComboboxModel;
 import kz.kerey.ui.tools.ErrorDialog;
 import kz.kerey.ui.tools.WindowTool;
 
-public class RoleEditorFrame extends JFrame {
+public class RoleEditorFrame extends JFrame  {
 
 	private static final long serialVersionUID = -306465153130569663L;
 

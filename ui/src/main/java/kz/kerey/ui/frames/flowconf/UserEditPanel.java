@@ -15,6 +15,13 @@ import javax.swing.JTextField;
 import javax.swing.text.MaskFormatter;
 
 import kz.kerey.business.wrappers.UserWrapper;
+import kz.kerey.loaders.RoleLoader;
+import kz.kerey.ui.frames.base.ListPanel;
+import kz.kerey.ui.frames.flowconf.models.RoleComboModel;
+import kz.kerey.ui.tools.ErrorDialog;
+import kz.kerey.ui.tools.WindowTool;
+import net.sourceforge.jdatepicker.JDateComponentFactory;
+import net.sourceforge.jdatepicker.JDatePicker;
 import net.sourceforge.jdatepicker.impl.JDatePanelImpl;
 import net.sourceforge.jdatepicker.impl.JDatePickerImpl;
 import net.sourceforge.jdatepicker.impl.UtilDateModel;

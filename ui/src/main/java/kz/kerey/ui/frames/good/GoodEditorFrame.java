@@ -18,7 +18,7 @@ import kz.kerey.ui.frames.good.models.GoodTypeComboboxModel;
 import kz.kerey.ui.tools.ErrorDialog;
 import kz.kerey.ui.tools.WindowTool;
 
-public class GoodEditorFrame extends JFrame {
+public class GoodEditorFrame extends JFrame  {
 
 	private static final long serialVersionUID = -2721645318072690106L;
 
