@@ -9,6 +9,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.ListModel;
 import javax.swing.border.LineBorder;
 import javax.swing.event.ListSelectionListener;
@@ -21,6 +22,7 @@ public class ListPanel extends JPanel {
 
 	private JLabel titleLabel = new JLabel();
 	private JList list = new JList();
+	private JScrollPane listpane = new JScrollPane(list);
 
 	private JPanel buttonsPanel = new JPanel();
 	private JButton addButton = new JButton("Добавить");
@@ -35,7 +37,7 @@ public class ListPanel extends JPanel {
 
 		listPanel.setLayout(new BorderLayout());
 		listPanel.add(titleLabel, BorderLayout.NORTH);
-		listPanel.add(list, BorderLayout.CENTER);
+		listPanel.add(listpane, BorderLayout.CENTER);
 		list.setBorder(new LineBorder(Color.BLACK));
 
 		this.setLayout(new BorderLayout());
