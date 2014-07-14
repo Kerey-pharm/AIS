@@ -1,6 +1,7 @@
 package kz.kerey.ui;
 
 import kz.kerey.ui.frames.flowconf.UserEditorFrame;
+import kz.kerey.ui.frames.good.GoodEditorFrame;
 
 public class MainFrame extends javax.swing.JFrame {
 
@@ -18,9 +19,9 @@ public class MainFrame extends javax.swing.JFrame {
 
 		java.awt.EventQueue.invokeLater(new Runnable() {
 			public void run() {
-				// GoodEditorFrame.getSelf().setVisible(true);
+				 GoodEditorFrame.getSelf().setVisible(true);
 				// RoleEditorFrame.getSelf().setVisible(true);
-				UserEditorFrame.getSelf().setVisible(true);
+				//UserEditorFrame.getSelf().setVisible(true);
 			}
 		});
 	}
