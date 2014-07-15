@@ -28,8 +28,8 @@ public class Importer {
 		
 		for (int i=0; i<d1.length; i+=4) {
 			String id = d1[i].substring(1, d1[i].length()-1);
-			String name = d1[i+1];
-			String barcode = d1[i+2];
+			String name = d1[i+1].trim();
+			String barcode = d1[i+2].trim();
 			
 			try {
 				UUID.fromString(id);
