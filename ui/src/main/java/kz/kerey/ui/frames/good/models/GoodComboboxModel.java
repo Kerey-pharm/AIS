@@ -3,6 +3,7 @@ package kz.kerey.ui.frames.good.models;
 import java.util.List;
 
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.SwingWorker;
 
 import kz.kerey.business.wrappers.GoodWrapper;
 import kz.kerey.loaders.GoodLoader;
@@ -30,4 +31,14 @@ public class GoodComboboxModel extends DefaultComboBoxModel<GoodWrapper> {
 		this.setData(GoodLoader.getLoader().loadElements());
 	}
 
+	public static class GoodWorker extends SwingWorker<Integer, Integer> {
+
+		@Override
+		protected Integer doInBackground() throws Exception {
+			GoodComboboxModel.getModel().reloadData();
+			return 0;
+		}
+		
+	}
+	
 }

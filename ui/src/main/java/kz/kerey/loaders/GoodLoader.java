@@ -2,6 +2,8 @@ package kz.kerey.loaders;
 
 import java.util.List;
 
+import javax.swing.SwingWorker;
+
 import kz.kerey.business.types.enums.GoodProperty;
 import kz.kerey.business.wrappers.GoodWrapper;
 
@@ -76,5 +78,5 @@ public class GoodLoader extends Loader<GoodWrapper> {
 	public void deleteElement(GoodWrapper obj) {
 		goodService.deleteGood(obj.getId());
 	}
-
+	
 }

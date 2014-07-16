@@ -49,16 +49,16 @@ public class GoodEditorFrame extends JFrame  {
 	}
 
 	private void initComponents() {
+		GoodComboboxModel.getModel().reloadData();
+		GoodTypeComboboxModel.getModel().reloadData();
+		
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setLayout(new BorderLayout());
 		addTypeEditorFrame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 
-		GoodComboboxModel.getModel().reloadData();
-		GoodTypeComboboxModel.getModel().reloadData();
-
 		goodListPanel.setUpdateButtonActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				GoodComboboxModel.getModel().reloadData();
+				new GoodComboboxModel.GoodWorker().execute();
 			}
 		});
 		goodListPanel
@@ -81,7 +81,7 @@ public class GoodEditorFrame extends JFrame  {
 			public void actionPerformed(ActionEvent e) {
 				goodLoader.updateElement(goodEditPanel.getGoodWrapper(),
 						goodEditPanel.getUpdatedGoodWrapper());
-				GoodComboboxModel.getModel().reloadData();
+				new GoodComboboxModel.GoodWorker().execute();
 			}
 		});
 
@@ -100,7 +100,7 @@ public class GoodEditorFrame extends JFrame  {
 				if (selectedObject != null) {
 					try {
 						goodLoader.deleteElement(selectedObject);
-						GoodComboboxModel.getModel().reloadData();
+						new GoodComboboxModel.GoodWorker().execute();
 					} catch (RuntimeException ex) {
 						ErrorDialog.showDialog(GoodEditorFrame.getSelf(),
 								"Удаление не возможно, существуют зависимости.");

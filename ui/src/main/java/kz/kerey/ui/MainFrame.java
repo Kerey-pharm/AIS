@@ -1,7 +1,11 @@
 package kz.kerey.ui;
 
+import javax.swing.SwingUtilities;
+
 import kz.kerey.ui.frames.flowconf.UserEditorFrame;
 import kz.kerey.ui.frames.good.GoodEditorFrame;
+import kz.kerey.ui.frames.good.models.GoodComboboxModel;
+import kz.kerey.ui.frames.good.models.GoodTypeComboboxModel;
 
 public class MainFrame extends javax.swing.JFrame {
 
@@ -17,13 +21,14 @@ public class MainFrame extends javax.swing.JFrame {
 		} catch (javax.swing.UnsupportedLookAndFeelException ex) {
 		}
 
-		java.awt.EventQueue.invokeLater(new Runnable() {
+		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
-				 GoodEditorFrame.getSelf().setVisible(true);
+				GoodEditorFrame.getSelf().setVisible(true);
 				// RoleEditorFrame.getSelf().setVisible(true);
 				//UserEditorFrame.getSelf().setVisible(true);
 			}
 		});
+		
 	}
 
 }
