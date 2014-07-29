@@ -25,22 +25,18 @@ subprojects {
     }
 	
 	if (['ui','persistence','interfaces'].contains(project.name)) {
-		
 		task deploy (type: Copy, dependsOn: build) {
 			from jar.archivePath
 			into deployment
 		}
-		
 	}
 	
 	if (['idp','services'].contains(project.name)) {
-		
 		apply plugin: 'war'
 		task deploy (type: Copy, dependsOn: build) {
 			from war.archivePath
 			into deployment
-		}
-		
+		}	
 	}
 
 	processResources {
@@ -49,7 +45,5 @@ subprojects {
 			include '**/*.properties'
 		}		
 	}
-	
-	
 	
 }

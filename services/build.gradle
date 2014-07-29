@@ -1,3 +1,4 @@
+//We are applying plugin 'war' for building WAR module
 apply plugin: 'war'
 
 dependencies {
