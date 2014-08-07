@@ -1,1 +1,1 @@
-include 'persistence', 'services', 'ui', 'interfaces', 'idp'
+include 'persistence', 'services', 'ui', 'interfaces', 'idp', 'web-ui'

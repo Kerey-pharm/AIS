@@ -28,9 +28,6 @@ public class MainFrame extends javax.swing.JFrame {
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
 				GoodEditorFrame.getSelf().setVisible(true);
-				//RoleEditorFrame.getSelf().setVisible(true);
-				//UserEditorFrame.getSelf().setVisible(true);
-				
 			}
 		});
 		

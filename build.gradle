@@ -31,7 +31,7 @@ subprojects {
 		}
 	}
 	
-	if (['idp','services'].contains(project.name)) {
+	if (['idp','services','web-ui'].contains(project.name)) {
 		apply plugin: 'war'
 		task deploy (type: Copy, dependsOn: build) {
 			from war.archivePath
