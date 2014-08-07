@@ -12,8 +12,9 @@ subprojects {
 		}
 		
 		maven {
-			url "http://mvn.b2e.kz/content/repositories/public"
+			url "http://maven.vaadin.com/vaadin-addons"
 		}
+		
     }
 
     dependencies {

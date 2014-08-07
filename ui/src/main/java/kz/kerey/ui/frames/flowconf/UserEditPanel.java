@@ -34,7 +34,7 @@ public class UserEditPanel extends JPanel {
 	private UserWrapper updatedUser;
 
 	private JLabel loginLabel = new JLabel("Логин");
-	private JLabel nameLabel = new JLabel("Имя");
+	private JLabel nameLabel = new JLabel("");
 	private JLabel lastNameLabel = new JLabel("Фамилия");
 	private JLabel emailLabel = new JLabel("Е-Маил");
 	private JLabel cellPhoneLabel = new JLabel("Сотовый телефон");

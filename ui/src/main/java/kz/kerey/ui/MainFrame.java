@@ -1,15 +1,8 @@
 package kz.kerey.ui;
 
-import java.util.concurrent.ConcurrentLinkedQueue;
-
 import javax.swing.SwingUtilities;
 
-import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils.Collections;
-
-import kz.kerey.ui.frames.flowconf.UserEditorFrame;
 import kz.kerey.ui.frames.good.GoodEditorFrame;
-import kz.kerey.ui.frames.good.models.GoodComboboxModel;
-import kz.kerey.ui.frames.good.models.GoodTypeComboboxModel;
 
 public class MainFrame extends javax.swing.JFrame {
 
