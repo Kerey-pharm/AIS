@@ -6,15 +6,12 @@ subprojects {
 	
     repositories {
 		mavenCentral()
-		
 		maven {
 			url "http://repository.jboss.org/nexus/content/groups/public"
 		}
-		
 		maven {
 			url "http://maven.vaadin.com/vaadin-addons"
 		}
-		
     }
 
     dependencies {
@@ -46,5 +43,5 @@ subprojects {
 			include '**/*.properties'
 		}		
 	}
-	
+
 }

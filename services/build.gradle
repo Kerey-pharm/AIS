@@ -1,9 +1,8 @@
-//We are applying plugin 'war' for building WAR module
 apply plugin: 'war'
 
 dependencies {
-    providedCompile project(':persistence')
-	providedCompile project(':interfaces')
+	providedCompile project(':interfaces'),
+    				project(':persistence')
 	
 	providedCompile 'org.jboss.spec:jboss-javaee-7.0:1.0.2.Final',
 					'org.jboss.spec.javax.annotation:jboss-annotations-api_1.2_spec:1.0.0.Final',
