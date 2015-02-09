@@ -1,37 +1,40 @@
 package kz.kerey.business.types;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 @Entity
 public class Good {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	
-	@Column(unique=true, nullable=false)
+
+	@Column(unique = true, nullable = false)
 	private String name;
 
-	@Column(nullable=false)
+	@Column(nullable = false)
 	private String primaryBarcode;
-	
-	@Column(nullable=false)
+
+	@Column(nullable = false)
 	private Boolean partialSelling;
-	
-	@Column(nullable=false)
+
+	@Column(nullable = false)
 	private Long countPerBox;
-	
-	@Column(nullable=false)
+
+	@Column(nullable = false)
 	private Long countSellable;
-	
-	@ManyToOne(fetch=FetchType.LAZY)
-	private GoodType type;
+
+	@ManyToMany(fetch=FetchType.LAZY, targetEntity=GoodType.class)
+	private List<GoodType> types;
 
 	public Long getId() {
 		return id;
@@ -81,12 +84,12 @@ public class Good {
 		this.countSellable = countSellable;
 	}
 
-	public GoodType getType() {
-		return type;
+	public List<GoodType> getTypes() {
+		return types;
 	}
 
-	public void setType(GoodType type) {
-		this.type = type;
+	public void setTypes(List<GoodType> types) {
+		this.types = types;
 	}
-	
+
 }

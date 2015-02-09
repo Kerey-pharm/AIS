@@ -61,11 +61,6 @@ public class GoodLoader extends Loader<GoodWrapper> {
 								objNew.getPrimaryBarcode());
 			}
 
-			if (objWas.getGoodTypeId() == null
-					|| !objWas.getGoodTypeId().equals(objNew.getGoodTypeId())) {
-				goodService.changeGoodType(objNew.getId(),
-						objNew.getGoodTypeId());
-			}
 		}
 	}
 

@@ -70,7 +70,7 @@ public class GoodTypeTest {
 		GoodWrapper good1 = new GoodWrapper();
 		good1.setCountPerBox(1L);
 		good1.setCountSellable(1L);
-		good1.setGoodTypeId(goodTypes.get(0).getId());
+		
 		good1.setName("Good1");
 		good1.setPartialSelling(false);
 		good1.setPrimaryBarcode("000000000001");
@@ -78,7 +78,7 @@ public class GoodTypeTest {
 		GoodWrapper good2 = new GoodWrapper();
 		good2.setCountPerBox(10L);
 		good2.setCountSellable(1L);
-		good2.setGoodTypeId(goodTypes.get(1).getId());
+		
 		good2.setName("Good2");
 		good2.setPartialSelling(true);
 		good2.setPrimaryBarcode("000000000002");
@@ -86,7 +86,7 @@ public class GoodTypeTest {
 		GoodWrapper good3 = new GoodWrapper();
 		good3.setCountPerBox(100L);
 		good3.setCountSellable(10L);
-		good3.setGoodTypeId(goodTypes.get(0).getId());
+		
 		good3.setName("Super Good2");
 		good3.setPartialSelling(true);
 		good3.setPrimaryBarcode("000000000003");

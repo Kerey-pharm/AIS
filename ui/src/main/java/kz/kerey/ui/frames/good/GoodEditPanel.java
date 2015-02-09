@@ -115,8 +115,6 @@ public class GoodEditPanel extends JPanel {
 		this.updatedGood.setPartialSelling(this.partialSellingField
 				.isSelected());
 		this.updatedGood.setPrimaryBarcode(this.primaryBarcodeField.getText());
-		this.updatedGood.setGoodTypeId(((GoodTypeWrapper) this.goodTypeIdField
-				.getSelectedItem()).getId());
 		return this.updatedGood;
 	}
 
@@ -151,19 +149,7 @@ public class GoodEditPanel extends JPanel {
 
 			if (GoodTypeComboboxModel.getModel().getSize() > 0)
 				this.goodTypeIdField.setSelectedIndex(0);
-			if (this.good.getGoodTypeId() != null
-					&& this.good.getGoodTypeId() != 0) {
-				GoodTypeComboboxModel model = GoodTypeComboboxModel.getModel();
-				for (int i = 0; i < model.getSize(); i++) {
-					if (model.getElementAt(i).getId() != null
-							&& model.getElementAt(i).getId()
-									.equals(this.good.getGoodTypeId())) {
-						this.goodTypeIdField.setSelectedIndex(i);
-						break;
-					}
-				}
-			}
-
+			
 			return;
 		}
 		this.clearData();

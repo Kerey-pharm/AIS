@@ -157,39 +157,5 @@ public class GoodRS implements GoodInterface {
 		}
 	}
 
-	@PUT
-	@Path("{goodId}")
-	public void changeGoodType(
-			@PathParam("goodId")
-			Long goodId, 
-			@QueryParam("goodTypeId")
-			Long goodTypeId) {
-		if (goodId==null || goodId==0) {
-			try {
-				response.sendError(HttpServletResponse.SC_BAD_REQUEST, "goodId is NULL or EMPTY");
-			} catch (IOException e) {
-				logger.severe(e.getMessage());
-			}
-			return;
-		}
-		if (goodTypeId==null || goodTypeId==0) {
-			try {
-				response.sendError(HttpServletResponse.SC_BAD_REQUEST, "goodTypeId is NULL or EMPTY");
-			} catch (IOException e) {
-				logger.severe(e.getMessage());
-			}
-			return;
-		}
-		try {
-			bean.changeGoodType(goodId, goodTypeId);
-		}
-		catch (ServicesException ex) {
-			try {
-				response.sendError(HttpServletResponse.SC_CONFLICT, ex.getComment());
-			} catch (IOException e) {
-				logger.severe(e.getMessage());
-			}
-		}
-	}
 
 }

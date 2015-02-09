@@ -34,12 +34,6 @@ public class GoodEJB implements GoodInterface {
 		EntityManager em = null;
 		try {
 			em = emf.createEntityManager();
-			GoodType type = null;
-			if (obj.getGoodTypeId()!=null && obj.getGoodTypeId()!=0) {
-				type = em.find(GoodType.class, obj.getGoodTypeId());
-				if (type==null)
-					throw new ServicesException(Constants.objectIsNull, "GoodType with ID: "+obj.getGoodTypeId()+" is NULL");
-			}
 			List<Good> list = em.createQuery("from Good g where lower(g.name)=:text1")
 					.setParameter("text1", obj.getName())
 					.getResultList();
@@ -51,7 +45,6 @@ public class GoodEJB implements GoodInterface {
 			good.setCountSellable(obj.getCountSellable());
 			good.setPartialSelling(obj.getPartialSelling());
 			good.setPrimaryBarcode(obj.getPrimaryBarcode());
-			good.setType(type);
 			em.persist(good);
 		}
 		finally {
@@ -115,8 +108,6 @@ public class GoodEJB implements GoodInterface {
 				good.setCountSellable(obj.getCountSellable());
 				good.setPartialSelling(obj.getPartialSelling());
 				good.setPrimaryBarcode(obj.getPrimaryBarcode());
-				if (obj.getType()!=null && obj.getType().getId()!=null)
-					good.setGoodTypeId(obj.getType().getId());
 				result.add(good);
 			}
 		}
@@ -152,27 +143,4 @@ public class GoodEJB implements GoodInterface {
 		}
 	}
 	
-	@Override
-	public void changeGoodType(Long id, Long goodTypeId) {
-		EntityManager em = null;
-		try {
-			em = emf.createEntityManager();
-			GoodType type = null;
-			Good good = em.find(Good.class, id);
-			if (good==null)
-				throw new ServicesException(Constants.objectIsNull, "Good with ID: "+id+" is NULL");
-			if (goodTypeId!=null && goodTypeId!=0) {
-				type = em.find(GoodType.class, goodTypeId);
-				if (type==null)
-					throw new ServicesException(Constants.objectIsNull, "GoodType with ID: "+goodTypeId+" is NULL");
-			}
-			good.setType(type);
-		}
-		finally {
-			if (em!=null)
-				if (em.isOpen())
-					em.close();
-		}
-	}
-
 }

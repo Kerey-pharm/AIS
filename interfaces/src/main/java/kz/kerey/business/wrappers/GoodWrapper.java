@@ -15,7 +15,6 @@ public class GoodWrapper implements Serializable {
 	private Boolean partialSelling;
 	private Long countPerBox;
 	private Long countSellable;
-	private Long goodTypeId;
 	
 	public Long getId() {
 		return id;
@@ -52,12 +51,6 @@ public class GoodWrapper implements Serializable {
 	}
 	public void setCountSellable(Long countSellable) {
 		this.countSellable = countSellable;
-	}
-	public Long getGoodTypeId() {
-		return goodTypeId;
-	}
-	public void setGoodTypeId(Long goodTypeId) {
-		this.goodTypeId = goodTypeId;
 	}
 
 	@Override

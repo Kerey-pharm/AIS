@@ -12,6 +12,5 @@ public interface GoodInterface {
 	public void deleteGood(Long id);
 	public List<GoodWrapper> getGoodList(PageParam params, String nameFilter, String barcode);
 	public void changeGoodProperty(Long id, GoodProperty property, String newValue);
-	public void changeGoodType(Long id, Long goodTypeId);
 	
 }

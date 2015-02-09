@@ -94,22 +94,4 @@ public class GoodWS implements GoodInterface {
 		}
 	}
 
-	public void changeGoodType(
-			@WebParam(name="id")
-			Long id, 
-			@WebParam(name="goodTypeId")
-			Long goodTypeId) throws WebServiceException {
-		if (id == null || id == 0)
-			throw new WebServiceException(Constants.objectIsNull,
-					"ID is null or empty");
-		if (goodTypeId == null || goodTypeId == 0)
-			throw new WebServiceException(Constants.objectIsNull,
-					"goodTypeId is null or empty");
-		try {
-			bean.changeGoodType(id, goodTypeId);
-		} catch (ServicesException ex) {
-			throw new WebServiceException(ex.getErrorCode(), ex.getComment());
-		}
-	}
-
 }
