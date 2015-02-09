@@ -1,0 +1,6 @@
+dependencies {
+
+	compile project(':interfaces')
+
+	compile 'org.mongodb:mongo-java-driver:2.13.0'
+}
