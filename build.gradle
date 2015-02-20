@@ -1,6 +1,5 @@
 subprojects {
     apply plugin: 'java'
-    apply plugin: 'eclipse'
 	
 	sourceCompatibility = 1.7
     targetCompatibility = 1.7
@@ -15,7 +14,7 @@ subprojects {
     }
 
     dependencies {
-        testCompile 'junit:junit:4.11'
+        compile 'junit:junit:4.12'
     }
 
     jar {
